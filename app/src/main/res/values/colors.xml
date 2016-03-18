@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="classDruidPrimary">#795548</color>
+    <color name="classDruidPrimaryDark">#5D4037</color>
+    <color name="classDruidAccent">#69F0AE</color>
+
+    <color name="classHunterPrimary">#4CAF50</color>
+    <color name="classHunterPrimaryDark">#388E3C</color>
+    <color name="classHunterAccent">#FFAB40</color>
+
+    <color name="classMagePrimary">#2196F3</color>
+    <color name="classMagePrimaryDark">#1976D2</color>
+    <color name="classMageAccent">#E040FB</color>
+
+    <color name="classPaladinPrimary">#FFC107</color>
+    <color name="classPaladinPrimaryDark">#FFA000</color>
+    <color name="classPaladinAccent">#18FFFF</color>
+
+    <color name="classPriestPrimary">#9E9E9E</color>
+    <color name="classPriestPrimaryDark">#616161</color>
+    <color name="classPriestAccent">#7C4DFF</color>
+
+    <color name="classRoguePrimary">#616161</color>
+    <color name="classRoguePrimaryDark">#212121</color>
+    <color name="classRogueAccent">#EEFF41</color>
+
+    <color name="classShamanPrimary">#3F51B5</color>
+    <color name="classShamanPrimaryDark">#303F9F</color>
+    <color name="classShamanAccent">#40C4FF</color>
+
+    <color name="classWarlockPrimary">#673AB7</color>
+    <color name="classWarlockPrimaryDark">#512DA8</color>
+    <color name="classWarlockAccent">#B2FF59</color>
+
+    <color name="classWarriorPrimary">#F44336</color>
+    <color name="classWarriorPrimaryDark">#D32F2F</color>
+    <color name="classWarriorAccent">#FFAB40</color>
+
+    <color name="statMana">#2196F3</color>
+    <color name="statMinionAttack">#FFC107</color>
+    <color name="statMinionHealth">#F44336</color>
+    <color name="statWeaponAttack">#9E9E9E</color>
+    <color name="statWeaponDurability">#616161</color>
+    <color name="statRace">#A1887F</color>
+
+    <color name="rarityFree">#000000</color>
+    <color name="rarityCommon">#9E9E9E</color>
+    <color name="rarityRare">#1976D2</color>
+    <color name="rarityEpic">#9C27B0</color>
+    <color name="rarityLegendary">#FF9800</color>
+
+    <color name="setCore">#E0E0E0</color>
+    <color name="setHeroSkins">#FFC107</color>
+    <color name="setClassic">#2196F3</color>
+    <color name="setReward">#3F51B5</color>
+    <color name="setNaxx">#8BC34A</color>
+    <color name="setGVG">#FF9800</color>
+    <color name="setBRM">#B71C1C</color>
+    <color name="setTGT">#7B1FA2</color>
+    <color name="setLOE">#009688</color>
+    <color name="setWOG">#BA68C8</color>
+
+
+
+
+
+
+
+</resources>

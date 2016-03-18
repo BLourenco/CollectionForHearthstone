@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">CollectionHS</string>
+
+    <string-array name="collections">
+        <item>Cards</item>
+        <item>Card Backs</item>
+        <item>Heroes</item>
+        <item>Decks</item>
+    </string-array>
+
+    <string-array name="classes">
+        <item>DRUID</item>
+        <item>HUNTER</item>
+        <item>MAGE</item>
+        <item>PALADIN</item>
+        <item>PRIEST</item>
+        <item>ROGUE</item>
+        <item>SHAMAN</item>
+        <item>WARLOCK</item>
+        <item>WARRIOR</item>
+        <item>NEUTRAL</item>
+    </string-array>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>

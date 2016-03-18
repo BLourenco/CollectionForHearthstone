@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="200"
+    width="200">
+    <path
+        fill="#000"
+        stroke="#000"
+        stroke-width="8"
+        d="m 190,40 c -90,-30 -180,0 -180,0 l 0,120 c 95,30 180,0 180,0 l 0,-120 z" />
+</svg>
