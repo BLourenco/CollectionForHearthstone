@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -59,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
     static List<Card> cards;
 
     private Enums.CardClass prevClassTheme = Enums.CardClass.DRUID;
+
+    @NonNull
+    public static MainActivity get(@NonNull Context anyContext) {
+        return (MainActivity) anyContext.getApplicationContext();
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
