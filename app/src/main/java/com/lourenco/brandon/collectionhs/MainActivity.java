@@ -38,6 +38,7 @@ import com.lourenco.brandon.collectionhs.json.JSONResourceReader;
 import com.lourenco.brandon.collectionhs.models.Card;
 import com.lourenco.brandon.collectionhs.util.CardComparator;
 import com.lourenco.brandon.collectionhs.util.Enums;
+import com.lourenco.brandon.collectionhs.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -363,11 +364,13 @@ public class MainActivity extends AppCompatActivity {
 
                     if (isVisible && scrollDist > MIN_TRIGGER_DISTANCE) {
                         floatingActionButton.animate().translationY(floatingActionButton.getHeight() + 56).setInterpolator(new AccelerateInterpolator(2)).start();
+                        //Utils.reveal(floatingActionButton, floatingActionButton.getWidth() / 2, floatingActionButton.getHeight() / 2);
                         scrollDist = 0;
                         isVisible = false;
                     }
                     else if (!isVisible && scrollDist < -MIN_TRIGGER_DISTANCE) {
                         floatingActionButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+                        //Utils.unReveal(floatingActionButton, floatingActionButton.getWidth() / 2, floatingActionButton.getHeight() / 2);
                         scrollDist = 0;
                         isVisible = true;
                     }
