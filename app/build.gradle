@@ -32,4 +32,5 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-android:4.47'
 
     compile 'com.mostafagazar:customshapeimageview:1.0.4'
+    compile 'com.github.markushi:android-ui:1.2'
 }

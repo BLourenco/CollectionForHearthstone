@@ -3,10 +3,14 @@ package com.lourenco.brandon.collectionhs;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,14 +41,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import at.markushi.ui.RevealColorView;
+
 public class MainActivity extends AppCompatActivity {
 
     private ArrayAdapter mSpinnerAdapter;
     private Toolbar toolbar;
+    private FloatingActionButton fab;
+
+    private RevealColorView revealColorView;
+    //private RevealColorView revealColorViewFab;
+    private View selectedView;
 
     static List<Card> cards;
 
-    @Override
+    private Enums.CardClass prevClassTheme = Enums.CardClass.DRUID;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -61,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        Spinner spnCollection = (Spinner) findViewById(R.id.spnCollection);
+        final Spinner spnCollection = (Spinner) findViewById(R.id.spnCollection);
+        final Spinner spnClass = (Spinner) findViewById(R.id.spnClass);
+
         spnCollection.setAdapter(new MyAdapter(
                 toolbar.getContext(),
                 getResources().getStringArray(R.array.collections)
@@ -73,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
                 // When the given dropdown item is selected, show its contents in the
                 // container view.
                 //TODO change collections
+                if (position == 0)
+                {
+                    spnClass.setEnabled(true);
+                }
+                else
+                {
+                    spnClass.setEnabled(false);
+                }
             }
 
             @Override
@@ -80,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Spinner spnClass = (Spinner) findViewById(R.id.spnClass);
         spnClass.setAdapter(new MyAdapter(
                 toolbar.getContext(),
                 getResources().getStringArray(R.array.classes)
@@ -95,6 +116,9 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(getApplicationContext(), (ArrayList<Card>) getClassCards(Enums.CardClass.values()[position])))
                         .commit();
+
+                changeThemeColor(Enums.CardClass.values()[position]);
+                prevClassTheme = Enums.CardClass.values()[position];
             }
 
             @Override
@@ -102,14 +126,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        revealColorView = (RevealColorView) findViewById(R.id.reveal);
+        //revealColorViewFab = (RevealColorView) findViewById(R.id.revealFab);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
-        });*/
+        });
     }
 
     public static void initCardObjects(Resources r)
@@ -121,57 +147,116 @@ public class MainActivity extends AppCompatActivity {
         Collections.sort(cards, new CardComparator());
     }
 
-    public void changeThemeColor()
-    {
-        TypedValue a = new TypedValue();
-        int currentPrimaryColor = 0;
-        int currentStatusColor = 0;
-        int currentAccentColor = 0;
-        getTheme().resolveAttribute(android.R.attr.windowBackground, a, true);
-        if (a.type >= TypedValue.TYPE_FIRST_COLOR_INT && a.type <= TypedValue.TYPE_LAST_COLOR_INT) {
-            // windowBackground is a color
-            currentPrimaryColor = a.data;
-        } else {
-            // windowBackground is not a color, probably a drawable
-            Drawable d = getResources().getDrawable(a.resourceId);
+    private Point getLocationInView(View src, View target) {
+        final int[] l0 = new int[2];
+        src.getLocationOnScreen(l0);
+
+        final int[] l1 = new int[2];
+        target.getLocationOnScreen(l1);
+
+        l1[0] = l1[0] - l0[0] + target.getWidth() / 2;
+        l1[1] = l1[1] - l0[1] + target.getHeight() / 2;
+
+        return new Point(l1[0], l1[1]);
+    }
+
+    private int[] getColors(Enums.CardClass selectedClass) {
+
+        int[] colors = {0,0,0}; // Primary, Dark, Accent
+
+        switch (selectedClass)
+        {
+            case DRUID:
+                colors[0] = getResources().getColor(R.color.classDruidPrimary);
+                colors[1] = getResources().getColor(R.color.classDruidPrimaryDark);
+                colors[2] = getResources().getColor(R.color.classDruidAccent);
+                break;
+            case HUNTER:
+                colors[0] = getResources().getColor(R.color.classHunterPrimary);
+                colors[1] = getResources().getColor(R.color.classHunterPrimaryDark);
+                colors[2] = getResources().getColor(R.color.classHunterAccent);
+                break;
+            case MAGE:
+                colors[0] = getResources().getColor(R.color.classMagePrimary);
+                colors[1] = getResources().getColor(R.color.classMagePrimaryDark);
+                colors[2] = getResources().getColor(R.color.classMageAccent);
+                break;
+            case PALADIN:
+                colors[0] = getResources().getColor(R.color.classPaladinPrimary);
+                colors[1] = getResources().getColor(R.color.classPaladinPrimaryDark);
+                colors[2] = getResources().getColor(R.color.classPaladinAccent);
+                break;
+            case PRIEST:
+                colors[0] = getResources().getColor(R.color.classPriestPrimary);
+                colors[1] = getResources().getColor(R.color.classPriestPrimaryDark);
+                colors[2] = getResources().getColor(R.color.classPriestAccent);
+                break;
+            case ROGUE:
+                colors[0] = getResources().getColor(R.color.classRoguePrimary);
+                colors[1] = getResources().getColor(R.color.classRoguePrimaryDark);
+                colors[2] = getResources().getColor(R.color.classRogueAccent);
+                break;
+            case SHAMAN:
+                colors[0] = getResources().getColor(R.color.classShamanPrimary);
+                colors[1] = getResources().getColor(R.color.classShamanPrimaryDark);
+                colors[2] = getResources().getColor(R.color.classShamanAccent);
+                break;
+            case WARLOCK:
+                colors[0] = getResources().getColor(R.color.classWarlockPrimary);
+                colors[1] = getResources().getColor(R.color.classWarlockPrimaryDark);
+                colors[2] = getResources().getColor(R.color.classWarlockAccent);
+                break;
+            case WARRIOR:
+                colors[0] = getResources().getColor(R.color.classWarriorPrimary);
+                colors[1] = getResources().getColor(R.color.classWarriorPrimaryDark);
+                colors[2] = getResources().getColor(R.color.classWarriorAccent);
+                break;
+            case NEUTRAL:
+                colors[0] = getResources().getColor(R.color.classNeutralPrimary);
+                colors[1] = getResources().getColor(R.color.classNeutralPrimaryDark);
+                colors[2] = getResources().getColor(R.color.classNeutralAccent);
+                break;
+            default:
+                colors[0] = getResources().getColor(R.color.colorPrimary);
+                colors[1] = getResources().getColor(R.color.colorPrimaryDark);
+                colors[2] = getResources().getColor(R.color.colorAccent);
         }
 
+        return colors;
+    }
 
-        Integer colorFrom = getResources().getColor(R.color.classMagePrimary);;
-        Integer colorTo = getResources().getColor(R.color.classDruidPrimary);
-        //Integer colorStatusFrom = Color.parseColor(ThemeColor.getPrevStatusColor());
-        //Integer colorStatusTo = Color.parseColor(ThemeColor.getStatusColor());
+    public void changeThemeColor(Enums.CardClass selectedClass)
+    {
+        int transitionDuration_ms = 240;
+
+        /**
+         * Status Bar + Toolbar
+         */
+        final int[] colors = getColors(selectedClass);
+        final Point p1 = getLocationInView(revealColorView, revealColorView);
+        revealColorView.reveal(p1.x, p1.y, colors[0], revealColorView.getHeight() / 2, transitionDuration_ms, null);
+
+        /**
+         * Fab
+         */
+
+        int prevColor = getColors(prevClassTheme)[2];
+
+        Integer colorFrom = prevColor;
+        Integer colorTo = colors[2];
         ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-        //ValueAnimator colorStatusAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorStatusFrom, colorStatusTo);
 
         colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
             @Override
             public void onAnimationUpdate(ValueAnimator animator) {
-                toolbar.setBackgroundColor((Integer) animator.getAnimatedValue());
+                fab.setBackgroundTintList(ColorStateList.valueOf((Integer) animator.getAnimatedValue()));
             }
         });
 
-/*        colorStatusAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator animator) {
-                int currentApiVersion = android.os.Build.VERSION.SDK_INT;
-                if (currentApiVersion >= Build.VERSION_CODES.LOLLIPOP) {
-                    getWindow().setStatusBarColor((Integer) animator.getAnimatedValue());
-                }
-                if (currentApiVersion == Build.VERSION_CODES.KITKAT) {
-                    //TODO tintManager.setStatusBarTintColor((Integer) animator.getAnimatedValue());
-                }
-            }
-        });*/
-
-        colorAnimation.setDuration(1300);
+        colorAnimation.setDuration(transitionDuration_ms);
         colorAnimation.setStartDelay(0);
         colorAnimation.start();
-        //colorStatusAnimation.setDuration(1300);
-        //colorStatusAnimation.setStartDelay(0);
-        //colorStatusAnimation.start();
     }
 
     public static List<Card> getClassCards(Enums.CardClass playerClass)
@@ -214,7 +299,6 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             //TODO Implement settings
-            changeThemeColor();
             return true;
         }
 

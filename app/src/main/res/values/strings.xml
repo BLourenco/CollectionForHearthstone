@@ -9,16 +9,16 @@
     </string-array>
 
     <string-array name="classes">
-        <item>DRUID</item>
-        <item>HUNTER</item>
-        <item>MAGE</item>
-        <item>PALADIN</item>
-        <item>PRIEST</item>
-        <item>ROGUE</item>
-        <item>SHAMAN</item>
-        <item>WARLOCK</item>
-        <item>WARRIOR</item>
-        <item>NEUTRAL</item>
+        <item>Druid</item>
+        <item>Hunter</item>
+        <item>Mage</item>
+        <item>Paladin</item>
+        <item>Priest</item>
+        <item>Rogue</item>
+        <item>Shaman</item>
+        <item>Warlock</item>
+        <item>Warrior</item>
+        <item>Neutral</item>
     </string-array>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="action_settings">Settings</string>

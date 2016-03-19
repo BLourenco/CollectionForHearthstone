@@ -481,6 +481,8 @@ public class Card implements Parcelable {
      * The text
      */
     public String getText() {
+        if (text != null)
+            return text.replace("$", "").replace("#", "");
         return text;
     }
 

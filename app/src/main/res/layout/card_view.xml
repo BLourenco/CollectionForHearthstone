@@ -14,6 +14,7 @@
         android:layout_height="80dp"
         android:orientation="vertical">
 
+        <!-- https://github.com/MostafaGazar/CustomShapeImageView -->
         <com.meg7.widget.SvgImageView
             android:id="@+id/imgCardViewMinionArt"
             android:layout_width="match_parent"
@@ -182,23 +183,14 @@
             android:textColor="@android:color/black"
             android:textSize="16sp"/>
 
-        <!--TextView
-            android:id="@+id/txtCardViewRace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="test"
-            android:textSize="12sp"
-            android:textStyle="italic" /-->
-
         <TextView
             android:id="@+id/txtCardViewText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text=""
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

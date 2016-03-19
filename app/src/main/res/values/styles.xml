@@ -8,13 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ClassThemeDruid" parent="AppTheme">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/classDruidPrimary</item>
-        <item name="colorPrimaryDark">@color/classDruidPrimaryDark</item>
-        <item name="colorAccent">@color/classDruidAccent</item>
-    </style>
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
