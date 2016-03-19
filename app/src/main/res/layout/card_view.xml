@@ -15,47 +15,12 @@
         android:orientation="vertical">
 
         <!-- https://github.com/MostafaGazar/CustomShapeImageView -->
-        <com.meg7.widget.SvgImageView
-            android:id="@+id/imgCardViewMinionArt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:svg_raw_resource="@raw/mask_minion" />
 
-        <com.meg7.widget.SvgImageView
-            android:id="@+id/imgCardViewSpellArt"
+        <ImageView
+            android:id="@+id/imgCardViewArt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:svg_raw_resource="@raw/mask_spell" />
-
-        <com.meg7.widget.SvgImageView
-            android:id="@+id/imgCardViewWeaponArt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:svg_raw_resource="@raw/mask_heropower" />
-
-        <com.meg7.widget.SvgImageView
-            android:id="@+id/imgCardViewHeroArt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:svg_raw_resource="@raw/mask_hero" />
-
-        <com.meg7.widget.SvgImageView
-            android:id="@+id/imgCardViewHeroPowerArt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:svg_raw_resource="@raw/mask_heropower" />
-
-        <com.meg7.widget.SvgImageView
-            android:id="@+id/imgCardViewEnchantmentArt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:svg_raw_resource="@raw/mask_enchantment" />
+            android:scaleType="centerCrop" />
 
         <FrameLayout
             android:layout_width="20dp"
@@ -64,7 +29,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp">
+            android:layout_marginBottom="2dp"><!-- R&L margins still 2dp more than health & attack -->
 
             <ImageView
                 android:id="@+id/imgCardViewCostIcon"

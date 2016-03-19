@@ -11,10 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lourenco.brandon.collectionhs.models.Card;
-import com.lourenco.brandon.collectionhs.util.ArtLoader;
-import com.meg7.widget.SvgImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import jp.wasabeef.picasso.transformations.MaskTransformation;
 
 public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapter.ViewHolder> {
     private List<Card> mDataset;
@@ -25,7 +26,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public SvgImageView imgMinionArt, imgSpellArt, imgWeaponArt, imgHeroArt, imgHeroPowerArt, imgEnchantmentArt;
+        public ImageView imgCardArt;
         public ImageView imgSetIcon;
         public TextView txtName;
         public ImageView imgRaceIcon;
@@ -39,12 +40,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         public TextView txtHealth;
         public ViewHolder(View v) {
             super(v);
-            this.imgMinionArt = (SvgImageView) v.findViewById(R.id.imgCardViewMinionArt);
-            this.imgSpellArt = (SvgImageView) v.findViewById(R.id.imgCardViewSpellArt);
-            this.imgWeaponArt = (SvgImageView) v.findViewById(R.id.imgCardViewWeaponArt);
-            this.imgHeroArt = (SvgImageView) v.findViewById(R.id.imgCardViewHeroArt);
-            this.imgHeroPowerArt = (SvgImageView) v.findViewById(R.id.imgCardViewHeroPowerArt);
-            this.imgEnchantmentArt = (SvgImageView) v.findViewById(R.id.imgCardViewEnchantmentArt);
+            this.imgCardArt = (ImageView) v.findViewById(R.id.imgCardViewArt);
             this.imgSetIcon = (ImageView) v.findViewById(R.id.imgCardViewSetIcon);
             this.txtName = (TextView)v.findViewById(R.id.txtCardViewName);
             this.imgRaceIcon = (ImageView) v.findViewById(R.id.imgCardViewRaceIcon);
@@ -82,45 +78,39 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         final Card card = mDataset.get(position);
-        int rarity = 0;
 
-        holder.imgMinionArt.setVisibility(View.GONE);
-        holder.imgSpellArt.setVisibility(View.GONE);
-        holder.imgWeaponArt.setVisibility(View.GONE);
-        holder.imgHeroArt.setVisibility(View.GONE);
-        holder.imgHeroPowerArt.setVisibility(View.GONE);
-        holder.imgEnchantmentArt.setVisibility(View.GONE);
-
-        ArtLoader al = new ArtLoader(context);
-
+        MaskTransformation transform = null;
         switch (card.getTypeEnum())
         {
             case MINION:
-                holder.imgMinionArt.setVisibility(View.VISIBLE);
-                //al.loadCardArt(card.getId(), card.getTypeEnum(), holder.imgMinionArt);
+                transform = new MaskTransformation(context, R.drawable.mask_minion);
                 break;
             case SPELL:
-                holder.imgSpellArt.setVisibility(View.VISIBLE);
-                //al.loadCardArt(card.getId(), card.getTypeEnum(), holder.imgSpellArt);
+                transform = new MaskTransformation(context, R.drawable.mask_spell);
                 break;
             case WEAPON:
-                holder.imgWeaponArt.setVisibility(View.VISIBLE);
-                //al.loadCardArt(card.getId(), card.getTypeEnum(), holder.imgWeaponArt);
+                transform = new MaskTransformation(context, R.drawable.mask_weapon);
                 break;
             case HERO:
-                holder.imgHeroArt.setVisibility(View.VISIBLE);
-                //al.loadCardArt(card.getId(), card.getTypeEnum(), holder.imgHeroArt);
+                transform = new MaskTransformation(context, R.drawable.mask_hero);
                 break;
             case HERO_POWER:
-                holder.imgHeroPowerArt.setVisibility(View.VISIBLE);
-                //al.loadCardArt(card.getId(), card.getTypeEnum(), holder.imgHeroPowerArt);
+                transform = new MaskTransformation(context, R.drawable.mask_heropower);
                 break;
             case ENCHANTMENT:
-                holder.imgEnchantmentArt.setVisibility(View.VISIBLE);
-                //al.loadCardArt(card.getId(), card.getTypeEnum(), holder.imgEnchantmentArt);
+                transform = new MaskTransformation(context, R.drawable.mask_enchantment);
                 break;
+            default:
+                transform = new MaskTransformation(context, R.drawable.mask_enchantment);
         }
+        Picasso.with(context)
+                .load(card.getCartArtResourceId(context))
+                .placeholder(R.drawable.placeholder_missing)
+                .transform(transform)
+                .into(holder.imgCardArt);
 
+
+        int rarity = 0;
         if (card.getRarity() != null) {
             switch (card.getRarity()) {
                 case "FREE":
@@ -169,7 +159,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
                 holder.imgSetIcon.setColorFilter(context.getResources().getColor(R.color.setClassic));
                 break;
             case "PROMO":
-                holder.imgSetIcon.setImageResource(R.drawable.icon_set_reward_material);
+                holder.imgSetIcon.setImageResource(R.drawable.icon_set_promo);
                 holder.imgSetIcon.setColorFilter(context.getResources().getColor(R.color.setReward));
                 break;
             case "REWARD"://TODO Create the "Reward" icon for Reward and Promo cards
@@ -240,7 +230,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
         if (card.getType().equals("MINION") || card.getType().equals("WEAPON")) {
             holder.txtAttack.setText(String.format("%d", card.getAttack()));
-            holder.imgAttackIcon.setImageResource(R.drawable.icon_attack_minion);
+            holder.imgAttackIcon.setImageResource(R.drawable.icon_attack);
             if (card.getType().equals("MINION"))
                 holder.imgAttackIcon.setColorFilter(context.getResources().getColor(R.color.statMinionAttack));
             else

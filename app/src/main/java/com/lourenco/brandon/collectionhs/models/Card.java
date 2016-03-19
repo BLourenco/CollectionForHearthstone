@@ -1,5 +1,6 @@
 package com.lourenco.brandon.collectionhs.models;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,6 +11,7 @@ import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
+import com.lourenco.brandon.collectionhs.R;
 import com.lourenco.brandon.collectionhs.util.CardComparator;
 import com.lourenco.brandon.collectionhs.util.Enums;
 import com.lourenco.brandon.collectionhs.util.StringUtil;
@@ -772,6 +774,31 @@ public class Card implements Parcelable {
             dest.writeInt(durability);
         }
         dest.writeString(rarity);
+    }
+
+    public int getCartArtResourceId(Context context)
+    {
+        if (id.endsWith("e") ||
+                id.endsWith("b") ||
+                id.endsWith("o") ||
+                id.endsWith("h"))
+        {
+            id = id.substring(0, id.length() - 1);
+        }
+        else if (id.endsWith("eh") ||
+                id.endsWith("e2"))
+        {
+            id = id.substring(0, id.length()-2);
+        }
+
+        int resourceId = context.getResources().getIdentifier(id.toLowerCase(), "drawable",
+                context.getPackageName());
+
+        if (resourceId == 0)
+        {
+            resourceId = R.drawable.placeholder_missing;
+        }
+        return resourceId;
     }
 
     @SuppressWarnings("unused")

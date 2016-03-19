@@ -16,9 +16,9 @@
     <color name="classMagePrimaryDark">#1976D2</color>
     <color name="classMageAccent">#E040FB</color>
 
-    <color name="classPaladinPrimary">#FFC107</color>
-    <color name="classPaladinPrimaryDark">#FFA000</color>
-    <color name="classPaladinAccent">#18FFFF</color>
+    <color name="classPaladinPrimary">#FBC02D</color>
+    <color name="classPaladinPrimaryDark">#F57F17</color>
+    <color name="classPaladinAccent">#00E5FF</color>
 
     <color name="classPriestPrimary">#9E9E9E</color>
     <color name="classPriestPrimaryDark">#616161</color>
