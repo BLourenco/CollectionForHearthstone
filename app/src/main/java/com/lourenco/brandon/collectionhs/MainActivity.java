@@ -25,6 +25,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                 changeThemeColor(Enums.CardClass.values()[position]);
                 prevClassTheme = Enums.CardClass.values()[position];
+                fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
             }
 
             @Override
@@ -345,6 +348,35 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
             mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
             mRecyclerView.setHasFixedSize(true);
+
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+                int scrollDist = 0;
+                boolean isVisible = true;
+                final int MIN_TRIGGER_DISTANCE = 25;
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+
+                    FloatingActionButton floatingActionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+
+                    if (isVisible && scrollDist > MIN_TRIGGER_DISTANCE) {
+                        floatingActionButton.animate().translationY(floatingActionButton.getHeight() + 56).setInterpolator(new AccelerateInterpolator(2)).start();
+                        scrollDist = 0;
+                        isVisible = false;
+                    }
+                    else if (!isVisible && scrollDist < -MIN_TRIGGER_DISTANCE) {
+                        floatingActionButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+                        scrollDist = 0;
+                        isVisible = true;
+                    }
+                    if ((isVisible && dy > 0) || (!isVisible && dy < 0)) {
+                        scrollDist += dy;
+                    }
+
+                }
+            });
 
             // use a linear layout manager
             mLayoutManager = new LinearLayoutManager(context);
