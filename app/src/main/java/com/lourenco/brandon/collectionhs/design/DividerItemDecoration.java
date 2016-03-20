@@ -1,4 +1,4 @@
-package com.lourenco.brandon.collectionhs;
+package com.lourenco.brandon.collectionhs.design;
 
 import android.content.Context;
 import android.content.res.TypedArray;

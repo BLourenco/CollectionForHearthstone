@@ -1,6 +1,6 @@
-package com.lourenco.brandon.collectionhs.util;
+package com.lourenco.brandon.collectionhs.hearthstone;
 
-import com.lourenco.brandon.collectionhs.models.Card;
+import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package com.lourenco.brandon.collectionhs;
+package com.lourenco.brandon.collectionhs.hearthstone;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lourenco.brandon.collectionhs.models.Card;
+import com.lourenco.brandon.collectionhs.R;
+import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -163,7 +164,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
                 holder.imgSetIcon.setColorFilter(context.getResources().getColor(R.color.setReward));
                 break;
             case "REWARD"://TODO Create the "Reward" icon for Reward and Promo cards
-                holder.imgSetIcon.setImageResource(R.drawable.icon_set_reward_material);
+                holder.imgSetIcon.setImageResource(R.drawable.icon_set_reward);
                 holder.imgSetIcon.setColorFilter(context.getResources().getColor(R.color.setReward));
                 break;
             case "NAXX":
@@ -220,8 +221,8 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
         if (card.getCost() != null) {
             holder.txtCost.setText(String.format("%d", card.getCost()));
-            holder.imgCostIcon.setImageResource(R.drawable.icon_mana);
-            holder.imgCostIcon.setColorFilter(context.getResources().getColor(R.color.statMana));
+            holder.imgCostIcon.setImageResource(R.drawable.icon_mana3);
+            //holder.imgCostIcon.setColorFilter(context.getResources().getColor(R.color.statMana));
         }
         else {
             holder.txtCost.setText("");
@@ -230,11 +231,13 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
         if (card.getType().equals("MINION") || card.getType().equals("WEAPON")) {
             holder.txtAttack.setText(String.format("%d", card.getAttack()));
-            holder.imgAttackIcon.setImageResource(R.drawable.icon_attack);
+            //holder.imgAttackIcon.setImageResource(R.drawable.icon_attack);
             if (card.getType().equals("MINION"))
-                holder.imgAttackIcon.setColorFilter(context.getResources().getColor(R.color.statMinionAttack));
+                holder.imgAttackIcon.setImageResource(R.drawable.icon_attack_minion);
+                //holder.imgAttackIcon.setColorFilter(context.getResources().getColor(R.color.statMinionAttack));
             else
-                holder.imgAttackIcon.setColorFilter(context.getResources().getColor(R.color.statWeaponAttack));
+                holder.imgAttackIcon.setImageResource(R.drawable.icon_attack_weapon);
+                //holder.imgAttackIcon.setColorFilter(context.getResources().getColor(R.color.statWeaponAttack));
         }
         else {
             holder.txtAttack.setText("");
@@ -243,13 +246,13 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
         if (card.getType().equals("MINION") || card.getType().equals("HERO")) {
             holder.txtHealth.setText(String.format("%d", card.getHealth()));
-            holder.imgHealthIcon.setImageResource(R.drawable.icon_health);
-            holder.imgHealthIcon.setColorFilter(context.getResources().getColor(R.color.statMinionHealth));
+            holder.imgHealthIcon.setImageResource(R.drawable.icon_minion_health);
+            //holder.imgHealthIcon.setColorFilter(context.getResources().getColor(R.color.statMinionHealth));
         }
         else if (card.getType().equals("WEAPON")) {
             holder.txtHealth.setText(String.format("%d", card.getDurability()));
-            holder.imgHealthIcon.setImageResource(R.drawable.icon_durability);
-            holder.imgHealthIcon.setColorFilter(context.getResources().getColor(R.color.statWeaponDurability));
+            holder.imgHealthIcon.setImageResource(R.drawable.icon_weapon_durability);
+            //holder.imgHealthIcon.setColorFilter(context.getResources().getColor(R.color.statWeaponDurability));
         }
         else {
             holder.txtHealth.setText("");

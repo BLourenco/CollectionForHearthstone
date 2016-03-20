@@ -1,4 +1,4 @@
-package com.lourenco.brandon.collectionhs.models;
+package com.lourenco.brandon.collectionhs.hearthstone.model;
 
 import android.content.Context;
 import android.os.Parcel;
@@ -12,8 +12,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.lourenco.brandon.collectionhs.R;
-import com.lourenco.brandon.collectionhs.util.CardComparator;
-import com.lourenco.brandon.collectionhs.util.Enums;
+import com.lourenco.brandon.collectionhs.hearthstone.CardComparator;
+import com.lourenco.brandon.collectionhs.hearthstone.EnumsHS;
 import com.lourenco.brandon.collectionhs.util.StringUtil;
 
 @Generated("org.jsonschema2pojo")
@@ -156,24 +156,24 @@ public class Card implements Parcelable {
         return sb.toString();
     }
 
-    public Enums.CardType getTypeEnum()
+    public EnumsHS.CardType getTypeEnum()
     {
         switch (type)
         {
             case "MINION":
-                return Enums.CardType.MINION;
+                return EnumsHS.CardType.MINION;
             case "SPELL":
-                return Enums.CardType.SPELL;
+                return EnumsHS.CardType.SPELL;
             case "WEAPON":
-                return Enums.CardType.WEAPON;
+                return EnumsHS.CardType.WEAPON;
             case "HERO":
-                return Enums.CardType.HERO;
+                return EnumsHS.CardType.HERO;
             case "HERO_POWER":
-                return Enums.CardType.HERO_POWER;
+                return EnumsHS.CardType.HERO_POWER;
             case "ENCHANTMENT":
-                return Enums.CardType.ENCHANTMENT;
+                return EnumsHS.CardType.ENCHANTMENT;
         }
-        return Enums.CardType.INVALID;
+        return EnumsHS.CardType.INVALID;
     }
 
     public String TEST()
@@ -414,6 +414,34 @@ public class Card implements Parcelable {
         return playerClass;
     }
 
+    public EnumsHS.CardClass getPlayerClassEnum() {
+        if (playerClass == null) return EnumsHS.CardClass.NEUTRAL;
+        switch (playerClass)
+        {
+            case "DRUID":
+                return EnumsHS.CardClass.DRUID;
+            case "HUNTER":
+                return EnumsHS.CardClass.HUNTER;
+            case "MAGE":
+                return EnumsHS.CardClass.MAGE;
+            case "PALADIN":
+                return EnumsHS.CardClass.PALADIN;
+            case "PRIEST":
+                return EnumsHS.CardClass.PRIEST;
+            case "ROGUE":
+                return EnumsHS.CardClass.ROGUE;
+            case "SHAMAN":
+                return EnumsHS.CardClass.SHAMAN;
+            case "WARLOCK":
+                return EnumsHS.CardClass.WARLOCK;
+            case "WARRIOR":
+                return EnumsHS.CardClass.WARRIOR;
+            default:
+                return EnumsHS.CardClass.NEUTRAL;
+
+        }
+    }
+
     /**
      *
      * @param playerClass
@@ -484,7 +512,9 @@ public class Card implements Parcelable {
      */
     public String getText() {
         if (text != null)
-            return text.replace("$", "").replace("#", "");
+            return text.replace("$", "")
+                    .replace("#", "")
+                    .replace("\n", "<br/>");
         return text;
     }
 
