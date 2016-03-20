@@ -5,13 +5,9 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +16,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,11 +30,14 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.lourenco.brandon.collectionhs.design.DividerItemDecoration;
+import com.lourenco.brandon.collectionhs.hearthstone.CardRecyclerAdapter;
+import com.lourenco.brandon.collectionhs.hearthstone.ResourcesHS;
 import com.lourenco.brandon.collectionhs.json.JSONResourceReader;
-import com.lourenco.brandon.collectionhs.models.Card;
-import com.lourenco.brandon.collectionhs.util.CardComparator;
-import com.lourenco.brandon.collectionhs.util.Enums;
-import com.lourenco.brandon.collectionhs.util.Utils;
+import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
+import com.lourenco.brandon.collectionhs.hearthstone.CardComparator;
+import com.lourenco.brandon.collectionhs.hearthstone.EnumsHS;
+import com.lourenco.brandon.collectionhs.design.AppDesign;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     static List<Card> cards;
 
-    private Enums.CardClass prevClassTheme = Enums.CardClass.DRUID;
+    private EnumsHS.CardClass prevClassTheme = EnumsHS.CardClass.DRUID;
 
     @NonNull
     public static MainActivity get(@NonNull Context anyContext) {
@@ -82,34 +80,7 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        final Spinner spnCollection = (Spinner) findViewById(R.id.spnCollection);
         final Spinner spnClass = (Spinner) findViewById(R.id.spnClass);
-
-        spnCollection.setAdapter(new MyAdapter(
-                toolbar.getContext(),
-                getResources().getStringArray(R.array.collections)
-        ));
-
-        spnCollection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // When the given dropdown item is selected, show its contents in the
-                // container view.
-                //TODO change collections
-                if (position == 0)
-                {
-                    spnClass.setEnabled(true);
-                }
-                else
-                {
-                    spnClass.setEnabled(false);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
         spnClass.setAdapter(new MyAdapter(
                 toolbar.getContext(),
@@ -123,11 +94,11 @@ public class MainActivity extends AppCompatActivity {
                 // container view.
                 //TODO Filter current list
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(getApplicationContext(), (ArrayList<Card>) getClassCards(Enums.CardClass.values()[position])))
+                        .replace(R.id.container, PlaceholderFragment.newInstance(getApplicationContext(), (ArrayList<Card>) getClassCards(EnumsHS.CardClass.values()[position])))
                         .commit();
 
-                changeThemeColor(Enums.CardClass.values()[position]);
-                prevClassTheme = Enums.CardClass.values()[position];
+                changeThemeColor(EnumsHS.CardClass.values()[position]);
+                prevClassTheme = EnumsHS.CardClass.values()[position];
                 fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
             }
 
@@ -170,79 +141,16 @@ public class MainActivity extends AppCompatActivity {
         return new Point(l1[0], l1[1]);
     }
 
-    private int[] getColors(Enums.CardClass selectedClass) {
 
-        int[] colors = {0,0,0}; // Primary, Dark, Accent
 
-        switch (selectedClass)
-        {
-            case DRUID:
-                colors[0] = getResources().getColor(R.color.classDruidPrimary);
-                colors[1] = getResources().getColor(R.color.classDruidPrimaryDark);
-                colors[2] = getResources().getColor(R.color.classDruidAccent);
-                break;
-            case HUNTER:
-                colors[0] = getResources().getColor(R.color.classHunterPrimary);
-                colors[1] = getResources().getColor(R.color.classHunterPrimaryDark);
-                colors[2] = getResources().getColor(R.color.classHunterAccent);
-                break;
-            case MAGE:
-                colors[0] = getResources().getColor(R.color.classMagePrimary);
-                colors[1] = getResources().getColor(R.color.classMagePrimaryDark);
-                colors[2] = getResources().getColor(R.color.classMageAccent);
-                break;
-            case PALADIN:
-                colors[0] = getResources().getColor(R.color.classPaladinPrimary);
-                colors[1] = getResources().getColor(R.color.classPaladinPrimaryDark);
-                colors[2] = getResources().getColor(R.color.classPaladinAccent);
-                break;
-            case PRIEST:
-                colors[0] = getResources().getColor(R.color.classPriestPrimary);
-                colors[1] = getResources().getColor(R.color.classPriestPrimaryDark);
-                colors[2] = getResources().getColor(R.color.classPriestAccent);
-                break;
-            case ROGUE:
-                colors[0] = getResources().getColor(R.color.classRoguePrimary);
-                colors[1] = getResources().getColor(R.color.classRoguePrimaryDark);
-                colors[2] = getResources().getColor(R.color.classRogueAccent);
-                break;
-            case SHAMAN:
-                colors[0] = getResources().getColor(R.color.classShamanPrimary);
-                colors[1] = getResources().getColor(R.color.classShamanPrimaryDark);
-                colors[2] = getResources().getColor(R.color.classShamanAccent);
-                break;
-            case WARLOCK:
-                colors[0] = getResources().getColor(R.color.classWarlockPrimary);
-                colors[1] = getResources().getColor(R.color.classWarlockPrimaryDark);
-                colors[2] = getResources().getColor(R.color.classWarlockAccent);
-                break;
-            case WARRIOR:
-                colors[0] = getResources().getColor(R.color.classWarriorPrimary);
-                colors[1] = getResources().getColor(R.color.classWarriorPrimaryDark);
-                colors[2] = getResources().getColor(R.color.classWarriorAccent);
-                break;
-            case NEUTRAL:
-                colors[0] = getResources().getColor(R.color.classNeutralPrimary);
-                colors[1] = getResources().getColor(R.color.classNeutralPrimaryDark);
-                colors[2] = getResources().getColor(R.color.classNeutralAccent);
-                break;
-            default:
-                colors[0] = getResources().getColor(R.color.colorPrimary);
-                colors[1] = getResources().getColor(R.color.colorPrimaryDark);
-                colors[2] = getResources().getColor(R.color.colorAccent);
-        }
-
-        return colors;
-    }
-
-    public void changeThemeColor(Enums.CardClass selectedClass)
+    public void changeThemeColor(EnumsHS.CardClass selectedClass)
     {
         int transitionDuration_ms = 240;
 
         /**
          * Status Bar + Toolbar
          */
-        final int[] colors = getColors(selectedClass);
+        final int[] colors = ResourcesHS.getClassColors(this, selectedClass);
         final Point p1 = getLocationInView(revealColorView, revealColorView);
         revealColorView.reveal(p1.x, p1.y, colors[0], revealColorView.getHeight() / 2, transitionDuration_ms, null);
 
@@ -250,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
          * Fab
          */
 
-        int prevColor = getColors(prevClassTheme)[2];
+        int prevColor = ResourcesHS.getClassColors(this, prevClassTheme)[2];
 
         Integer colorFrom = prevColor;
         Integer colorTo = colors[2];
@@ -269,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         colorAnimation.start();
     }
 
-    public static List<Card> getClassCards(Enums.CardClass playerClass)
+    public static List<Card> getClassCards(EnumsHS.CardClass playerClass)
     {
         List<Card> classCards = new ArrayList<>();
 
@@ -346,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            ArrayList<Card> classCards = getArguments().getParcelableArrayList(ARG_CLASS_CARDS);
+            final ArrayList<Card> classCards = getArguments().getParcelableArrayList(ARG_CLASS_CARDS);
 
             RecyclerView mRecyclerView;
             RecyclerView.Adapter mAdapter;
@@ -361,6 +269,12 @@ public class MainActivity extends AppCompatActivity {
                 int scrollDist = 0;
                 boolean isVisible = true;
                 final int MIN_TRIGGER_DISTANCE = 25;
+
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    AppDesign.setEdgeGlowColor(recyclerView, ResourcesHS.getClassColors(context, classCards.get(0).getPlayerClassEnum())[0]);
+                }
 
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -386,6 +300,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+
+
 
             // use a linear layout manager
             mLayoutManager = new LinearLayoutManager(context);

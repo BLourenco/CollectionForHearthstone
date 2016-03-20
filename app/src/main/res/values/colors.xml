@@ -34,7 +34,7 @@
 
     <color name="classWarlockPrimary">#673AB7</color>
     <color name="classWarlockPrimaryDark">#512DA8</color>
-    <color name="classWarlockAccent">#C6FF00</color>
+    <color name="classWarlockAccent">#AEEA00</color>
 
     <color name="classWarriorPrimary">#F44336</color>
     <color name="classWarriorPrimaryDark">#D32F2F</color>
@@ -60,7 +60,7 @@
     <color name="setCore">#E0E0E0</color>
     <color name="setHeroSkins">#FFC107</color>
     <color name="setClassic">#2196F3</color>
-    <color name="setReward">#3F51B5</color>
+    <color name="setReward">#FFC107</color>
     <color name="setNaxx">#8BC34A</color>
     <color name="setGVG">#FF9800</color>
     <color name="setBRM">#B71C1C</color>
