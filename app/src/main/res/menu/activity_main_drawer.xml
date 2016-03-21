@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/nav_group_collections"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_cards"
+            android:icon="@drawable/icon_nav_cards"
+            android:title="@string/nav_cards"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_card_backs"
+            android:icon="@drawable/icon_nav_card_backs"
+            android:title="@string/nav_card_backs" />
+        <item
+            android:id="@+id/nav_heroes"
+            android:icon="@drawable/icon_nav_heroes"
+            android:title="@string/nav_heroes" />
+        <item
+            android:id="@+id/nav_decks"
+            android:icon="@drawable/icon_nav_deck"
+            android:title="@string/nav_decks" />
+    </group>
+
+    <group android:id="@+id/nav_group_app">
+        <item
+            android:id="@+id/nav_rate"
+            android:icon="@drawable/ic_thumbs_up_down_24dp"
+            android:title="@string/nav_rate" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_24dp"
+            android:title="@string/nav_settings" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info_24dp"
+            android:title="@string/nav_about" />
+    </group>
+
+</menu>

@@ -7,28 +7,37 @@ public class EnumsHS {
 
     public enum CardClass
     {
-        DRUID(2),
-        HUNTER(3),
-        MAGE(4),
-        PALADIN(5),
-        PRIEST(6),
-        ROGUE(7),
-        SHAMAN(8),
-        WARLOCK(9),
-        WARRIOR(10),
-        NEUTRAL(0),
+        DRUID(2, 0),
+        HUNTER(3,1),
+        MAGE(4,2),
+        PALADIN(5,3),
+        PRIEST(6,4),
+        ROGUE(7,5),
+        SHAMAN(8,6),
+        WARLOCK(9,7),
+        WARRIOR(10,8),
+        NEUTRAL(0,9),
 
-        INVALID(0),
+        INVALID(0,-1),
 
-        DEATHKNIGHT(1),
+        DEATHKNIGHT(1,-1),
 
-        DREAM(11),
-        COUNT(12);
+        DREAM(11,-1),
+        COUNT(12,-1);
 
 
         private int classId;
-        CardClass(int id) {classId = id; }
+        private int ordinal;
+        CardClass(int id, int ordinal) {classId = id; this.ordinal = ordinal;}
         public int getValue() {return classId;}
+        public int getOrdinal() {return ordinal;}
+        public static CardClass getClassAtOrdinal (int ordinal)
+        {
+            for (CardClass cc : CardClass.values()) {
+                if (cc.ordinal == ordinal) return cc;
+            }
+            return CardClass.INVALID;
+        }
     }
 
     public enum CardSet
@@ -44,7 +53,7 @@ public class EnumsHS {
         BRM(14, true, true, 2015),
         TGT(15, true, false, 2015),
         LOE(20, true, false, 2015),
-        // WOG(21, false, false, 2016),
+        WOG(21, true, false, 2016),
 
         HERO_SKINS(17, false, false, 2015),
         TB(18, false, false, 2015),

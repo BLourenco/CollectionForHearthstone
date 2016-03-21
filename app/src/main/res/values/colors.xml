@@ -16,8 +16,8 @@
     <color name="classMagePrimaryDark">#1976D2</color>
     <color name="classMageAccent">#E040FB</color>
 
-    <color name="classPaladinPrimary">#FBC02D</color>
-    <color name="classPaladinPrimaryDark">#F57F17</color>
+    <color name="classPaladinPrimary">#FFA000</color>
+    <color name="classPaladinPrimaryDark">#FF6F00</color>
     <color name="classPaladinAccent">#00E5FF</color>
 
     <color name="classPriestPrimary">#9E9E9E</color>
@@ -36,7 +36,7 @@
     <color name="classWarlockPrimaryDark">#512DA8</color>
     <color name="classWarlockAccent">#AEEA00</color>
 
-    <color name="classWarriorPrimary">#F44336</color>
+    <color name="classWarriorPrimary">#B71C1C</color>
     <color name="classWarriorPrimaryDark">#D32F2F</color>
     <color name="classWarriorAccent">#90A4AE</color>
 
@@ -51,7 +51,6 @@
     <color name="statWeaponDurability">#616161</color>
     <color name="statRace">#A1887F</color>
 
-    <color name="rarityFree">#000000</color>
     <color name="rarityCommon">#9E9E9E</color>
     <color name="rarityRare">#1976D2</color>
     <color name="rarityEpic">#9C27B0</color>
@@ -67,11 +66,5 @@
     <color name="setTGT">#7B1FA2</color>
     <color name="setLOE">#009688</color>
     <color name="setWOG">#BA68C8</color>
-
-
-
-
-
-
 
 </resources>

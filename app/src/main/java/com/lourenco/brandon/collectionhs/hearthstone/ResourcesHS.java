@@ -11,10 +11,8 @@ import com.lourenco.brandon.collectionhs.R;
  */
 public class ResourcesHS {
 
-
-
     /*
-        CLASS DATA
+        CLASSES
      */
     public static int[] getClassColors(Context context, EnumsHS.CardClass selectedClass) {
 
@@ -87,7 +85,7 @@ public class ResourcesHS {
         if (className == null || classArray == null)
             return EnumsHS.CardClass.INVALID;
 
-        className = className.toUpperCase();
+        className = className.toUpperCase().replace("_", " ");
 
         int i = 0; // Used to check if a string exists at this index, increments after each checked index
 
@@ -117,20 +115,18 @@ public class ResourcesHS {
     }
     public static String getClassString(Context context, EnumsHS.CardClass cardClass) {
         String[] classArray = context.getResources().getStringArray(R.array.classes);
-        if (cardClass.getValue() >= classArray.length || cardClass.getValue() < 0)
+        if (cardClass.getOrdinal() >= classArray.length || cardClass.getValue() < 0)
             return null;
-        return context.getResources().getStringArray(R.array.classes)[cardClass.getValue()];
+        return context.getResources().getStringArray(R.array.classes)[cardClass.getOrdinal()];
     }
 
     /*
-        RARITY DATA
+        RARITIES
      */
 
     public static int getRarityColor(Context context, EnumsHS.Rarity rarity) {
         switch (rarity)
         {
-            case FREE:
-                return ContextCompat.getColor(context, R.color.rarityFree);
             case COMMON:
                 return ContextCompat.getColor(context, R.color.rarityCommon);
             case RARE:
@@ -143,13 +139,23 @@ public class ResourcesHS {
                 return Color.BLACK;
         }
     }
+    public static int getRarityTextColor(Context context, EnumsHS.Rarity rarity)
+    {
+        switch (rarity)
+        {
+            case COMMON:
+                return Color.BLACK;
+            default:
+                return getRarityColor(context, rarity);
+        }
+    }
     public static EnumsHS.Rarity getRarityEnum(Context context, String rarityName) {
         String[] rarityArray = context.getResources().getStringArray(R.array.rarity);
 
         if (rarityName == null || rarityArray == null)
             return EnumsHS.Rarity.INVALID;
 
-        rarityName = rarityName.toUpperCase();
+        rarityName = rarityName.toUpperCase().replace("_", " ");
 
         int i = 0; // Used to check if a string exists at this index, increments after each checked index
 
@@ -170,6 +176,165 @@ public class ResourcesHS {
         String[] rarityArray = context.getResources().getStringArray(R.array.rarity);
         if (rarity.getValue() >= rarityArray.length || rarity.getValue() < 0)
             return null;
-        return context.getResources().getStringArray(R.array.classes)[rarity.getValue()];
+        return context.getResources().getStringArray(R.array.rarity)[rarity.getValue()];
+    }
+
+    /*
+        CARD SETS
+     */
+
+    public static int getSetColor(Context context, EnumsHS.CardSet set) {
+        switch (set)
+        {
+            case CORE:
+                return ContextCompat.getColor(context, R.color.setCore);
+            case EXPERT1:
+                return ContextCompat.getColor(context, R.color.setClassic);
+            case PROMO:
+                return ContextCompat.getColor(context, R.color.setReward);
+            case REWARD:
+                return ContextCompat.getColor(context, R.color.setReward);
+            case HERO_SKINS:
+                return ContextCompat.getColor(context, R.color.setHeroSkins);
+            case NAXX:
+                return ContextCompat.getColor(context, R.color.setNaxx);
+            case GVG:
+                return ContextCompat.getColor(context, R.color.setGVG);
+            case BRM:
+                return ContextCompat.getColor(context, R.color.setBRM);
+            case TGT:
+                return ContextCompat.getColor(context, R.color.setTGT);
+            case LOE:
+                return ContextCompat.getColor(context, R.color.setLOE);
+            case WOG:
+                return ContextCompat.getColor(context, R.color.setWOG);
+            default:
+                return Color.BLACK;
+        }
+    }
+    public static int getSetIcon(EnumsHS.CardSet set) {
+        switch (set)
+        {
+            case CORE:
+                return R.drawable.icon_set_core;
+            case EXPERT1:
+                return R.drawable.icon_set_classic;
+            case PROMO:
+                return R.drawable.icon_set_promo;
+            case REWARD:
+                return R.drawable.icon_set_reward;
+            case HERO_SKINS:
+                return R.drawable.icon_set_hero_skins;
+            case NAXX:
+                return R.drawable.icon_set_naxx;
+            case GVG:
+                return R.drawable.icon_set_gvg;
+            case BRM:
+                return R.drawable.icon_set_brm;
+            case TGT:
+                return R.drawable.icon_set_tgt;
+            case LOE:
+                return R.drawable.icon_set_loe;
+            case WOG:
+                return R.drawable.icon_set_wog;
+            default:
+                return R.drawable.placeholder_missing;
+        }
+    }
+    public static EnumsHS.CardSet getSetEnum(Context context, String setName) {
+        String[] setArray = context.getResources().getStringArray(R.array.card_sets);
+
+        if (setName == null || setArray == null)
+            return EnumsHS.CardSet.INVALID;
+
+        setName = setName.toUpperCase().replace("_", " ");
+
+        int i = 0; // Used to check if a string exists at this index, increments after each checked index
+
+        if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.CORE;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.EXPERT1;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.PROMO;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.REWARD;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.HERO_SKINS;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.NAXX;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.GVG;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.BRM;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.TGT;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.LOE;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.WOG;
+        else
+            return EnumsHS.CardSet.INVALID;
+    }
+    public String getSetNameFullString(Context context, EnumsHS.CardSet set) {
+        String[] setArray = context.getResources().getStringArray(R.array.card_set_full_names);
+        if (set.getValue() >= setArray.length || set.getValue() < 0)
+            return null;
+        return context.getResources().getStringArray(R.array.card_set_full_names)[set.getValue()];
+    }
+    public String getSetNameShortString(Context context, EnumsHS.CardSet set) {
+        String[] setArray = context.getResources().getStringArray(R.array.card_sets);
+        if (set.getValue() >= setArray.length || set.getValue() < 0)
+            return null;
+        return context.getResources().getStringArray(R.array.card_sets)[set.getValue()];
+    }
+
+    /*
+        CARD TYPES
+     */
+
+    public static EnumsHS.CardType getTypeEnum(Context context, String type) {
+        String[] cardTypeArray = context.getResources().getStringArray(R.array.card_types);
+
+        if (type == null || cardTypeArray == null)
+            return EnumsHS.CardType.INVALID;
+
+        type = type.toUpperCase().replace("_", " ");
+
+        int i = 0; // Used to check if a string exists at this index, increments after each checked index
+
+        if (cardTypeArray.length > i && type.equals(cardTypeArray[i++]))
+            return EnumsHS.CardType.MINION;
+        else if (cardTypeArray.length > i && type.equals(cardTypeArray[i++]))
+            return EnumsHS.CardType.SPELL;
+        else if (cardTypeArray.length > i && type.equals(cardTypeArray[i++]))
+            return EnumsHS.CardType.WEAPON;
+        else if (cardTypeArray.length > i && type.equals(cardTypeArray[i++]))
+            return EnumsHS.CardType.HERO;
+        else if (cardTypeArray.length > i && type.equals(cardTypeArray[i++]))
+            return EnumsHS.CardType.HERO_POWER;
+        else if (cardTypeArray.length > i && type.equals(cardTypeArray[i++]))
+            return EnumsHS.CardType.ENCHANTMENT;
+        else
+            return EnumsHS.CardType.INVALID;
+    }
+    public static int getCardTypeMask(EnumsHS.CardType type) {
+        switch (type)
+        {
+            case MINION:
+                return R.drawable.mask_minion;
+            case SPELL:
+                return R.drawable.mask_spell;
+            case WEAPON:
+                return R.drawable.mask_weapon;
+            case HERO:
+                return R.drawable.mask_hero;
+            case HERO_POWER:
+                return R.drawable.mask_heropower;
+            case ENCHANTMENT:
+                return R.drawable.mask_enchantment;
+            default:
+                return R.drawable.placeholder_missing;
+        }
     }
 }

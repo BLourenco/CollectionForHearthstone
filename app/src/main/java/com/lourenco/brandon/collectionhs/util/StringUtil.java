@@ -7,6 +7,7 @@ public class StringUtil {
 
     public static String toTitleCase(String input)
     {
+        if (input == null) return null;
         String[] words = input.toString().split("_");
         StringBuilder sb = new StringBuilder();
         if (words[0].length() > 0) {
@@ -17,5 +18,15 @@ public class StringUtil {
             }
         }
         return sb.toString();
+    }
+
+    public static String[] toTitleCase(String[] input)
+    {
+        for (int i = 0; i < input.length; i++)
+        {
+           input[i] = toTitleCase(input[i]);
+        }
+
+        return input;
     }
 }

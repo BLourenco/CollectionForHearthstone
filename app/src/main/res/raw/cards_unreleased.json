@@ -1,0 +1,267 @@
+[
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_001",
+		"name": "Polluted Hoarder",
+		"rarity": "COMMON",
+		"cost": 4,
+		"attack": 4,
+		"health": 2,
+		
+		"text": "<b>Deathrattle:</b> Draw a card.",
+		"mechanics":["DEATHRATTLE"]
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_002",
+		"name": "Corrupted Healbot",
+		"rarity": "RARE",
+		"cost": 5,
+		"attack": 6,
+		"health": 6,
+		
+		"text": "<b>Deathrattle:</b> Restore #8 Health to the enemy hero.",
+		"race": "MECHANICAL",
+		"mechanics":["DEATHRATTLE"]
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_003",
+		"name": "Validated Doomsayer",
+		"rarity": "EPIC",
+		"cost": 5,
+		"attack": 0,
+		"health": 7,
+		
+		"text": "At the start of your turn. set this minion's Attack to 7."
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_004",
+		"name": "Beckoner of Evil",
+		"rarity": "COMMON",
+		"cost": 2,
+		"attack": 2,
+		"health": 3,
+		
+		"text": "<b>Battlecry:</b> Give your C'Thun +2/+2 <i>(wherever it is).</i>",
+		"mechanics":["BATTLECRY"]
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_005",
+		"name": "Twilight Elder",
+		"rarity": "COMMON",
+		"cost": 3,
+		"attack": 3,
+		"health": 4,
+		
+		"text": "At the end of your turn, give your C'Thun +1/+1 <i>(wherever it is).</i>"
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_006",
+		"name": "C'Thun",
+		"rarity": "LEGENDARY",
+		"cost": 10,
+		"attack": 6,
+		"health": 6,
+		
+		"text": "<b>Battlecry:</b> Deal damage equal to this minion's Attack randomly split among all enemies.",
+		"mechanics":["BATTLECRY"]
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_007",
+		"name": "Eater of Secrets",
+		"rarity": "RARE",
+		"cost": 4,
+		"attack": 2,
+		"health": 4,
+		
+		"text": "<b>Battlecry:</b> Destroy all enemy <b>Secrets</b>. Gain +1/+1 for each.",
+		"mechanics":["BATTLECRY"]
+	},	
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_008",
+		"name": "Giant Sand Worm",
+		"rarity": "EPIC",
+		"cost": 8,
+		"attack": 8,
+		"health": 8,
+		
+		"playerClass": "HUNTER",
+		"text": "Whenever this minion kills another minion, it may attack again.",
+		"race": "BEAST"
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_009",
+		"name": "Hogger, Doom of Elwynn",
+		"rarity": "LEGENDARY",
+		"cost": 7,
+		"attack": 6,
+		"health": 6,
+		
+		"text": "Whenever this minion takes damage, summon a 2/2 Gnoll with <b>Taunt.</b>"
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_010",
+		"name": "Klaxxi Amber-Weaver",
+		"rarity": "RARE",
+		"cost": 4,
+		"attack": 4,
+		"health": 5,
+		
+		"playerClass": "DRUID",
+		"text": "<b>Battlecry:</b> If your C'Thun has at least 10 Attack, gain +5 Health.",
+		"mechanics":["BATTLECRY"]
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_011",
+		"name": "Ancient Shieldbearer",
+		"rarity": "RARE",
+		"cost": 7,
+		"attack": 6,
+		"health": 6,
+		
+		"playerClass": "WARRIOR",
+		"text": "<b>Battlecry:</b> If your C'Thun has at least 10 Attack, gain 10 Armor.",
+		"mechanics":["BATTLECRY"]
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_012",
+		"name": "C'Thun's Chosen",
+		"rarity": "COMMON",
+		"cost": 4,
+		"attack": 4,
+		"health": 2,
+		
+		"text": "<b>Divine Shield\nBattlecry:</b> Give your C'Thun +2/+2 <i>(wherever it is).</i>",
+		"mechanics":["BATTLECRY", "DIVINE SHIELD"]
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_013",
+		"name": "Herald Volazj",
+		"rarity": "LEGENDARY",
+		"cost": 6,
+		"attack": 5,
+		"health": 5,
+		
+		"playerClass": "PRIEST",
+		"text": "<b>Battlecry:</b> Summon a 1/1 copy of each of your other minions.",
+		"mechanics":["BATTLECRY"]
+	},
+
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_014",
+		"name": "Infested Tauren",
+		"rarity": "COMMON",
+		"cost": 4,
+		"attack": 2,
+		"health": 3,
+		
+		"text": "<b>Taunt\nDeathrattle:</b> Summon a 2/2 Slime.",
+		"mechanics":["TAUNT", "DEATHRATTLE"]
+	},
+
+	{	
+		"type": "SPELL",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_015",
+		"name": "Stand Against Darkness",
+		"rarity": "COMMON",
+		"cost": 5,	
+		"playerClass": "PALADIN",
+		"text": "Summon five 1/1 Silver Hand Recruits."
+	},
+
+	{	
+		"type": "SPELL",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_016",
+		"name": "Forbidden Flame",
+		"rarity": "EPIC",
+		"cost": 0,	
+		"playerClass": "MAGE",
+		"text": "Spend all your Mana. Deal that much damage to a minion."
+	},
+
+	{	
+		"type": "SPELL",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_017",
+		"name": "Forbidden Shaping",
+		"rarity": "EPIC",
+		"cost": 0,	
+		"playerClass": "PRIEST",
+		"text": "Spend all your Mana. Summon a random minion that costs that much."
+	}
+]
+
