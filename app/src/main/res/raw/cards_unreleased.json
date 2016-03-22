@@ -262,6 +262,19 @@
 		"cost": 0,	
 		"playerClass": "PRIEST",
 		"text": "Spend all your Mana. Summon a random minion that costs that much."
+	},
+	
+	{	
+		"type": "SPELL",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_018",
+		"name": "DOOM!",
+		"rarity": "EPIC",
+		"cost": 10,	
+		"playerClass": "WARLOCK",
+		"text": "Destroy all minions. Draw a card for each."
 	}
 ]
 

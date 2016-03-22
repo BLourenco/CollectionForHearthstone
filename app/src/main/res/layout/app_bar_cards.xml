@@ -48,7 +48,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_cards" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

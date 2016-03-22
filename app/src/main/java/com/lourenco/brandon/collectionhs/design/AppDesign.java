@@ -4,11 +4,18 @@ import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EdgeEffect;
 
@@ -82,5 +89,50 @@ public class AppDesign {
         colorAnimation.setDuration(transitionDuration_ms);
         colorAnimation.setStartDelay(0);
         colorAnimation.start();
+    }
+
+    /**
+     * Changes a menu item icon to the desired color. Must be called after the menu layout has
+     * been inflated.
+     * @param item
+     * @param color
+     */
+    public static void changeMenuItemColor(MenuItem item, int color)
+    {
+        Drawable drawable = item.getIcon();
+        drawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTint(drawable, color);
+
+        DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+    }
+
+    /**
+     * Changes the icon color of each item in a menu to the same color. Must be called after the
+     * menu layout has been infalted.
+     * @param menu
+     * @param color
+     */
+    public static void changeAllMenuItemColors(Menu menu, int color)
+    {
+        for (int i = 0; i < menu.size(); i++)
+        {
+            changeMenuItemColor(menu.getItem(i), color);
+        }
+
+    }
+
+    public static void setOverflowButtonColor(final Toolbar toolbar, final int color) {
+        Drawable drawable = toolbar.getOverflowIcon();
+        if(drawable != null) {
+            drawable = DrawableCompat.wrap(drawable);
+            DrawableCompat.setTint(drawable.mutate(), color);
+            toolbar.setOverflowIcon(drawable);
+        }
+    }
+
+    public static void setAllToolbarIconColors(final Toolbar toolbar, final int color)
+    {
+        setOverflowButtonColor(toolbar, color);
+        changeAllMenuItemColors(toolbar.getMenu(), color);
     }
 }
