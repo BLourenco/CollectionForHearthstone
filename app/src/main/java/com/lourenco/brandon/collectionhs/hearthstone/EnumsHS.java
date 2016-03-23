@@ -162,7 +162,6 @@ public class EnumsHS {
 
     public enum PlayReq
     {
-        //TODO Include a boolean to tell if the requirement uses it's associated parameter
         REQ_MINION_TARGET(1, false,                                         "Target must be a minion."),
         REQ_FRIENDLY_TARGET(2, false,                                       "Target must be friendly."),
         REQ_ENEMY_TARGET(3, false,                                          "Target must be an enemy."),
