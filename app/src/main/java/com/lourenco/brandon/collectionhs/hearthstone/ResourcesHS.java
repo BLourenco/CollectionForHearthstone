@@ -337,4 +337,32 @@ public class ResourcesHS {
                 return R.drawable.placeholder_missing;
         }
     }
+
+    /*
+        CARD ART
+     */
+    public static int getCartArtResourceId(Context context, String cardId)
+    {
+        if (cardId.endsWith("e") ||
+                cardId.endsWith("b") ||
+                cardId.endsWith("o") ||
+                cardId.endsWith("h"))
+        {
+            cardId = cardId.substring(0, cardId.length() - 1);
+        }
+        else if (cardId.endsWith("eh") ||
+                cardId.endsWith("e2"))
+        {
+            cardId = cardId.substring(0, cardId.length()-2);
+        }
+
+        int resourceId = context.getResources().getIdentifier(cardId.toLowerCase(), "drawable",
+                context.getPackageName());
+
+        if (resourceId == 0)
+        {
+            resourceId = R.drawable.placeholder_missing;
+        }
+        return resourceId;
+    }
 }

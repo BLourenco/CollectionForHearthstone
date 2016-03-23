@@ -1,7 +1,9 @@
 package com.lourenco.brandon.collectionhs;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -42,6 +44,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
+import com.lourenco.brandon.collectionhs.db.CollectionDbHelper;
 import com.lourenco.brandon.collectionhs.design.DividerItemDecoration;
 import com.lourenco.brandon.collectionhs.hearthstone.CardRecyclerAdapter;
 import com.lourenco.brandon.collectionhs.hearthstone.ResourcesHS;
@@ -82,14 +86,14 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     private RevealColorView revealColorView;
 
-    static List<Card> cards;
+    private SQLiteDatabase db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         initViews();
-        initCardObjects(getResources());
+        db = new CollectionDbHelper(this).getWritableDatabase(); // TODO Put in AsyncTask
     }
 
     public void initViews()
@@ -203,7 +207,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
     }
 
-    public static void initCardObjects(Resources r)
+/*    public static void initCardObjects(Resources r)
     {
         JSONResourceReader reader = new JSONResourceReader(r, R.raw.cards);
         JSONResourceReader readerUnreleased = new JSONResourceReader(r, R.raw.cards_unreleased);
@@ -213,16 +217,16 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         List<Card> unreleased = gson.fromJson(readerUnreleased.getJSONString(), new TypeToken<List<Card>>() {}.getType());
         cards.addAll(unreleased);
         Collections.sort(cards, new CardComparator());
-    }
+    }*/
 
 
 
-    public static List<Card> getClassCards(EnumsHS.CardClass playerClass)
+/*    public static List<Card> getClassCards(EnumsHS.CardClass playerClass)
     {
         List<Card> classCards = new ArrayList<>();
 
         for (Card c : cards) {
-            if(c.getCollectible() == null || (!c.getCollectible() && !c.getType().equals("HERO_POWER") /*|| c.getType().equals("HERO")*/)) continue; // TODO Add toggle to show/hide non-collectible cards
+            if(c.getCollectible() == null || (!c.getCollectible() && !c.getType().equals("HERO_POWER") *//*|| c.getType().equals("HERO")*//*)) continue; // TODO Add toggle to show/hide non-collectible cards
             if (c.getPlayerClass() == null) // Neutrals
             {
                 if (playerClass.name().equals("NEUTRAL"))
@@ -238,7 +242,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             }
         }
         return classCards;
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -290,6 +294,8 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.nav_rate:
                 break;
+            case R.id.nav_feedback:
+                break;
             case R.id.nav_settings:
                 break;
             case R.id.nav_about:
@@ -323,7 +329,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
          * The fragment argument representing the section number for this
          * fragment.
          */
-        private static final String ARG_CLASS_CARDS = "class_cards";
+        private static final String ARG_CLASS_ID = "class_id";
 
         public PlaceholderFragment(){};
 
@@ -331,11 +337,11 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(Context c, ArrayList<Card> classCards) {
+        public static PlaceholderFragment newInstance(Context c, int classId) {
             context = c;
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putParcelableArrayList(ARG_CLASS_CARDS, classCards);
+            args.putInt(ARG_CLASS_ID, classId);
             fragment.setArguments(args);
             return fragment;
         }
@@ -344,7 +350,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-            final ArrayList<Card> classCards = getArguments().getParcelableArrayList(ARG_CLASS_CARDS);
+            final int classCards = getArguments().getInt(ARG_CLASS_ID);
 
             RecyclerView mRecyclerView;
             RecyclerView.Adapter mAdapter;

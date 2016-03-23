@@ -16,23 +16,16 @@ import com.google.gson.GsonBuilder;
  */
 public class JSONResourceReader {
 
-    // === [ Private Data Members ] ============================================
-
-    // Our JSON, in string form.
-    private String jsonString;
     private static final String LOGTAG = JSONResourceReader.class.getSimpleName();
+    private Resources resources;
 
-    // === [ Public API ] ======================================================
+    public JSONResourceReader(Resources resources)
+    {
+        this.resources = resources;
+    }
 
-    /**
-     * Read from a resources file and create a {@link JSONResourceReader} object that will allow the creation of other
-     * objects from this resource.
-     *
-     * @param resources An application {@link Resources} object.
-     * @param id The id for the resource to load, typically held in the raw/ folder.
-     */
-    public JSONResourceReader(Resources resources, int id) {
-        InputStream resourceReader = resources.openRawResource(id);
+    public String getStringFromJSON(int rawJsonResourceId) {
+        InputStream resourceReader = resources.openRawResource(rawJsonResourceId);
         Writer writer = new StringWriter();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(resourceReader, "UTF-8"));
@@ -51,23 +44,6 @@ public class JSONResourceReader {
             }
         }
 
-        jsonString = writer.toString();
-    }
-
-    /**
-     * Build an object from the specified JSON resource using Gson.
-     *
-     * @param type The type of the object to build.
-     *
-     * @return An object of type T, with member fields populated using Gson.
-     */
-    public <T> T constructUsingGson(Class<T> type) {
-        Gson gson = new GsonBuilder().create();
-        return gson.fromJson(jsonString, type);
-    }
-
-    public String getJSONString()
-    {
-        return jsonString;
+        return writer.toString();
     }
 }

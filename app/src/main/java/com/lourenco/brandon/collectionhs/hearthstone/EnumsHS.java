@@ -1,5 +1,8 @@
 package com.lourenco.brandon.collectionhs.hearthstone;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Brandon on 2016-03-13.
  */
@@ -18,12 +21,12 @@ public class EnumsHS {
         WARRIOR(10,8),
         NEUTRAL(0,9),
 
-        INVALID(0,-1),
+        INVALID(0,-1);
 
-        DEATHKNIGHT(1,-1),
+        //DEATHKNIGHT(1,-1),
 
-        DREAM(11,-1),
-        COUNT(12,-1);
+        //DREAM(11,-1),
+        //COUNT(12,-1);
 
 
         private int classId;
@@ -38,65 +41,82 @@ public class EnumsHS {
             }
             return CardClass.INVALID;
         }
+
+        public static CardClass[] getValidClasses() {
+            CardClass[] classes = new CardClass[] {
+                    DRUID,
+                    HUNTER,
+                    MAGE,
+                    PALADIN,
+                    PRIEST,
+                    ROGUE,
+                    SHAMAN,
+                    WARLOCK,
+                    WARRIOR
+            };
+
+            return classes;
+        }
     }
 
     public enum CardSet
     {
-        INVALID(0, false, false, 0),
+        INVALID(0, false, CardSetType.INVALID, 0),
 
-        CORE(2, false, false, 2014),
-        EXPERT1(3, true, false, 2014),
-        REWARD(4, true, false, 2014),
-        PROMO(11, true, false, 2014),
-        NAXX(12, true, true, 2014),
-        GVG(13, true, false, 2014),
-        BRM(14, true, true, 2015),
-        TGT(15, true, false, 2015),
-        LOE(20, true, false, 2015),
-        WOG(21, true, false, 2016),
+        CORE(2, false, CardSetType.CORE, 2014),
+        EXPERT1(3, true, CardSetType.CORE, 2014),
+        REWARD(4, true, CardSetType.GIFT, 2014),
+        PROMO(11, true, CardSetType.GIFT, 2014),
+        NAXX(12, true, CardSetType.ADVENTURE, 2014),
+        GVG(13, true, CardSetType.EXPANSION, 2014),
+        BRM(14, true, CardSetType.ADVENTURE, 2015),
+        TGT(15, true, CardSetType.EXPANSION, 2015),
+        LOE(20, true, CardSetType.ADVENTURE, 2015),
+        WOG(21, true, CardSetType.EXPANSION, 2016),
 
-        HERO_SKINS(17, false, false, 2015),
-        TB(18, false, false, 2015),
+        HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
 
-        TEST_TEMPORARY(1, false, false, 0),
-        MISSIONS(5, false, false, 0),
-        DEMO(6, false, false, 0),
-        NONE(7, false, false, 0),
-        CHEAT(8, false, false, 0),
-        BLANK(9, false, false, 0),
-        DEBUG_SP(10, false, false, 0),
-        CREDITS(16, false, false, 0),
-        SLUSH(19, false, false, 0),
+        TB(18, false, CardSetType.GAME, 2015),
+
+        TEST_TEMPORARY(1, false, CardSetType.GAME, 0),
+        MISSIONS(5, false, CardSetType.GAME, 0),
+        DEMO(6, false, CardSetType.GAME, 0),
+        NONE(7, false, CardSetType.GAME, 0),
+        CHEAT(8, false, CardSetType.GAME, 0),
+        BLANK(9, false, CardSetType.GAME, 0),
+        DEBUG_SP(10, false, CardSetType.GAME, 0),
+        CREDITS(16, false, CardSetType.GAME, 0),
+        SLUSH(19, false, CardSetType.GAME, 0);
 
         // Aliased from the original enums
-        FP1(NAXX.getValue(), NAXX.isCraftable(), NAXX.isAdventure(), NAXX.getReleaseYear()),
-        PE1(GVG.getValue(), GVG.isCraftable(), GVG.isAdventure(), GVG.getReleaseYear()),
+        //FP1(NAXX.getValue(), NAXX.isCraftable(), NAXX.getSetType(), NAXX.getReleaseYear()),
+        //PE1(GVG.getValue(), GVG.isCraftable(), GVG.getSetType(), GVG.getReleaseYear()),
 
         //Renamed
-        FP2(BRM.getValue(), BRM.isCraftable(), BRM.isAdventure(), BRM.getReleaseYear()),
-        PE2(TGT.getValue(), TGT.isCraftable(), TGT.isAdventure(), TGT.getReleaseYear());
+        //FP2(BRM.getValue(), BRM.isCraftable(), BRM.getSetType(), BRM.getReleaseYear()),
+        //PE2(TGT.getValue(), TGT.isCraftable(), TGT.getSetType(), TGT.getReleaseYear());
 
         private int value;
         private boolean craftable;
         private int releaseYear;
-        private boolean adventure;
+        private CardSetType setType;
 
         private static final int LATEST_RELEASE = 2016;
         private static final int SET_ROTATION_LENGTH_YRS = 2;
 
-        CardSet(int value, boolean craftable, boolean adventure, int releaseYear) {
+        CardSet(int value, boolean craftable, CardSetType setType, int releaseYear) {
             this.value = value;
             this.craftable = craftable;
-            this.adventure = adventure;
+            this.setType = setType;
             this.releaseYear = releaseYear;
         }
 
         public int getValue() {return value;}
-        public boolean isAdventure() {return adventure;}
+        public CardSetType getSetType() {return setType;}
         public int getReleaseYear() {return  releaseYear;}
         public boolean isCraftable() {
             if (!craftable) return false;
-            else if (adventure && isStandard()) {
+            else if (setType == CardSetType.ADVENTURE && isStandard()) {
                 return false;
             }
             return true;
@@ -109,7 +129,19 @@ public class EnumsHS {
             return releaseYear >= (LATEST_RELEASE - SET_ROTATION_LENGTH_YRS);
         }
         public boolean isForPurchase() {
-            return adventure && isStandard();
+            return (setType == CardSetType.ADVENTURE) && isStandard();
+        }
+        public static CardSet[] getPlayableSets()
+        {
+            List<CardSet> sets = new ArrayList<>();
+
+            for (CardSet set : CardSet.values())
+            {
+                if (set.getSetType() != CardSetType.GAME)
+                    sets.add(set);
+            }
+
+            return (CardSet[]) sets.toArray();
         }
 
     }
@@ -123,15 +155,15 @@ public class EnumsHS {
         WEAPON(7, true),
         HERO(3, false),
         HERO_POWER(10, false),
-        ENCHANTMENT(6, false),
+        ENCHANTMENT(6, false);
 
-        GAME(1, false),
-        PLAYER(2, false),
-        ITEM(8, false),
-        TOKEN(9, false),
+        //GAME(1, false),
+        //PLAYER(2, false),
+        //ITEM(8, false),
+        //TOKEN(9, false),
 
         // Renamed
-        ABILITY(SPELL.getValue(), SPELL.isCraftable());
+        //ABILITY(SPELL.getValue(), SPELL.isCraftable());
 
         private int value;
         private boolean craftable;
@@ -143,7 +175,18 @@ public class EnumsHS {
 
         public int getValue() {return value;}
         public boolean isCraftable(){return craftable;}
+        public static CardType[] getValidTypes() {
+            CardType[] types = new CardType[] {
+                    MINION,
+                    SPELL,
+                    WEAPON,
+                    HERO,
+                    HERO_POWER,
+                    ENCHANTMENT
+            };
 
+            return types;
+        }
     }
 
     public enum Faction
@@ -158,6 +201,15 @@ public class EnumsHS {
             this.value = value;
         }
         public int getValue() {return value;}
+        public static Faction[] getValidFactions() {
+            Faction[] factions = new Faction[] {
+                    HORDE,
+                    ALLIANCE,
+                    NEUTRAL
+            };
+
+            return factions;
+        }
     }
 
     public enum PlayReq
@@ -274,6 +326,20 @@ public class EnumsHS {
             this.value = value;
         }
         public int getValue() {return value;}
+        public static Race[] getValidRaces()
+        {
+            Race[] race = new Race[] {
+                    MURLOC,
+                    DEMON,
+                    MECHANICAL,
+                    BEAST,
+                    TOTEM,
+                    PIRATE,
+                    DRAGON
+            };
+
+            return race;
+        }
     }
 
     public enum Rarity
@@ -303,6 +369,19 @@ public class EnumsHS {
         public int getDisenchantValue() {return dustValue[2];}
         public int getDisenchantGoldenValue() {return dustValue[3];}
         public int[] getDustValues() {return dustValue;}
+
+        public static Rarity[] getValidRarities() {
+            Rarity[] rarities = new Rarity[] {
+                    FREE,
+                    COMMON,
+                    RARE,
+                    EPIC,
+                    LEGENDARY,
+                    UNKNOWN_6
+            };
+
+            return rarities;
+        }
     }
 
     public enum Booster
@@ -343,5 +422,36 @@ public class EnumsHS {
         plPL,
         ptPT,
         jaJP
+    }
+
+    // My Enums
+
+    public enum CardSetType
+    {
+        INVALID(0),
+        CORE(1),
+        GIFT(2),
+        ADVENTURE(3),
+        EXPANSION(4),
+        HERO_SKINS(5),
+        GAME(6);
+
+        private int value;
+        CardSetType(int value) {
+            this.value = value;
+        }
+        public int getValue() {return value;}
+        public static CardSetType[] getValidSetTypes() {
+            CardSetType[] setTypes = new CardSetType[] {
+                    CORE,
+                    GIFT,
+                    ADVENTURE,
+                    EXPANSION,
+                    HERO_SKINS,
+                    GAME
+            };
+
+            return setTypes;
+        }
     }
 }

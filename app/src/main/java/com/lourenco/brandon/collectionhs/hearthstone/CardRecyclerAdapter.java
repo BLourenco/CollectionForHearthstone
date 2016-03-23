@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lourenco.brandon.collectionhs.R;
+import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
 import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
+import com.lourenco.brandon.collectionhs.hearthstone.model.CardNEW;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -18,7 +20,7 @@ import java.util.List;
 import jp.wasabeef.picasso.transformations.MaskTransformation;
 
 public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapter.ViewHolder> {
-    private List<Card> mDataset;
+    private int classId;
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -56,8 +58,8 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CardRecyclerAdapter(List<Card> myDataset, Context context) {
-        mDataset = myDataset;
+    public CardRecyclerAdapter(int classId, Context context) {
+        this.classId = classId;
         this.context = context;
     }
 
@@ -77,12 +79,23 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        final Card card = mDataset.get(position);
+        final CardNEW card = new CardNEW();
+
+        String[] projection = {
+                CollectionDbContract.Card.COLUMN_NAME_CARD_ID,
+                CollectionDbContract.Card.COLUMN_NAME_CARD_SET_FOREIGN,
+                CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME,
+                CollectionDbContract.Card.COLUMN_NAME_RARITY_FOREIGN
+        }
+
+
+
+
 
         // Card Art
         MaskTransformation transform = new MaskTransformation(context, ResourcesHS.getCardTypeMask(card.getTypeEnum()));
         Picasso.with(context)
-                .load(card.getCartArtResourceId(context))
+                .load(ResourcesHS.getCartArtResourceId(context, card.getCardId()))
                 .placeholder(R.drawable.placeholder_missing)
                 .transform(transform)
                 .into(holder.imgCardArt);
