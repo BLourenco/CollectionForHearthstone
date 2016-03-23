@@ -81,16 +81,8 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
     private FloatingActionButton fab;
 
     private RevealColorView revealColorView;
-    private View selectedView;
 
     static List<Card> cards;
-
-    private EnumsHS.CardClass prevSelectedClass = EnumsHS.CardClass.DRUID;
-
-    @NonNull
-    public static CardsActivity get(@NonNull Context anyContext) {
-        return (CardsActivity) anyContext.getApplicationContext();
-    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +99,8 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle("Cards");
+
+        AppDesign.setOverflowButtonColor(toolbar, Color.WHITE);
 
         // Adjust toolbar height for API < 21
         if (!Utils.hasLollipop()) {
@@ -164,47 +158,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             }
         });
 
-
-
-
-
-
-        /*spnClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                EnumsHS.CardClass selectedClass = EnumsHS.CardClass.values()[position];
-                // When the given dropdown item is selected, show its contents in the
-                // container view.
-                //TODO Filter current list
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(getApplicationContext(), (ArrayList<Card>) getClassCards(EnumsHS.CardClass.values()[position])))
-                        .commit();
-
-                AppDesign.changeThemeColor(
-                        getApplicationContext(),
-                        revealColorView,
-                        AppDesign.getLocationInView(spnClass, toolbar),
-                        ResourcesHS.getClassColors(getApplicationContext(), selectedClass)[0],
-                        240);
-
-                AppDesign.changeFabColor(
-                        getApplicationContext(),
-                        fab,
-                        ResourcesHS.getClassColors(getApplicationContext(), selectedClass)[2],
-
-                        240);
-
-                prevSelectedClass = EnumsHS.CardClass.values()[position];
-                fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });*/
-
         revealColorView = (RevealColorView) findViewById(R.id.toolbarReveal);
-        //revealColorViewFab = (RevealColorView) findViewById(R.id.revealFab);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -246,7 +200,6 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
                 240);
 
-        prevSelectedClass = EnumsHS.CardClass.values()[position];
         fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
     }
 
@@ -292,14 +245,9 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        for (int i = 0; i < menu.size(); i++)
-        {
-            Drawable drawable = menu.getItem(i).getIcon();
-            drawable = DrawableCompat.wrap(drawable);
-            DrawableCompat.setTint(drawable, Color.WHITE);
+        // Change menu item icons to white.
+        AppDesign.changeAllMenuItemColors(menu, Color.WHITE);
 
-            DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
-        }
         return true;
     }
 
