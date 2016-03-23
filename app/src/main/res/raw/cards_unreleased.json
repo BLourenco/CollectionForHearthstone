@@ -275,6 +275,38 @@
 		"cost": 10,	
 		"playerClass": "WARLOCK",
 		"text": "Destroy all minions. Draw a card for each."
+	},
+	
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_019",
+		"name": "N'Zoth's Tenticle",
+		"rarity": "COMMON",
+		"cost": 1,
+		"attack": 1,
+		"health": 1,
+		
+		"text": "<b>Deathrattle:</b> Deal 1 damage to all minions.",
+		"mechanics": ["DEATHRATTLE"]
+	},
+	
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_020",
+		"name": "Hallazeal the Ascended",
+		"rarity": "LEGENDARY",
+		"cost": 5,
+		"attack": 4,
+		"health": 6,
+		
+		"playerClass": "SHAMAN",
+		"text": "Whenever your spells deal damage, restore that much Health to your hero."
 	}
 ]
 
