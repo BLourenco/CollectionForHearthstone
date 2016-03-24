@@ -32,6 +32,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CollectionDbContract.Locale.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardLocale.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardType.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.PlayerClass.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Rarity.CREATE_TABLE_SQL);
@@ -78,40 +80,41 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
 
         try
         {
-            JSONArray jsonCards = new JSONObject(reader.getStringFromJSON(R.raw.cards)).getJSONArray("cards");
+            JSONArray jsonCards = new JSONArray(reader.getStringFromJSON(R.raw.cards));
 
             for (int i = 0; i < jsonCards.length(); i++)
             {
                 JSONObject card = jsonCards.getJSONObject(i);
 
                 String id = card.getString("id"); // TODO Store JSON field names as strings for easy updating (aka JSON Contract)
-                String type = card.getString("type");
-                boolean collectible = card.getBoolean("collectible");
-                String set = card.getString("set");
-                String playerClass = card.getString("playerClass");
-                String rarity = card.getString("rarity");
-                String name = card.getString("name");
-                String text = card.getString("text");
-                int cost = card.getInt("cost");
-                int attack = card.getInt("attack");
-                int health = card.getInt("health");
-                int durability = card.getInt("durability");
-                String race = card.getString("race");
-                JSONArray jsonMechanics = card.getJSONArray("mechanics"); // Iterate
-                String flavor = card.getString("flavor");
-                String howToEarn = card.getString("howToEarn");
-                String howToEarnGolden = card.getString("howToEarnGolden");
-                JSONArray jsonEntourage = card.getJSONArray("entourage"); // Iterate
-                String artist = card.getString("artist");
-                String faction = card.getString("faction");
-                JSONArray jsonPlayReq = card.getJSONArray("playRequirements");
+                String type = card.has("type") ? card.getString("type") : null;
+                Boolean collectible = card.has("collectible") ? card.getBoolean("collectible") : null;
+                String set = card.has("set") ? card.getString("set") : null;
+                String playerClass = card.has("playerClass") ? card.getString("playerClass") : "NEUTRAL";
+                String rarity = card.has("rarity") ? card.getString("rarity") : null;
+                String name = card.has("name") ? card.getString("name") : null;
+                String text = card.has("text") ? card.getString("text") : null;
+                Integer cost = card.has("cost") ? card.getInt("cost") : null;
+                Integer attack = card.has("attack") ? card.getInt("attack") : null;
+                Integer health = card.has("health") ? card.getInt("health") : null;
+                Integer durability = card.has("durability") ? card.getInt("durability") : null;
+                String race = card.has("race") ? card.getString("race") : null;
+                JSONArray jsonMechanics = card.has("mechanics") ? card.getJSONArray("mechanics") : null; // Iterate
+                String flavor = card.has("flavor") ? card.getString("flavor") : null;
+                String howToEarn = card.has("howToEarn") ? card.getString("howToEarn") : null;
+                String howToEarnGolden = card.has("howToEarnGolden") ? card.getString("howToEarnGolden") : null;
+                //JSONArray jsonEntourage = card.has("entourage") ? card.getJSONArray("entourage") : null; // Iterate
+                String artist = card.has("artist") ? card.getString("artist") : null;
+                String faction = card.has("faction") ? card.getString("faction") : null;
+                //JSONArray jsonPlayReq = card.has("playRequirements") ? card.getJSONArray("playRequirements") : null;
 
                 // CONVERT
 
-                int convCollectible = collectible ? 1 : 0;
+                Integer convCollectible = collectible != null ? (collectible ? 1 : 0) : null;
 
                 //TODO look up the foreign keys from the db tables, not the enums
-                int convType = -1;
+                Integer convType = null;
+                if (type != null)
                 for (EnumsHS.CardType cardType : EnumsHS.CardType.getValidTypes()) {
                     if (cardType.name().equals(type))
                     {
@@ -120,7 +123,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                     }
                 }
 
-                int convSet = -1;
+                Integer convSet = null;
+                if (set != null)
                 for (EnumsHS.CardSet cardSet : EnumsHS.CardSet.getPlayableSets()) {
                     if (cardSet.name().equals(set))
                     {
@@ -129,7 +133,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                     }
                 }
 
-                int convClass = -1;
+                Integer convClass = null;
+                if (playerClass != null)
                 for (EnumsHS.CardClass cardClass : EnumsHS.CardClass.getValidClasses()) {
                     if (cardClass.name().equals(playerClass))
                     {
@@ -138,7 +143,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                     }
                 }
 
-                int convRarity = -1;
+                Integer convRarity = null;
+                if (rarity != null)
                 for (EnumsHS.Rarity cardRarity : EnumsHS.Rarity.getValidRarities()) {
                     if (cardRarity.name().equals(rarity))
                     {
@@ -147,7 +153,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                     }
                 }
 
-                int convRace = -1;
+                Integer convRace = null;
+                if (race != null)
                 for (EnumsHS.Race cardRace : EnumsHS.Race.getValidRaces()) {
                     if (cardRace.name().equals(race))
                     {
@@ -156,7 +163,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                     }
                 }
 
-                int convFaction = -1;
+                Integer convFaction = null;
+                if (faction != null)
                 for (EnumsHS.Faction cardFaction : EnumsHS.Faction.getValidFactions()) {
                     if (cardFaction.name().equals(faction))
                     {
@@ -197,6 +205,23 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                         null,
                         values
                 );
+
+                // COMPOSITE
+
+                ContentValues valuesCardLocale = new ContentValues();
+                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE, EnumsHS.Locale.enUS.getValue());
+                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME, name);
+                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT, text);
+                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_FLAVOR, flavor);
+                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_HOW_TO_EARN, howToEarn);
+                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_HOW_TO_EARN_GOLDEN, howToEarnGolden);
+
+                db.insert(
+                        CollectionDbContract.CardLocale.TABLE_NAME,
+                        null,
+                        valuesCardLocale
+                );
             }
         }
         catch (JSONException e)
@@ -206,6 +231,21 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
     }
 
     // Enum Tables
+
+    private void initTableLocale(SQLiteDatabase db)
+    {
+        for (EnumsHS.Locale locale : EnumsHS.Locale.values()) {
+            ContentValues values = new ContentValues();
+            values.put(CollectionDbContract.Locale.COLUMN_NAME_LOCALE_ID, locale.getValue());
+            values.put(CollectionDbContract.Locale.COLUMN_NAME_LOCALE_NAME, locale.name());
+
+            db.insert(
+                    CollectionDbContract.Locale.TABLE_NAME,
+                    null,
+                    values
+            );
+        }
+    }
 
     private void initTableCardType(SQLiteDatabase db)
     {

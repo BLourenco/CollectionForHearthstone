@@ -1,6 +1,8 @@
 package com.lourenco.brandon.collectionhs.hearthstone;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -22,6 +24,8 @@ import jp.wasabeef.picasso.transformations.MaskTransformation;
 public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapter.ViewHolder> {
     private int classId;
     private Context context;
+    private SQLiteDatabase db;
+    private Cursor c;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -58,9 +62,48 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CardRecyclerAdapter(int classId, Context context) {
+    public CardRecyclerAdapter(Integer classId, Context context, SQLiteDatabase db) {
         this.classId = classId;
         this.context = context;
+        this.db = db;
+
+        String rawQuery =
+                "SELECT " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_SET_FOREIGN + ", " +
+                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_RARITY_FOREIGN + ", " +
+                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_ATTACK + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_HEALTH + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_RACE_FOREIGN + " " +
+                        " FROM " +
+                        CollectionDbContract.Card.TABLE_NAME + " INNER JOIN " + CollectionDbContract.CardLocale.TABLE_NAME +
+                        " ON " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID +
+                        "=" +
+                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE +
+                        " WHERE " +
+                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=0 " +
+                        " AND " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_FOREIGN + "=" + classId +
+                        " AND " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN + "!=" + EnumsHS.CardType.ENCHANTMENT.getValue() +
+                        " AND " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN + "!=" + EnumsHS.CardType.HERO_POWER.getValue() +
+                        " AND " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE + "=1" +
+                        " ORDER BY " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + " ASC, " +
+                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + " ASC";
+
+        //String rawQuery = "SELECT * FROM " + CollectionDbContract.Card.TABLE_NAME;
+
+        c = db.rawQuery(rawQuery, null);
+        c.moveToFirst();
     }
 
     // Create new views (invoked by the layout manager)
@@ -79,46 +122,52 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        final CardNEW card = new CardNEW();
 
-        String[] projection = {
-                CollectionDbContract.Card.COLUMN_NAME_CARD_ID,
-                CollectionDbContract.Card.COLUMN_NAME_CARD_SET_FOREIGN,
-                CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME,
-                CollectionDbContract.Card.COLUMN_NAME_RARITY_FOREIGN
-        }
+
+        c.moveToPosition(position);
+        String id = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_ID));
+        Integer type = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN));
+        Integer set = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_FOREIGN));
+        String name = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME));
+        Integer rarity = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RARITY_FOREIGN));
+        String text = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT));
+        Integer cost = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_COST));
+        Integer attack = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_ATTACK));
+        Integer health = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_HEALTH));
+        Integer race = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RACE_FOREIGN));
+
+
 
 
 
 
 
         // Card Art
-        MaskTransformation transform = new MaskTransformation(context, ResourcesHS.getCardTypeMask(card.getTypeEnum()));
+        MaskTransformation transform = new MaskTransformation(context, ResourcesHS.getCardTypeMask(EnumsHS.CardType.getEnumByValue(type)));
         Picasso.with(context)
-                .load(ResourcesHS.getCartArtResourceId(context, card.getCardId()))
+                .load(ResourcesHS.getCartArtResourceId(context, id))
                 .placeholder(R.drawable.placeholder_missing)
                 .transform(transform)
                 .into(holder.imgCardArt);
 
         // Set Icon
         holder.imgSetIcon.setImageResource(
-                ResourcesHS.getSetIcon(
-                        ResourcesHS.getSetEnum(context, card.getSet())));
+                ResourcesHS.getSetIcon(EnumsHS.CardSet.getEnumByValue(set)));
 
         // Set Icon Color
         holder.imgSetIcon.setColorFilter(
                 ResourcesHS.getSetColor(context,
-                        ResourcesHS.getSetEnum(context, card.getSet())));
+                        EnumsHS.CardSet.getEnumByValue(set)));
 
         // Card Name & Rarity Color
-        holder.txtName.setText(card.getName());
+        holder.txtName.setText(name);
         holder.txtName.setTextColor(
                 ResourcesHS.getRarityTextColor(context,
-                        ResourcesHS.getRarityEnum(context, card.getRarity())));
+                        EnumsHS.Rarity.getEnumByValue(rarity)));
 
         // Card Text
-        if (card.getText() != null) {
-            holder.txtText.setText(Html.fromHtml(card.getText()));
+        if (text != null) {
+            holder.txtText.setText(Html.fromHtml(text));
             holder.txtText.setVisibility(View.VISIBLE);
         }
         else {
@@ -126,8 +175,9 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.txtText.setVisibility(View.GONE);
         }
 
-        if (card.getCost() != null) {
-            holder.txtCost.setText(String.format("%d", card.getCost()));
+        if (cost != null)
+        {
+            holder.txtCost.setText(String.format("%d", cost));
             holder.imgCostIcon.setImageResource(R.drawable.icon_stat_mana);
         }
         else {
@@ -135,10 +185,10 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.imgCostIcon.setImageResource(0);
         }
 
-        if (card.getType().equals("MINION") || card.getType().equals("WEAPON")) {
-            holder.txtAttack.setText(String.format("%d", card.getAttack()));
+        if (type == EnumsHS.CardType.MINION.getValue() || type == EnumsHS.CardType.WEAPON.getValue()) {
+            holder.txtAttack.setText(String.format("%d", attack));
             //holder.imgAttackIcon.setImageResource(R.drawable.icon_attack);
-            if (card.getType().equals("MINION"))
+            if (type == EnumsHS.CardType.MINION.getValue())
                 holder.imgAttackIcon.setImageResource(R.drawable.icon_stat_attack_minion);
             else
                 holder.imgAttackIcon.setImageResource(R.drawable.icon_stat_attack_weapon);
@@ -148,12 +198,12 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.imgAttackIcon.setImageResource(0);
         }
 
-        if (card.getType().equals("MINION") || card.getType().equals("HERO")) {
-            holder.txtHealth.setText(String.format("%d", card.getHealth()));
+        if (type == EnumsHS.CardType.MINION.getValue() || type == EnumsHS.CardType.HERO.getValue()) {
+            holder.txtHealth.setText(String.format("%d", health));
             holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_minion);
         }
-        else if (card.getType().equals("WEAPON")) {
-            holder.txtHealth.setText(String.format("%d", card.getDurability()));
+        else if (type == EnumsHS.CardType.WEAPON.getValue()) {
+            holder.txtHealth.setText(String.format("%d", health));
             holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_weapon);
         }
         else {
@@ -162,7 +212,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
 
         // Race Stat
-        if (card.getRace() != null) {
+/*        if (card.getRace() != null) {
             String race = card.getRace();
             holder.txtRace.setText(race.charAt(0) + race.substring(1).toLowerCase());
             holder.imgRaceIcon.setImageResource(R.drawable.icon_stat_race);
@@ -171,14 +221,14 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         else {
             holder.txtRace.setText("");
             holder.imgRaceIcon.setImageResource(0);
-        }
+        }*/
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return c.getCount();
     }
 
 

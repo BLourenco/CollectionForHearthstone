@@ -22,6 +22,24 @@ public final class CollectionDbContract {
     private static String ForeignKey(String keyName, String refTable, String refColumnName) {
         return String.format("FOREIGN KEY(%s) REFERENCES %s(%s)", keyName, refTable, refColumnName);
     }
+    private static String CompositeKey(String...params) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("PRIMARY KEY (");
+
+        boolean firstParam = true;
+        for (String param : params)
+        {
+            if (!firstParam)
+                sb.append(", ");
+            else
+                firstParam = false;
+            sb.append(param);
+        }
+
+        sb.append(")");
+
+        return sb.toString();
+    }
 
 
     // To prevent someone from accidentally instantiating the contract class, give it an
@@ -179,6 +197,20 @@ public final class CollectionDbContract {
         public static final String COLUMN_NAME_CARD_FLAVOR = "card_flavor";
         public static final String COLUMN_NAME_CARD_HOW_TO_EARN = "card_how_to_earn";
         public static final String COLUMN_NAME_CARD_HOW_TO_EARN_GOLDEN = "card_how_to_earn_golden";
+
+        public static final String CREATE_TABLE_SQL =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_NAME_CARD_ID_COMPOSITE + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_LOCALE_ID_COMPOSITE + TYPE_INTEGER + COMMA_SEP +
+                        COLUMN_NAME_CARD_NAME + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_CARD_TEXT + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_CARD_FLAVOR + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_CARD_HOW_TO_EARN + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_CARD_HOW_TO_EARN_GOLDEN + TYPE_TEXT + COMMA_SEP +
+                        CompositeKey(COLUMN_NAME_CARD_ID_COMPOSITE, COLUMN_NAME_LOCALE_ID_COMPOSITE) +
+                        " )";
+        public static final String DELETE_TABLE_SQL =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 
     public static abstract class CardBackLocale implements BaseColumns {
@@ -279,7 +311,7 @@ public final class CollectionDbContract {
         public static final String COLUMN_NAME_CRAFT_COST = "craft_cost";
         public static final String COLUMN_NAME_CRAFT_GOLDEN_COST = "craft_golden_cost";
         public static final String COLUMN_NAME_DISENCHANT_VALUE = "disenchant_value";
-        public static final String COLUMN_NAME_DISENCHANT_GOLDEN_VALUE = "disenchant_value";
+        public static final String COLUMN_NAME_DISENCHANT_GOLDEN_VALUE = "disenchant_golden_value";
 
         public static final String CREATE_TABLE_SQL =
                 "CREATE TABLE " + TABLE_NAME + " (" +

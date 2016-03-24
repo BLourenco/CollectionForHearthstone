@@ -86,7 +86,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     private RevealColorView revealColorView;
 
-    private SQLiteDatabase db;
+     static SQLiteDatabase db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -329,7 +329,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
          * The fragment argument representing the section number for this
          * fragment.
          */
-        private static final String ARG_CLASS_ID = "class_id";
+        private static final String ARG_CLASS_ORDINAL = "class_ordinal";
 
         public PlaceholderFragment(){};
 
@@ -337,11 +337,11 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(Context c, int classId) {
+        public static PlaceholderFragment newInstance(Context c, int classOrdinal) {
             context = c;
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_CLASS_ID, classId);
+            args.putInt(ARG_CLASS_ORDINAL, classOrdinal);
             fragment.setArguments(args);
             return fragment;
         }
@@ -350,7 +350,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-            final int classCards = getArguments().getInt(ARG_CLASS_ID);
+            final int classOrdinal = getArguments().getInt(ARG_CLASS_ORDINAL);
 
             RecyclerView mRecyclerView;
             RecyclerView.Adapter mAdapter;
@@ -369,7 +369,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
-                    AppDesign.setEdgeGlowColor(recyclerView, ResourcesHS.getClassColors(context, classCards.get(0).getPlayerClassEnum())[0]);
+                    AppDesign.setEdgeGlowColor(recyclerView, ResourcesHS.getClassColors(context, EnumsHS.CardClass.getClassAtOrdinal(classOrdinal))[0]);
                 }
 
                 @Override
@@ -383,8 +383,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
                         //Utils.reveal(floatingActionButton, floatingActionButton.getWidth() / 2, floatingActionButton.getHeight() / 2);
                         scrollDist = 0;
                         isVisible = false;
-                    }
-                    else if (!isVisible && scrollDist < -MIN_TRIGGER_DISTANCE) {
+                    } else if (!isVisible && scrollDist < -MIN_TRIGGER_DISTANCE) {
                         floatingActionButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
                         //Utils.unReveal(floatingActionButton, floatingActionButton.getWidth() / 2, floatingActionButton.getHeight() / 2);
                         scrollDist = 0;
@@ -401,8 +400,10 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             mLayoutManager = new LinearLayoutManager(context);
             mRecyclerView.setLayoutManager(mLayoutManager);
 
+            int classId = EnumsHS.CardClass.getClassAtOrdinal(classOrdinal).getValue();
+
             // specify an adapter (see also next example)
-            mAdapter = new CardRecyclerAdapter(classCards, context);
+            mAdapter = new CardRecyclerAdapter(classId, context, db);
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -424,7 +425,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(getApplicationContext(), (ArrayList<Card>) getClassCards(EnumsHS.CardClass.getClassAtOrdinal(position)));
+            return PlaceholderFragment.newInstance(getApplicationContext(), position);
         }
 
         @Override

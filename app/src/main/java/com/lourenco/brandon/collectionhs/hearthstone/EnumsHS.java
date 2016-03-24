@@ -52,10 +52,20 @@ public class EnumsHS {
                     ROGUE,
                     SHAMAN,
                     WARLOCK,
-                    WARRIOR
+                    WARRIOR,
+                    NEUTRAL
             };
 
             return classes;
+        }
+
+        public static CardClass getEnumByValue(int value)
+        {
+            for (CardClass cardClass : CardClass.values())
+            {
+                if (value == cardClass.getValue()) return cardClass;
+            }
+            return INVALID;
         }
     }
 
@@ -141,7 +151,16 @@ public class EnumsHS {
                     sets.add(set);
             }
 
-            return (CardSet[]) sets.toArray();
+            return sets.toArray(new CardSet[0]);
+        }
+
+        public static CardSet getEnumByValue(int value)
+        {
+            for (CardSet cardSet : CardSet.values())
+            {
+                if (value == cardSet.getValue()) return cardSet;
+            }
+            return INVALID;
         }
 
     }
@@ -187,11 +206,20 @@ public class EnumsHS {
 
             return types;
         }
+
+        public static CardType getEnumByValue(int value)
+        {
+            for (CardType cardType : CardType.values())
+            {
+                if (value == cardType.getValue()) return cardType;
+            }
+            return INVALID;
+        }
     }
 
     public enum Faction
     {
-        INAVLID(0),
+        INVALID(0),
         HORDE(1),
         ALLIANCE(2),
         NEUTRAL(3);
@@ -210,10 +238,20 @@ public class EnumsHS {
 
             return factions;
         }
+
+        public static Faction getEnumByValue(int value)
+        {
+            for (Faction faction : Faction.values())
+            {
+                if (value == faction.getValue()) return faction;
+            }
+            return INVALID;
+        }
     }
 
     public enum PlayReq
     {
+        INVALID(0, false, ""),
         REQ_MINION_TARGET(1, false,                                         "Target must be a minion."),
         REQ_FRIENDLY_TARGET(2, false,                                       "Target must be friendly."),
         REQ_ENEMY_TARGET(3, false,                                          "Target must be an enemy."),
@@ -285,6 +323,15 @@ public class EnumsHS {
         public int getValue() {return value;}
         public boolean usesParameter() {return usesParameter;}
         public String getDesc() {return desc;}
+
+        public static PlayReq getEnumByValue(int value)
+        {
+            for (PlayReq playReq : PlayReq.values())
+            {
+                if (value == playReq.getValue()) return playReq;
+            }
+            return INVALID;
+        }
     }
 
     public enum Race
@@ -340,6 +387,15 @@ public class EnumsHS {
 
             return race;
         }
+
+        public static Race getEnumByValue(int value)
+        {
+            for (Race race : Race.values())
+            {
+                if (value == race.getValue()) return race;
+            }
+            return INVALID;
+        }
     }
 
     public enum Rarity
@@ -382,6 +438,15 @@ public class EnumsHS {
 
             return rarities;
         }
+
+        public static Rarity getEnumByValue(int value)
+        {
+            for (Rarity rarity : Rarity.values())
+            {
+                if (value == rarity.getValue()) return rarity;
+            }
+            return INVALID;
+        }
     }
 
     public enum Booster
@@ -403,25 +468,49 @@ public class EnumsHS {
         public boolean isForPurchase() {
             return set.isStandard();
         }
+
+        public static Booster getEnumByValue(int value)
+        {
+            for (Booster booster : Booster.values())
+            {
+                if (value == booster.getValue()) return booster;
+            }
+            return INVALID;
+        }
     }
 
     public enum Locale
     {
-        enUS,
-        enGB,
-        frFR,
-        deDE,
-        koKR,
-        esES,
-        esMX,
-        ruRU,
-        zhTW,
-        zhCN,
-        itIT,
-        ptBR,
-        plPL,
-        ptPT,
-        jaJP
+        enUS(0),
+        enGB(1),
+        frFR(2),
+        deDE(3),
+        koKR(4),
+        esES(5),
+        esMX(6),
+        ruRU(7),
+        zhTW(8),
+        zhCN(9),
+        itIT(10),
+        ptBR(11),
+        plPL(12),
+        ptPT(13),
+        jaJP(14);
+
+        private int value;
+        Locale(int value) {
+            this.value = value;
+        }
+        public int getValue() {return value;}
+
+        public static Locale getEnumByValue(int value)
+        {
+            for (Locale locale : Locale.values())
+            {
+                if (value == locale.getValue()) return locale;
+            }
+            return enUS;
+        }
     }
 
     // My Enums
@@ -452,6 +541,15 @@ public class EnumsHS {
             };
 
             return setTypes;
+        }
+
+        public static CardSetType getEnumByValue(int value)
+        {
+            for (CardSetType cardSetType : CardSetType.values())
+            {
+                if (value == cardSetType.getValue()) return cardSetType;
+            }
+            return INVALID;
         }
     }
 }
