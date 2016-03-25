@@ -2,6 +2,8 @@ package com.lourenco.brandon.collectionhs.db;
 
 import android.provider.BaseColumns;
 
+import com.lourenco.brandon.collectionhs.hearthstone.EnumsHS;
+
 /**
  * Created by Brandon on 2016-03-22.
  */
@@ -453,5 +455,29 @@ public final class CollectionDbContract {
                         " )";
         public static final String DELETE_TABLE_SQL =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
+    }
+
+    // Views
+
+    public static abstract class CardAlbumView {
+        public static String VIEW_NAME = "card_album";
+
+        public static String CREATE_VIEW =
+                "CREATE VIEW " + VIEW_NAME + " AS " +
+                        "SELECT * " +
+                        " FROM " +
+                        Card.TABLE_NAME +
+                        " WHERE " +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.ENCHANTMENT.getValue() +
+                        " AND " +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.HERO_POWER.getValue() +
+                        " AND " +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.HERO.getValue() +
+                        " AND " +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_COLLECTIBLE + "=1" +
+                        " ORDER BY " +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_COST + " ASC";
+
+        public static String DELETE_VIEW = "DROP VIEW " + VIEW_NAME;
     }
 }

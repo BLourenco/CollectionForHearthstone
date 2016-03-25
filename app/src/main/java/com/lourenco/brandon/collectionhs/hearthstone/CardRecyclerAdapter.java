@@ -67,36 +67,18 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         this.language = lang;
 
         String rawQuery =
-                "SELECT " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN + ", " +
-                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN + ", " +
-                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_ATTACK + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_HEALTH + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN + " " +
-                        " FROM " +
-                        CollectionDbContract.Card.TABLE_NAME + " INNER JOIN " + CollectionDbContract.CardLocale.TABLE_NAME +
+                "SELECT * FROM " +
+                        CollectionDbContract.CardAlbumView.VIEW_NAME + " INNER JOIN " + CollectionDbContract.CardLocale.TABLE_NAME +
                         " ON " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID +
+                        CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID +
                         "=" +
                         CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE +
                         " WHERE " +
                         CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=" + language.getValue() +
                         " AND " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN + "=" + classId +
-                        " AND " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.ENCHANTMENT.getValue() +
-                        " AND " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.HERO_POWER.getValue() +
-                        " AND " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE + "=1" +
+                        CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN + "=" + classId +
                         " ORDER BY " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + " ASC, " +
+                        CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + " ASC, " +
                         CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + " ASC";
 
         Log.d("CRA", rawQuery);

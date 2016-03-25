@@ -49,12 +49,16 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         db.execSQL(CollectionDbContract.CardEntourage.CREATE_TABLE_SQL);
 
         initTables(db);
+
+        db.execSQL(CollectionDbContract.CardAlbumView.CREATE_VIEW);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         //Just delete and re-create (from JSON)
+        db.execSQL(CollectionDbContract.CardAlbumView.DELETE_VIEW);
+
         db.execSQL(CollectionDbContract.CardMechanic.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardEntourage.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardPlayRequirement.DELETE_TABLE_SQL);
@@ -74,8 +78,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void initTables(SQLiteDatabase db)
-    {
+    public void initTables(SQLiteDatabase db) {
         initTableLocale(db);
         initTableCardType(db);
         initTablePlayerClass(db);
@@ -90,17 +93,24 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         initTablePlayRequirement(db);
     }
 
-    private void initTableCard(SQLiteDatabase db)
-    {
+    private void initTableCard(SQLiteDatabase db) {
         JSONResourceReader reader = new JSONResourceReader(context.getResources());
 
-        try
-        {
+        try {
             JSONArray arrayCards = new JSONArray(reader.getStringFromJSON(R.raw.cards));
+            insertCardArray(db, arrayCards);
+            //JSONArray arrayUnreleasedCards = new JSONArray(reader.getStringFromJSON(R.raw.cards_unreleased)); // TODO LOW_PRIORITY: add unreleased card
+            //insertCardArray(db, arrayUnreleasedCards);
 
-            for (int i = 0; i < arrayCards.length(); i++)
-            {
-                JSONObject card = arrayCards.getJSONObject(i);
+        } catch (JSONException e) {
+            Log.e(LOG_TAG, "Error getting JSON string from JSON resource.");
+        }
+    }
+
+    private void insertCardArray(SQLiteDatabase db, JSONArray cardArray) {
+        for (int i = 0; i < cardArray.length(); i++) {
+            try {
+                JSONObject card = cardArray.getJSONObject(i);
 
                 String id = card.getString("id"); // TODO Store JSON field names as strings for easy updating (aka JSON Contract)
                 String type = card.has("type") ? card.getString("type") : null;
@@ -131,63 +141,57 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 //TODO look up the foreign keys from the db tables, not the enums
                 Integer convType = null;
                 if (type != null)
-                for (EnumsHS.CardType cardType : EnumsHS.CardType.getValidTypes()) {
-                    if (cardType.name().equals(type))
-                    {
-                        convType = cardType.getValue();
-                        break;
+                    for (EnumsHS.CardType cardType : EnumsHS.CardType.getValidTypes()) {
+                        if (cardType.name().equals(type)) {
+                            convType = cardType.getValue();
+                            break;
+                        }
                     }
-                }
 
                 Integer convSet = null;
                 if (set != null)
-                for (EnumsHS.CardSet cardSet : EnumsHS.CardSet.values()) {
-                    if (cardSet.name().equals(set))
-                    {
-                        convSet = cardSet.getValue();
-                        break;
+                    for (EnumsHS.CardSet cardSet : EnumsHS.CardSet.values()) {
+                        if (cardSet.name().equals(set)) {
+                            convSet = cardSet.getValue();
+                            break;
+                        }
                     }
-                }
 
                 Integer convClass = null;
                 if (playerClass != null)
-                for (EnumsHS.CardClass cardClass : EnumsHS.CardClass.getValidClasses()) {
-                    if (cardClass.name().equals(playerClass))
-                    {
-                        convClass = cardClass.getValue();
-                        break;
+                    for (EnumsHS.CardClass cardClass : EnumsHS.CardClass.getValidClasses()) {
+                        if (cardClass.name().equals(playerClass)) {
+                            convClass = cardClass.getValue();
+                            break;
+                        }
                     }
-                }
 
                 Integer convRarity = null;
                 if (rarity != null)
-                for (EnumsHS.Rarity cardRarity : EnumsHS.Rarity.getValidRarities()) {
-                    if (cardRarity.name().equals(rarity))
-                    {
-                        convRarity = cardRarity.getValue();
-                        break;
+                    for (EnumsHS.Rarity cardRarity : EnumsHS.Rarity.getValidRarities()) {
+                        if (cardRarity.name().equals(rarity)) {
+                            convRarity = cardRarity.getValue();
+                            break;
+                        }
                     }
-                }
 
                 Integer convRace = null;
                 if (race != null)
-                for (EnumsHS.Race cardRace : EnumsHS.Race.getValidRaces()) {
-                    if (cardRace.name().equals(race))
-                    {
-                        convRace = cardRace.getValue();
-                        break;
+                    for (EnumsHS.Race cardRace : EnumsHS.Race.getValidRaces()) {
+                        if (cardRace.name().equals(race)) {
+                            convRace = cardRace.getValue();
+                            break;
+                        }
                     }
-                }
 
                 Integer convFaction = null;
                 if (faction != null)
-                for (EnumsHS.Faction cardFaction : EnumsHS.Faction.getValidFactions()) {
-                    if (cardFaction.name().equals(faction))
-                    {
-                        convFaction = cardFaction.getValue();
-                        break;
+                    for (EnumsHS.Faction cardFaction : EnumsHS.Faction.getValidFactions()) {
+                        if (cardFaction.name().equals(faction)) {
+                            convFaction = cardFaction.getValue();
+                            break;
+                        }
                     }
-                }
 
                 // INSERT
 
@@ -235,15 +239,15 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                     String howToEarnGolden = null;
 
                     if (jsonNames != null)
-                    name = jsonNames.has(locale.name()) ? jsonNames.getString(locale.name()) : null;
+                        name = jsonNames.has(locale.name()) ? jsonNames.getString(locale.name()) : null;
                     if (jsonText != null)
-                    text = jsonText.has(locale.name()) ? jsonText.getString(locale.name()) : null;
+                        text = jsonText.has(locale.name()) ? jsonText.getString(locale.name()) : null;
                     //if (jsonFlavor != null)
                     //flavor = jsonFlavor.has(locale.name()) ? jsonNames.getString(locale.name()) : null;
                     if (jsonHowToEarn != null)
-                    howToEarn = jsonHowToEarn.has(locale.name()) ? jsonHowToEarn.getString(locale.name()) : null;
+                        howToEarn = jsonHowToEarn.has(locale.name()) ? jsonHowToEarn.getString(locale.name()) : null;
                     if (jsonHowToEarnGolden != null)
-                    howToEarnGolden = jsonHowToEarnGolden.has(locale.name()) ? jsonHowToEarnGolden.getString(locale.name()) : null;
+                        howToEarnGolden = jsonHowToEarnGolden.has(locale.name()) ? jsonHowToEarnGolden.getString(locale.name()) : null;
 
                     if (name == null) continue;
 
@@ -266,72 +270,67 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 // PLAY REQUIREMENTS
 
                 if (jsonPlayReq != null)
-                for (EnumsHS.PlayReq playReqEnum : EnumsHS.PlayReq.values())
-                {
-                    Integer playReq = jsonPlayReq.has(playReqEnum.name()) ? jsonPlayReq.getInt(playReqEnum.name()) : null;
+                    for (EnumsHS.PlayReq playReqEnum : EnumsHS.PlayReq.values()) {
+                        Integer playReq = jsonPlayReq.has(playReqEnum.name()) ? jsonPlayReq.getInt(playReqEnum.name()) : null;
 
-                    if (playReq == null) continue;
+                        if (playReq == null) continue;
 
-                    ContentValues playReqValues = new ContentValues();
-                    playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_CARD_ID_COMPOSITE, id);
-                    playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_ID_COMPOSITE, playReqEnum.getValue());
-                    playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_PARAMETER, playReq);
+                        ContentValues playReqValues = new ContentValues();
+                        playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                        playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_ID_COMPOSITE, playReqEnum.getValue());
+                        playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_PARAMETER, playReq);
 
-                    db.insert(
-                            CollectionDbContract.CardPlayRequirement.TABLE_NAME,
-                            null,
-                            playReqValues
-                    );
-                }
+                        db.insert(
+                                CollectionDbContract.CardPlayRequirement.TABLE_NAME,
+                                null,
+                                playReqValues
+                        );
+                    }
 
 
                 // MECHANICS & ENTOURAGE ARRAYS
 
                 if (arrayMechanics != null)
-                for (int m = 0; m < arrayMechanics.length(); m++)
-                {
-                    Integer mechId = EnumsHS.Mechanic.getValueByName(arrayMechanics.getString(m));
+                    for (int m = 0; m < arrayMechanics.length(); m++) {
+                        Integer mechId = EnumsHS.Mechanic.getValueByName(arrayMechanics.getString(m));
 
-                    if (mechId == EnumsHS.Mechanic.INVALID.getValue() || mechId == null) continue;
+                        if (mechId == EnumsHS.Mechanic.INVALID.getValue() || mechId == null)
+                            continue;
 
-                    ContentValues mechValues = new ContentValues();
-                    mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_CARD_ID_COMPOSITE, id);
-                    mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_MECHANIC_ID_COMPOSITE, mechId);
+                        ContentValues mechValues = new ContentValues();
+                        mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                        mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_MECHANIC_ID_COMPOSITE, mechId);
 
-                    db.insert(
-                            CollectionDbContract.CardMechanic.TABLE_NAME,
-                            null,
-                            mechValues
-                    );
-                }
+                        db.insert(
+                                CollectionDbContract.CardMechanic.TABLE_NAME,
+                                null,
+                                mechValues
+                        );
+                    }
 
                 if (arrayEntourage != null)
-                for (int e = 0; e < arrayEntourage.length(); e++)
-                {
-                    String entId = arrayEntourage.getString(e);
+                    for (int e = 0; e < arrayEntourage.length(); e++) {
+                        String entId = arrayEntourage.getString(e);
 
-                    ContentValues entValues = new ContentValues();
-                    entValues.put(CollectionDbContract.CardEntourage.COLUMN_NAME_CARD_ID_COMPOSITE, id);
-                    entValues.put(CollectionDbContract.CardEntourage.COLUMN_NAME_ENTOURAGE_ID_COMPOSITE, entId);
+                        ContentValues entValues = new ContentValues();
+                        entValues.put(CollectionDbContract.CardEntourage.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                        entValues.put(CollectionDbContract.CardEntourage.COLUMN_NAME_ENTOURAGE_ID_COMPOSITE, entId);
 
-                    db.insert(
-                            CollectionDbContract.CardEntourage.TABLE_NAME,
-                            null,
-                            entValues
-                    );
-                }
+                        db.insert(
+                                CollectionDbContract.CardEntourage.TABLE_NAME,
+                                null,
+                                entValues
+                        );
+                    }
+            } catch (JSONException e) {
+                Log.e(LOG_TAG, "Error pulling values from JSON resource at index " + i + ": " + e.toString());
             }
-        }
-        catch (JSONException e)
-        {
-            Log.e(LOG_TAG, "Error initializing Card table from JSON resource.");
         }
     }
 
     // Enum Tables
 
-    private void initTableLocale(SQLiteDatabase db)
-    {
+    private void initTableLocale(SQLiteDatabase db) {
         for (EnumsHS.Locale locale : EnumsHS.Locale.values()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.Locale.COLUMN_NAME_LOCALE_ID, locale.getValue());
@@ -345,8 +344,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTableCardType(SQLiteDatabase db)
-    {
+    private void initTableCardType(SQLiteDatabase db) {
         for (EnumsHS.CardType type : EnumsHS.CardType.getValidTypes()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.CardType.COLUMN_NAME_CARD_TYPE_ID, type.getValue());
@@ -360,8 +358,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTablePlayerClass(SQLiteDatabase db)
-    {
+    private void initTablePlayerClass(SQLiteDatabase db) {
         for (EnumsHS.CardClass cardClass : EnumsHS.CardClass.getValidClasses()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.PlayerClass.COLUMN_NAME_PLAYER_CLASS_ID, cardClass.getValue());
@@ -375,8 +372,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTableRarity(SQLiteDatabase db)
-    {
+    private void initTableRarity(SQLiteDatabase db) {
         for (EnumsHS.Rarity rarity : EnumsHS.Rarity.getValidRarities()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.Rarity.COLUMN_NAME_RARITY_ID, rarity.getValue());
@@ -394,8 +390,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTableRace(SQLiteDatabase db)
-    {
+    private void initTableRace(SQLiteDatabase db) {
         for (EnumsHS.Race race : EnumsHS.Race.getValidRaces()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.Race.COLUMN_NAME_RACE_ID, race.getValue());
@@ -409,8 +404,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTableFaction(SQLiteDatabase db)
-    {
+    private void initTableFaction(SQLiteDatabase db) {
         for (EnumsHS.Faction faction : EnumsHS.Faction.getValidFactions()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.Faction.COLUMN_NAME_FACTION_ID, faction.getValue());
@@ -424,8 +418,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTableCardSetType (SQLiteDatabase db)
-    {
+    private void initTableCardSetType(SQLiteDatabase db) {
         for (EnumsHS.CardSetType setType : EnumsHS.CardSetType.getValidSetTypes()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.CardSetType.COLUMN_NAME_CARD_SET_TYPE_ID, setType.getValue());
@@ -439,8 +432,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTableCardSet(SQLiteDatabase db)
-    {
+    private void initTableCardSet(SQLiteDatabase db) {
         for (EnumsHS.CardSet cardSet : EnumsHS.CardSet.getPlayableSets()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.CardSet.COLUMN_NAME_CARD_SET_ID, cardSet.getValue());
@@ -456,8 +448,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTableMechanic(SQLiteDatabase db)
-    {
+    private void initTableMechanic(SQLiteDatabase db) {
         for (EnumsHS.Mechanic mechanic : EnumsHS.Mechanic.values()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.Mechanic.COLUMN_NAME_MECHANIC_ID, mechanic.getValue());
@@ -471,8 +462,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void initTablePlayRequirement(SQLiteDatabase db)
-    {
+    private void initTablePlayRequirement(SQLiteDatabase db) {
         for (EnumsHS.PlayReq playReq : EnumsHS.PlayReq.values()) {
             ContentValues values = new ContentValues();
             values.put(CollectionDbContract.PlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_ID, playReq.getValue());

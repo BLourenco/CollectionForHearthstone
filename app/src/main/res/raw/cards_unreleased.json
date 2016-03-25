@@ -400,6 +400,35 @@
 		"cost": 0,	
 		"playerClass": "PALADIN",
 		"text": "Spend all your Mana. Restore twice that much Health."
+	},
+	
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_027",
+		"name": "Brood of N'Zoth",
+		"rarity": "COMMON",
+		"cost": 3,
+		"attack": 2,
+		"health": 2,
+		"text": "<b>Deathrattle:</b> Give your minions +1/+1.",
+		"mechanics": ["DEATHRATTLE"]
+	},
+	
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_028",
+		"name": "Monstrosity",
+		"rarity": "LEGENDARY",
+		"cost": 8,
+		"attack": 6,
+		"health": 7,
+		"text": "If this minion attacks and destroys another minion, gain +2/+2."
 	}
 ]
 
