@@ -13,11 +13,22 @@ public final class CollectionDbContract {
 
     private static final String COMMA_SEP = ",";
 
-    private static final String TYPE_TEXT = " TEXT";
-    private static final String TYPE_INTEGER = " INTEGER";
-    private static final String TYPE_REAL = " REAL";
-    private static final String TYPE_BLOB = " BLOB";
-    private static final String TYPE_NULL = " NULL";
+    private static final String NULL = " NULL ";
+    private static final String NOT_NULL = " NOT NULL ";
+
+    private static final String OP_GT = ">";
+    private static final String OP_LT = "<";
+    private static final String OP_EQ = "==";
+    private static final String OP_NEQ = "!=";
+    private static final String OP_GTEQ = ">=";
+    private static final String OP_LTEQ = "<=";
+
+
+    private static final String TYPE_TEXT = " TEXT ";
+    private static final String TYPE_INTEGER = " INTEGER ";
+    private static final String TYPE_REAL = " REAL ";
+    private static final String TYPE_BLOB = " BLOB ";
+    private static final String TYPE_NULL = " NULL ";
 
     private static String ForeignKey(String keyName, String refTable, String refColumnName) {
         return String.format("FOREIGN KEY(%s) REFERENCES %s(%s)", keyName, refTable, refColumnName);
@@ -41,6 +52,10 @@ public final class CollectionDbContract {
         return sb.toString();
     }
 
+    private static String Check(String val1, String op, String val2) {
+        return String.format(" CHECK(%s %s %s) ", val1, op, val2);
+    }
+
 
     // To prevent someone from accidentally instantiating the contract class, give it an
     // empty constructor.
@@ -56,17 +71,17 @@ public final class CollectionDbContract {
         // Table & Column names
         public static final String TABLE_NAME = "card";
         public static final String COLUMN_NAME_CARD_ID = "card_id";
-        public static final String COLUMN_NAME_CARD_TYPE_FOREIGN = "card_type_id";
+        public static final String COLUMN_NAME_CARD_TYPE_ID_FOREIGN = "card_type_id";
         public static final String COLUMN_NAME_COLLECTIBLE = "collectible";
-        public static final String COLUMN_NAME_CARD_SET_FOREIGN = "card_set_id";
-        public static final String COLUMN_NAME_PLAYER_CLASS_FOREIGN = "player_class_id";
-        public static final String COLUMN_NAME_RARITY_FOREIGN = "rarity_id";
+        public static final String COLUMN_NAME_CARD_SET_ID_FOREIGN = "card_set_id";
+        public static final String COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN = "player_class_id";
+        public static final String COLUMN_NAME_RARITY_ID_FOREIGN = "rarity_id";
         public static final String COLUMN_NAME_COST = "cost";
         public static final String COLUMN_NAME_ATTACK = "attack";
         public static final String COLUMN_NAME_HEALTH = "health"; // will also hold durability
-        public static final String COLUMN_NAME_RACE_FOREIGN = "race_id";
+        public static final String COLUMN_NAME_RACE_ID_FOREIGN = "race_id";
         public static final String COLUMN_NAME_ARTIST = "artist";
-        public static final String COLUMN_NAME_FACTION_FOREIGN = "faction_id";
+        public static final String COLUMN_NAME_FACTION_ID_FOREIGN = "faction_id";
 
         // User-specific data
         public static final String COLUMN_NAME_COLLECTED = "collected";
@@ -78,28 +93,28 @@ public final class CollectionDbContract {
         // SQL Queries
         public static final String CREATE_TABLE_SQL =
                 "CREATE TABLE " + TABLE_NAME + " (" +
-                        COLUMN_NAME_CARD_ID + " TEXT PRIMARY KEY," +
-                        COLUMN_NAME_CARD_TYPE_FOREIGN + TYPE_TEXT + COMMA_SEP +
-                        COLUMN_NAME_COLLECTIBLE + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_CARD_SET_FOREIGN + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_PLAYER_CLASS_FOREIGN + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_RARITY_FOREIGN + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_COST + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_ATTACK + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_HEALTH + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_RACE_FOREIGN + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_ARTIST + TYPE_TEXT + COMMA_SEP +
-                        COLUMN_NAME_FACTION_FOREIGN + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_COLLECTED + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_COLLECTED_GOLDEN + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_BOOKMARKED + TYPE_INTEGER + COMMA_SEP +
+                        COLUMN_NAME_CARD_ID +                   " TEXT PRIMARY KEY," +
+                        COLUMN_NAME_CARD_TYPE_ID_FOREIGN +      TYPE_TEXT +     NOT_NULL +  COMMA_SEP +
+                        COLUMN_NAME_COLLECTIBLE +               TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_CARD_SET_ID_FOREIGN +       TYPE_INTEGER +  NOT_NULL +  COMMA_SEP +
+                        COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN +   TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_RARITY_ID_FOREIGN +         TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_COST +                      TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_ATTACK +                    TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_HEALTH +                    TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_RACE_ID_FOREIGN +           TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_ARTIST +                    TYPE_TEXT +                 COMMA_SEP +
+                        COLUMN_NAME_FACTION_ID_FOREIGN +        TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_COLLECTED +                 TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_COLLECTED_GOLDEN +          TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_BOOKMARKED +                TYPE_INTEGER +              COMMA_SEP +
                         //foreign keys
-                        ForeignKey(COLUMN_NAME_CARD_TYPE_FOREIGN, CardType.TABLE_NAME, CardType.COLUMN_NAME_CARD_TYPE_ID) + COMMA_SEP +
-                        ForeignKey(COLUMN_NAME_CARD_SET_FOREIGN, CardSet.TABLE_NAME, CardSet.COLUMN_NAME_CARD_SET_ID) + COMMA_SEP +
-                        ForeignKey(COLUMN_NAME_PLAYER_CLASS_FOREIGN, PlayerClass.TABLE_NAME, PlayerClass.COLUMN_NAME_PLAYER_CLASS_ID) + COMMA_SEP +
-                        ForeignKey(COLUMN_NAME_RARITY_FOREIGN, Rarity.TABLE_NAME, Rarity.COLUMN_NAME_RARITY_ID) + COMMA_SEP +
-                        ForeignKey(COLUMN_NAME_RACE_FOREIGN, Race.TABLE_NAME, Race.COLUMN_NAME_RACE_ID) + COMMA_SEP +
-                        ForeignKey(COLUMN_NAME_FACTION_FOREIGN, Faction.TABLE_NAME, Faction.COLUMN_NAME_FACTION_ID) +
+                        ForeignKey(COLUMN_NAME_CARD_TYPE_ID_FOREIGN,    CardType.TABLE_NAME,    CardType.COLUMN_NAME_CARD_TYPE_ID) +        COMMA_SEP +
+                        ForeignKey(COLUMN_NAME_CARD_SET_ID_FOREIGN,     CardSet.TABLE_NAME,     CardSet.COLUMN_NAME_CARD_SET_ID) +          COMMA_SEP +
+                        ForeignKey(COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN, PlayerClass.TABLE_NAME, PlayerClass.COLUMN_NAME_PLAYER_CLASS_ID) +  COMMA_SEP +
+                        ForeignKey(COLUMN_NAME_RARITY_ID_FOREIGN,       Rarity.TABLE_NAME,      Rarity.COLUMN_NAME_RARITY_ID) +             COMMA_SEP +
+                        ForeignKey(COLUMN_NAME_RACE_ID_FOREIGN,         Race.TABLE_NAME,        Race.COLUMN_NAME_RACE_ID) +                 COMMA_SEP +
+                        ForeignKey(COLUMN_NAME_FACTION_ID_FOREIGN,      Faction.TABLE_NAME,     Faction.COLUMN_NAME_FACTION_ID) +
                         " )";
         public static final String DELETE_TABLE_SQL =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -202,7 +217,7 @@ public final class CollectionDbContract {
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         COLUMN_NAME_CARD_ID_COMPOSITE + TYPE_TEXT + COMMA_SEP +
                         COLUMN_NAME_LOCALE_ID_COMPOSITE + TYPE_INTEGER + COMMA_SEP +
-                        COLUMN_NAME_CARD_NAME + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_CARD_NAME + TYPE_TEXT + NOT_NULL + COMMA_SEP +
                         COLUMN_NAME_CARD_TEXT + TYPE_TEXT + COMMA_SEP +
                         COLUMN_NAME_CARD_FLAVOR + TYPE_TEXT + COMMA_SEP +
                         COLUMN_NAME_CARD_HOW_TO_EARN + TYPE_TEXT + COMMA_SEP +
@@ -225,12 +240,30 @@ public final class CollectionDbContract {
         public static final String TABLE_NAME = "card_mechanic";
         public static final String COLUMN_NAME_CARD_ID_COMPOSITE = "card_id";
         public static final String COLUMN_NAME_MECHANIC_ID_COMPOSITE = "mechanic_id";
+
+        public static final String CREATE_TABLE_SQL =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_NAME_CARD_ID_COMPOSITE + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_MECHANIC_ID_COMPOSITE + TYPE_INTEGER + COMMA_SEP +
+                        CompositeKey(COLUMN_NAME_CARD_ID_COMPOSITE, COLUMN_NAME_MECHANIC_ID_COMPOSITE) +
+                        " )";
+        public static final String DELETE_TABLE_SQL =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 
     public static abstract class CardEntourage implements BaseColumns {
         public static final String TABLE_NAME = "card_entourage";
         public static final String COLUMN_NAME_CARD_ID_COMPOSITE = "card_id";
         public static final String COLUMN_NAME_ENTOURAGE_ID_COMPOSITE = "entourage_id";
+
+        public static final String CREATE_TABLE_SQL =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_NAME_CARD_ID_COMPOSITE + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_ENTOURAGE_ID_COMPOSITE + TYPE_INTEGER + COMMA_SEP +
+                        CompositeKey(COLUMN_NAME_CARD_ID_COMPOSITE, COLUMN_NAME_ENTOURAGE_ID_COMPOSITE) +
+                        " )";
+        public static final String DELETE_TABLE_SQL =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 
     public static abstract class CardPlayRequirement implements BaseColumns {
@@ -238,6 +271,16 @@ public final class CollectionDbContract {
         public static final String COLUMN_NAME_CARD_ID_COMPOSITE = "card_id";
         public static final String COLUMN_NAME_PLAY_REQUIREMENT_ID_COMPOSITE = "play_requirement_id";
         public static final String COLUMN_NAME_PLAY_REQUIREMENT_PARAMETER = "play_requirement_parameter";
+
+        public static final String CREATE_TABLE_SQL =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_NAME_CARD_ID_COMPOSITE + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_PLAY_REQUIREMENT_ID_COMPOSITE + TYPE_INTEGER + COMMA_SEP +
+                        COLUMN_NAME_PLAY_REQUIREMENT_PARAMETER + TYPE_INTEGER + COMMA_SEP +
+                        CompositeKey(COLUMN_NAME_CARD_ID_COMPOSITE, COLUMN_NAME_PLAY_REQUIREMENT_ID_COMPOSITE) +
+                        " )";
+        public static final String DELETE_TABLE_SQL =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 
 

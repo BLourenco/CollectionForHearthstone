@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,7 @@ import android.widget.TextView;
 
 import com.lourenco.brandon.collectionhs.R;
 import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
-import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
-import com.lourenco.brandon.collectionhs.hearthstone.model.CardNEW;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 import jp.wasabeef.picasso.transformations.MaskTransformation;
 
@@ -26,6 +23,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     private Context context;
     private SQLiteDatabase db;
     private Cursor c;
+    private EnumsHS.Locale language;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -62,24 +60,25 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CardRecyclerAdapter(Integer classId, Context context, SQLiteDatabase db) {
+    public CardRecyclerAdapter(Integer classId, Context context, SQLiteDatabase db, EnumsHS.Locale lang) {
         this.classId = classId;
         this.context = context;
         this.db = db;
+        this.language = lang;
 
         String rawQuery =
                 "SELECT " +
                         CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + ", " +
                         CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_SET_FOREIGN + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN + ", " +
                         CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_RARITY_FOREIGN + ", " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN + ", " +
                         CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT + ", " +
                         CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + ", " +
                         CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_ATTACK + ", " +
                         CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_HEALTH + ", " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_RACE_FOREIGN + " " +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN + " " +
                         " FROM " +
                         CollectionDbContract.Card.TABLE_NAME + " INNER JOIN " + CollectionDbContract.CardLocale.TABLE_NAME +
                         " ON " +
@@ -87,21 +86,20 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
                         "=" +
                         CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE +
                         " WHERE " +
-                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=0 " +
+                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=" + language.getValue() +
                         " AND " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_FOREIGN + "=" + classId +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN + "=" + classId +
                         " AND " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN + "!=" + EnumsHS.CardType.ENCHANTMENT.getValue() +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.ENCHANTMENT.getValue() +
                         " AND " +
-                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN + "!=" + EnumsHS.CardType.HERO_POWER.getValue() +
+                        CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.HERO_POWER.getValue() +
                         " AND " +
                         CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE + "=1" +
                         " ORDER BY " +
                         CollectionDbContract.Card.TABLE_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + " ASC, " +
                         CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + " ASC";
 
-        //String rawQuery = "SELECT * FROM " + CollectionDbContract.Card.TABLE_NAME;
-
+        Log.d("CRA", rawQuery);
         c = db.rawQuery(rawQuery, null);
         c.moveToFirst();
     }
@@ -126,15 +124,15 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
         c.moveToPosition(position);
         String id = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_ID));
-        Integer type = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN));
-        Integer set = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_FOREIGN));
+        Integer type = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN));
+        Integer set = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN));
         String name = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME));
-        Integer rarity = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RARITY_FOREIGN));
+        Integer rarity = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN));
         String text = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT));
         Integer cost = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_COST));
         Integer attack = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_ATTACK));
         Integer health = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_HEALTH));
-        Integer race = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RACE_FOREIGN));
+        Integer race = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN));
 
 
 

@@ -283,7 +283,7 @@
 		"collectible": true,
 		
 		"id": "WOG_019",
-		"name": "N'Zoth's Tenticle",
+		"name": "Tenticle of N'Zoth",
 		"rarity": "COMMON",
 		"cost": 1,
 		"attack": 1,
@@ -339,8 +339,67 @@
 		"attack": 1,
 		"health": 1,
 		
-		"text": "<b>Taunt.\nBattlecry:</b> Copy a friendly minion's attack and health.",
+		"text": "<b>Taunt\nBattlecry:</b> Copy a friendly minion's Attack and Health.",
 		"mechanics": ["BATTLECRY"]
+	},
+	
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_023",
+		"name": "Undercity Huckster",
+		"rarity": "RARE",
+		"cost": 2,
+		"attack": 2,
+		"health": 2,
+		
+		"playerClass": "ROGUE",
+		"text": "<b>Deathrattle:</b> Add a random class card to your hand <i>(from your opponent's class).</i>",
+		"mechanics": ["DEATHRATTLE"]
+	},
+	
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_024",
+		"name": "N'Zoth, the Corruptor",
+		"rarity": "LEGENDARY",
+		"cost": 10,
+		"attack": 5,
+		"health": 7,
+		
+		"text": "<b>Battlecry:</b> Summon your <b>Deathrattle</b> minions that dies this game.",
+		"mechanics": ["BATTLECRY"]
+	},
+	
+	{	
+		"type": "SPELL",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_025",
+		"name": "Renounce Darkness",
+		"rarity": "EPIC",
+		"cost": 2,	
+		"playerClass": "WARLOCK",
+		"text": "Replace your Hero Power and Warlock cards with another class's. The cards cost (1) less."
+	},
+	
+	{	
+		"type": "SPELL",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_026",
+		"name": "Forbidden Healing",
+		"rarity": "EPIC",
+		"cost": 0,	
+		"playerClass": "PALADIN",
+		"text": "Spend all your Mana. Restore twice that much Health."
 	}
 ]
 

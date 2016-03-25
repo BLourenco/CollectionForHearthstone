@@ -1,5 +1,7 @@
 package com.lourenco.brandon.collectionhs.hearthstone;
 
+import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  */
 public class EnumsHS {
 
+    //TODO Don't hardcode 'getValid...()' methods!
     public enum CardClass
     {
         DRUID(2, 0),
@@ -481,27 +484,31 @@ public class EnumsHS {
 
     public enum Locale
     {
-        enUS(0),
-        enGB(1),
-        frFR(2),
-        deDE(3),
-        koKR(4),
-        esES(5),
-        esMX(6),
-        ruRU(7),
-        zhTW(8),
-        zhCN(9),
-        itIT(10),
-        ptBR(11),
-        plPL(12),
-        ptPT(13),
-        jaJP(14);
+        enUS(0, true),
+        //enGB(1, false),
+        frFR(2, true),
+        deDE(3, true),
+        koKR(4, true),
+        esES(5, true),
+        esMX(6, true),
+        ruRU(7, true),
+        zhTW(8, true),
+        zhCN(9, true),
+        itIT(10, true),
+        ptBR(11, true),
+        plPL(12, true),
+        //ptPT(13, false),
+        jaJP(14, true),
+        thTh(15, true);
 
         private int value;
-        Locale(int value) {
+        private boolean used;
+        Locale(int value, boolean used) {
             this.value = value;
+            this.used = used;
         }
         public int getValue() {return value;}
+        public boolean isUsed() {return used;}
 
         public static Locale getEnumByValue(int value)
         {
@@ -510,6 +517,73 @@ public class EnumsHS {
                 if (value == locale.getValue()) return locale;
             }
             return enUS;
+        }
+
+        public static Locale getAppLangByDeviceLocale(String name)
+        {
+            for (Locale locale : Locale.values())
+            {
+                if (name.equals(locale.name())) return locale;
+            }
+            for (Locale locale : Locale.values())
+            {
+                if (name.substring(0,2).equals(locale.name().substring(0,2))) return locale;
+            }
+            return enUS;
+        }
+
+        public static Locale[] getUsedLocales()
+        {
+            List<Locale> locales = new ArrayList<>();
+            for (Locale l : Locale.values())
+            {
+                locales.add(l);
+            }
+
+            return locales.toArray(new Locale[0]);
+        }
+    }
+
+    public enum Mechanic
+    {
+        INVALID(0),
+
+        ADJACENT_BUFF(1),
+        AURA(2),
+        BATTLECRY(3),
+        CHARGE(4),
+        COMBO(5),
+        DEATHRATTLE(6),
+        DIVINE_SHIELD(7),
+        ENRAGED(8),
+        FORGETFUL(9),
+        FREEZE(10),
+        INSPIRE(11),
+        MORPH(12),
+        OVERLOAD(13),
+        POISONOUS(14),
+        SECRET(15),
+        SILENCE(16),
+        STEALTH(17),
+        SPELLPOWER(18),
+        TAG_ONE_TURN_EFFECT(19),
+        TAUNT(20),
+        TREASURE(21),
+        WINDFURY(22),
+        ImmuneToSpellpower(23),
+        InvisibleDeathrattle(24);
+
+        private int value;
+        Mechanic (int value) {this.value = value;}
+        public int getValue() {return value;}
+
+        public static int getValueByName(String name)
+        {
+            for (Mechanic m : Mechanic.values())
+            {
+                if (m.name().equals(name)) return m.value;
+            }
+            return INVALID.value;
         }
     }
 

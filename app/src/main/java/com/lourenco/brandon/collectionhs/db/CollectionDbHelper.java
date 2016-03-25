@@ -42,6 +42,11 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         db.execSQL(CollectionDbContract.CardSetType.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardSet.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Card.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.Mechanic.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.PlayRequirement.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardMechanic.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardPlayRequirement.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardEntourage.CREATE_TABLE_SQL);
 
         initTables(db);
     }
@@ -50,6 +55,11 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         //Just delete and re-create (from JSON)
+        db.execSQL(CollectionDbContract.CardMechanic.DELETE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardEntourage.DELETE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardPlayRequirement.DELETE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.Mechanic.DELETE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.PlayRequirement.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Card.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardSet.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardSetType.DELETE_TABLE_SQL);
@@ -58,12 +68,15 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         db.execSQL(CollectionDbContract.Rarity.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.PlayerClass.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardType.DELETE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardLocale.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.Locale.CREATE_TABLE_SQL);
 
         onCreate(db);
     }
 
     public void initTables(SQLiteDatabase db)
     {
+        initTableLocale(db);
         initTableCardType(db);
         initTablePlayerClass(db);
         initTableRarity(db);
@@ -72,6 +85,9 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         initTableCardSetType(db);
         initTableCardSet(db);
         initTableCard(db);
+        initTableMechanic(db);
+        //initTableEntourage(db); not needed
+        initTablePlayRequirement(db);
     }
 
     private void initTableCard(SQLiteDatabase db)
@@ -80,11 +96,11 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
 
         try
         {
-            JSONArray jsonCards = new JSONArray(reader.getStringFromJSON(R.raw.cards));
+            JSONArray arrayCards = new JSONArray(reader.getStringFromJSON(R.raw.cards));
 
-            for (int i = 0; i < jsonCards.length(); i++)
+            for (int i = 0; i < arrayCards.length(); i++)
             {
-                JSONObject card = jsonCards.getJSONObject(i);
+                JSONObject card = arrayCards.getJSONObject(i);
 
                 String id = card.getString("id"); // TODO Store JSON field names as strings for easy updating (aka JSON Contract)
                 String type = card.has("type") ? card.getString("type") : null;
@@ -92,21 +108,21 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 String set = card.has("set") ? card.getString("set") : null;
                 String playerClass = card.has("playerClass") ? card.getString("playerClass") : "NEUTRAL";
                 String rarity = card.has("rarity") ? card.getString("rarity") : null;
-                String name = card.has("name") ? card.getString("name") : null;
-                String text = card.has("text") ? card.getString("text") : null;
+                JSONObject jsonNames = card.has("name") ? card.getJSONObject("name") : null;
+                JSONObject jsonText = card.has("text") ? card.getJSONObject("text") : null;
                 Integer cost = card.has("cost") ? card.getInt("cost") : null;
                 Integer attack = card.has("attack") ? card.getInt("attack") : null;
                 Integer health = card.has("health") ? card.getInt("health") : null;
                 Integer durability = card.has("durability") ? card.getInt("durability") : null;
                 String race = card.has("race") ? card.getString("race") : null;
-                JSONArray jsonMechanics = card.has("mechanics") ? card.getJSONArray("mechanics") : null; // Iterate
-                String flavor = card.has("flavor") ? card.getString("flavor") : null;
-                String howToEarn = card.has("howToEarn") ? card.getString("howToEarn") : null;
-                String howToEarnGolden = card.has("howToEarnGolden") ? card.getString("howToEarnGolden") : null;
-                //JSONArray jsonEntourage = card.has("entourage") ? card.getJSONArray("entourage") : null; // Iterate
+                JSONArray arrayMechanics = card.has("mechanics") ? card.getJSONArray("mechanics") : null; // Iterate
+                //JSONObject jsonFlavor = card.has("flavor") ? card.getJSONObject("flavor") : null;
+                JSONObject jsonHowToEarn = card.has("howToEarn") ? card.getJSONObject("howToEarn") : null;
+                JSONObject jsonHowToEarnGolden = card.has("howToEarnGolden") ? card.getJSONObject("howToEarnGolden") : null;
+                JSONArray arrayEntourage = card.has("entourage") ? card.getJSONArray("entourage") : null; // Iterate
                 String artist = card.has("artist") ? card.getString("artist") : null;
                 String faction = card.has("faction") ? card.getString("faction") : null;
-                //JSONArray jsonPlayReq = card.has("playRequirements") ? card.getJSONArray("playRequirements") : null;
+                JSONObject jsonPlayReq = card.has("playRequirements") ? card.getJSONObject("playRequirements") : null;
 
                 // CONVERT
 
@@ -125,7 +141,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
 
                 Integer convSet = null;
                 if (set != null)
-                for (EnumsHS.CardSet cardSet : EnumsHS.CardSet.getPlayableSets()) {
+                for (EnumsHS.CardSet cardSet : EnumsHS.CardSet.values()) {
                     if (cardSet.name().equals(set))
                     {
                         convSet = cardSet.getValue();
@@ -177,24 +193,27 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
 
                 ContentValues values = new ContentValues();
                 values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_ID, id);
-                values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_FOREIGN, convType);
+                values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN, convType);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE, convCollectible);
-                values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_FOREIGN, convSet);
-                values.put(CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_FOREIGN, convClass);
-                values.put(CollectionDbContract.Card.COLUMN_NAME_RARITY_FOREIGN, convRarity);
-                values.put(CollectionDbContract.Card.COLUMN_NAME_COST, cost);
+                values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN, convSet);
+                values.put(CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN, convClass);
+                values.put(CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN, convRarity);
+                if (!type.equals("HERO") && !type.equals("ENCHANTMENT"))
+                    values.put(CollectionDbContract.Card.COLUMN_NAME_COST, cost);
+                else
+                    values.putNull(CollectionDbContract.Card.COLUMN_NAME_COST);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_ATTACK, attack);
 
-                if (type.equals("MINION"))
+                if (type.equals("MINION") || type.equals("HERO"))
                     values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, health);
                 else if (type.equals("WEAPON"))
                     values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, durability);
                 else
                     values.putNull(CollectionDbContract.Card.COLUMN_NAME_HEALTH);
 
-                values.put(CollectionDbContract.Card.COLUMN_NAME_RACE_FOREIGN, convRace);
+                values.put(CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN, convRace);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_ARTIST, artist);
-                values.put(CollectionDbContract.Card.COLUMN_NAME_FACTION_FOREIGN, convFaction);
+                values.put(CollectionDbContract.Card.COLUMN_NAME_FACTION_ID_FOREIGN, convFaction);
 
                 values.put(CollectionDbContract.Card.COLUMN_NAME_COLLECTED, 0);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_COLLECTED_GOLDEN, 0);
@@ -206,22 +225,101 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                         values
                 );
 
-                // COMPOSITE
+                // LOCALIZATION
 
-                ContentValues valuesCardLocale = new ContentValues();
-                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE, id);
-                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE, EnumsHS.Locale.enUS.getValue());
-                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME, name);
-                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT, text);
-                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_FLAVOR, flavor);
-                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_HOW_TO_EARN, howToEarn);
-                valuesCardLocale.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_HOW_TO_EARN_GOLDEN, howToEarnGolden);
+                for (EnumsHS.Locale locale : EnumsHS.Locale.getUsedLocales()) {
+                    String name = null;
+                    String text = null;
+                    //String flavor = null;
+                    String howToEarn = null;
+                    String howToEarnGolden = null;
 
-                db.insert(
-                        CollectionDbContract.CardLocale.TABLE_NAME,
-                        null,
-                        valuesCardLocale
-                );
+                    if (jsonNames != null)
+                    name = jsonNames.has(locale.name()) ? jsonNames.getString(locale.name()) : null;
+                    if (jsonText != null)
+                    text = jsonText.has(locale.name()) ? jsonText.getString(locale.name()) : null;
+                    //if (jsonFlavor != null)
+                    //flavor = jsonFlavor.has(locale.name()) ? jsonNames.getString(locale.name()) : null;
+                    if (jsonHowToEarn != null)
+                    howToEarn = jsonHowToEarn.has(locale.name()) ? jsonHowToEarn.getString(locale.name()) : null;
+                    if (jsonHowToEarnGolden != null)
+                    howToEarnGolden = jsonHowToEarnGolden.has(locale.name()) ? jsonHowToEarnGolden.getString(locale.name()) : null;
+
+                    if (name == null) continue;
+
+                    ContentValues localeValues = new ContentValues();
+                    localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                    localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE, locale.getValue());
+                    localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME, name);
+                    localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT, text);
+                    //localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_FLAVOR, flavor);
+                    localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_HOW_TO_EARN, howToEarn);
+                    localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_HOW_TO_EARN_GOLDEN, howToEarnGolden);
+
+                    db.insert(
+                            CollectionDbContract.CardLocale.TABLE_NAME,
+                            null,
+                            localeValues
+                    );
+                }
+
+                // PLAY REQUIREMENTS
+
+                if (jsonPlayReq != null)
+                for (EnumsHS.PlayReq playReqEnum : EnumsHS.PlayReq.values())
+                {
+                    Integer playReq = jsonPlayReq.has(playReqEnum.name()) ? jsonPlayReq.getInt(playReqEnum.name()) : null;
+
+                    if (playReq == null) continue;
+
+                    ContentValues playReqValues = new ContentValues();
+                    playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                    playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_ID_COMPOSITE, playReqEnum.getValue());
+                    playReqValues.put(CollectionDbContract.CardPlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_PARAMETER, playReq);
+
+                    db.insert(
+                            CollectionDbContract.CardPlayRequirement.TABLE_NAME,
+                            null,
+                            playReqValues
+                    );
+                }
+
+
+                // MECHANICS & ENTOURAGE ARRAYS
+
+                if (arrayMechanics != null)
+                for (int m = 0; m < arrayMechanics.length(); m++)
+                {
+                    Integer mechId = EnumsHS.Mechanic.getValueByName(arrayMechanics.getString(m));
+
+                    if (mechId == EnumsHS.Mechanic.INVALID.getValue() || mechId == null) continue;
+
+                    ContentValues mechValues = new ContentValues();
+                    mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                    mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_MECHANIC_ID_COMPOSITE, mechId);
+
+                    db.insert(
+                            CollectionDbContract.CardMechanic.TABLE_NAME,
+                            null,
+                            mechValues
+                    );
+                }
+
+                if (arrayEntourage != null)
+                for (int e = 0; e < arrayEntourage.length(); e++)
+                {
+                    String entId = arrayEntourage.getString(e);
+
+                    ContentValues entValues = new ContentValues();
+                    entValues.put(CollectionDbContract.CardEntourage.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                    entValues.put(CollectionDbContract.CardEntourage.COLUMN_NAME_ENTOURAGE_ID_COMPOSITE, entId);
+
+                    db.insert(
+                            CollectionDbContract.CardEntourage.TABLE_NAME,
+                            null,
+                            entValues
+                    );
+                }
             }
         }
         catch (JSONException e)
@@ -352,6 +450,36 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
 
             db.insert(
                     CollectionDbContract.CardSet.TABLE_NAME,
+                    null,
+                    values
+            );
+        }
+    }
+
+    private void initTableMechanic(SQLiteDatabase db)
+    {
+        for (EnumsHS.Mechanic mechanic : EnumsHS.Mechanic.values()) {
+            ContentValues values = new ContentValues();
+            values.put(CollectionDbContract.Mechanic.COLUMN_NAME_MECHANIC_ID, mechanic.getValue());
+            values.put(CollectionDbContract.Mechanic.COLUMN_NAME_MECHANIC_NAME, mechanic.name());
+
+            db.insert(
+                    CollectionDbContract.Mechanic.TABLE_NAME,
+                    null,
+                    values
+            );
+        }
+    }
+
+    private void initTablePlayRequirement(SQLiteDatabase db)
+    {
+        for (EnumsHS.PlayReq playReq : EnumsHS.PlayReq.values()) {
+            ContentValues values = new ContentValues();
+            values.put(CollectionDbContract.PlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_ID, playReq.getValue());
+            values.put(CollectionDbContract.PlayRequirement.COLUMN_NAME_PLAY_REQUIREMENT_NAME, playReq.name());
+
+            db.insert(
+                    CollectionDbContract.PlayRequirement.TABLE_NAME,
                     null,
                     values
             );

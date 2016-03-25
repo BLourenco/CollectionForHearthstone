@@ -1,13 +1,8 @@
 package com.lourenco.brandon.collectionhs;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -16,7 +11,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -26,7 +20,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,31 +28,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
 import com.lourenco.brandon.collectionhs.db.CollectionDbHelper;
 import com.lourenco.brandon.collectionhs.design.DividerItemDecoration;
 import com.lourenco.brandon.collectionhs.hearthstone.CardRecyclerAdapter;
 import com.lourenco.brandon.collectionhs.hearthstone.ResourcesHS;
-import com.lourenco.brandon.collectionhs.json.JSONResourceReader;
-import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
-import com.lourenco.brandon.collectionhs.hearthstone.CardComparator;
 import com.lourenco.brandon.collectionhs.hearthstone.EnumsHS;
 import com.lourenco.brandon.collectionhs.design.AppDesign;
-import com.lourenco.brandon.collectionhs.util.StringUtil;
 import com.lourenco.brandon.collectionhs.util.Utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Locale;
 
 import at.markushi.ui.RevealColorView;
 
@@ -86,7 +66,9 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     private RevealColorView revealColorView;
 
-     static SQLiteDatabase db;
+    static SQLiteDatabase db;
+
+    static EnumsHS.Locale deviceLanguage;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +76,8 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
         initViews();
         db = new CollectionDbHelper(this).getWritableDatabase(); // TODO Put in AsyncTask
+
+        deviceLanguage =  EnumsHS.Locale.getAppLangByDeviceLocale(Locale.getDefault().toString().replace("_", ""));
     }
 
     public void initViews()
@@ -403,7 +387,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             int classId = EnumsHS.CardClass.getClassAtOrdinal(classOrdinal).getValue();
 
             // specify an adapter (see also next example)
-            mAdapter = new CardRecyclerAdapter(classId, context, db);
+            mAdapter = new CardRecyclerAdapter(classId, context, db, deviceLanguage);
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
