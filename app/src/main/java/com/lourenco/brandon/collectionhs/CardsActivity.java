@@ -1,8 +1,12 @@
 package com.lourenco.brandon.collectionhs;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +25,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +36,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
 import com.lourenco.brandon.collectionhs.db.CollectionDbHelper;
 import com.lourenco.brandon.collectionhs.design.DividerItemDecoration;
 import com.lourenco.brandon.collectionhs.hearthstone.CardRecyclerAdapter;
@@ -68,8 +74,6 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     static SQLiteDatabase db;
 
-    static EnumsHS.Locale deviceLanguage;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -77,8 +81,15 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         initViews();
         db = new CollectionDbHelper(this).getWritableDatabase(); // TODO Put in AsyncTask
 
-        deviceLanguage =  EnumsHS.Locale.getAppLangByDeviceLocale(Locale.getDefault().toString().replace("_", ""));
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("language",
+                sharedPreferences.getString("language",
+                        EnumsHS.Locale.getAppLangByDeviceLocale(
+                                Locale.getDefault().toString().replace("_", "")).getValue() + ""));
+        editor.commit();
     }
+
 
     public void initViews()
     {
@@ -239,6 +250,12 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         return true;
     }
 
+    public void startSettingsActivity()
+    {
+        Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -250,7 +267,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         //noinspection SimplifiableIfStatement
         switch(id) {
             case R.id.nav_settings:
-                Toast.makeText(this, "Overflow > Settings selected.", Toast.LENGTH_SHORT).show();
+                startSettingsActivity();
                 return true;
         }
 
@@ -281,6 +298,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             case R.id.nav_feedback:
                 break;
             case R.id.nav_settings:
+                startSettingsActivity();
                 break;
             case R.id.nav_about:
                 break;
@@ -315,7 +333,10 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
          */
         private static final String ARG_CLASS_ORDINAL = "class_ordinal";
 
-        public PlaceholderFragment(){};
+        public PlaceholderFragment(){}
+
+
+        RecyclerView.Adapter mAdapter;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -337,7 +358,6 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             final int classOrdinal = getArguments().getInt(ARG_CLASS_ORDINAL);
 
             RecyclerView mRecyclerView;
-            RecyclerView.Adapter mAdapter;
             RecyclerView.LayoutManager mLayoutManager;
 
             mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
@@ -386,8 +406,27 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
             int classId = EnumsHS.CardClass.getClassAtOrdinal(classOrdinal).getValue();
 
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            String rawQuery =
+                    "SELECT * FROM " +
+                            CollectionDbContract.CardAlbumView.VIEW_NAME + " INNER JOIN " + CollectionDbContract.CardLocale.TABLE_NAME +
+                            " ON " +
+                            CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID +
+                            "=" +
+                            CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE +
+                            " WHERE " +
+                            CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=" + sharedPreferences.getString("language", "0") +
+                            " AND " +
+                            CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN + "=" + classId +
+                            " ORDER BY " +
+                            CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + " ASC, " +
+                            CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + " ASC";
+
+
+
             // specify an adapter (see also next example)
-            mAdapter = new CardRecyclerAdapter(classId, context, db, deviceLanguage);
+            mAdapter = new CardRecyclerAdapter(context, db.rawQuery(rawQuery, null));
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 

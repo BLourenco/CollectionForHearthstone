@@ -408,7 +408,7 @@
 		"collectible": true,
 		
 		"id": "WOG_027",
-		"name": "Brood of N'Zoth",
+		"name": "Spawn of N'Zoth",
 		"rarity": "COMMON",
 		"cost": 3,
 		"attack": 2,
@@ -423,12 +423,58 @@
 		"collectible": true,
 		
 		"id": "WOG_028",
-		"name": "Monstrosity",
+		"name": "The Boogymonster",
 		"rarity": "LEGENDARY",
 		"cost": 8,
 		"attack": 6,
 		"health": 7,
 		"text": "If this minion attacks and destroys another minion, gain +2/+2."
+	},
+	
+	{	
+		"type": "WEAPON",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_029",
+		"name": "Tentacles for Arms",
+		"rarity": "EPIC",
+		"cost": 5,
+		"attack": 2,
+		"durability": 2,	
+		"playerClass": "WARRIOR",
+		
+		"text": "<b>Deathrattle:</b> Return this to your hand.",
+		"mechanics": ["DEATHRATTLE"]
+	},
+	
+	{	
+		"type": "SPELL",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_030",
+		"name": "Infest",
+		"rarity": "RARE",
+		"cost": 3,	
+		"playerClass": "HUNTER",
+		"text": "Give your minions \"<b>Deathrattle:</b> Add a random Beast to your hand.\""
+	},
+	
+	{	
+		"type": "MINION",
+		"set": "WOG",
+		"collectible": true,
+		
+		"id": "WOG_031",
+		"name": "Ragnaros, Lightlord",
+		"rarity": "LEGENDARY",
+		"cost": 8,
+		"attack": 8,
+		"health": 8,
+		
+		"playerClass": "PALADIN",
+		"text": "At the end of your turn, restore 8 Health to a damaged friendly character."
 	}
 ]
 

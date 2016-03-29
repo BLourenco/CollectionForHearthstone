@@ -17,6 +17,44 @@
     <string name="action_search">Search</string>
     <string name="action_filters">Filters Drawer</string>
 
+    <string name="settings_language">Language</string>
+
+    <string name="pref_file_key">com.lourenco.brandon.collectionhs.PREF_FILE_KEY</string>
+
+    <string-array name="languages">
+        <item>English</item>            <!-- English -->
+        <item>Français</item>           <!-- French -->
+        <item>Deutsch</item>            <!-- German -->
+        <item>한국어</item>              <!-- Korean -->
+        <item>Español</item>            <!-- Spanish -->
+        <item>Español (Mexico)</item>   <!-- Spanish MX -->
+        <item>Русский</item>            <!-- Russian -->
+        <item>台語</item>                 <!-- Chinese Taiwan -->
+        <item>中文</item>                <!-- Chinese -->
+        <item>Italiano</item>           <!-- Italian -->
+        <item>Português</item>          <!-- Portuguese BR -->
+        <item>Polski</item>             <!-- Polish -->
+        <item>日本語</item>              <!-- Japanese -->
+        <!--item>ไทย</item-->            <!-- Thai -->
+    </string-array>
+
+    <string-array name="languages_values">
+        <item>0</item>            <!-- English -->
+        <item>2</item>           <!-- French -->
+        <item>3</item>            <!-- German -->
+        <item>4</item>              <!-- Korean -->
+        <item>5</item>            <!-- Spanish -->
+        <item>6</item>   <!-- Spanish MX -->
+        <item>7</item>            <!-- Russian -->
+        <item>8</item>                 <!-- Chinese Taiwan -->
+        <item>9</item>                <!-- Chinese -->
+        <item>10</item>           <!-- Italian -->
+        <item>11</item>          <!-- Portuguese BR -->
+        <item>12</item>             <!-- Polish -->
+        <item>14</item>              <!-- Japanese -->
+        <!--item>15</item-->            <!-- Thai -->
+    </string-array>
+
     <string-array name="classes">
         <item>DRUID</item>
         <item>HUNTER</item>

@@ -1,6 +1,7 @@
 package com.lourenco.brandon.collectionhs.hearthstone;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
@@ -19,11 +20,8 @@ import com.squareup.picasso.Picasso;
 import jp.wasabeef.picasso.transformations.MaskTransformation;
 
 public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapter.ViewHolder> {
-    private int classId;
     private Context context;
-    private SQLiteDatabase db;
     private Cursor c;
-    private EnumsHS.Locale language;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -60,30 +58,9 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CardRecyclerAdapter(Integer classId, Context context, SQLiteDatabase db, EnumsHS.Locale lang) {
-        this.classId = classId;
+    public CardRecyclerAdapter(Context context, Cursor cursor) {
         this.context = context;
-        this.db = db;
-        this.language = lang;
-
-        String rawQuery =
-                "SELECT * FROM " +
-                        CollectionDbContract.CardAlbumView.VIEW_NAME + " INNER JOIN " + CollectionDbContract.CardLocale.TABLE_NAME +
-                        " ON " +
-                        CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID +
-                        "=" +
-                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE +
-                        " WHERE " +
-                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=" + language.getValue() +
-                        " AND " +
-                        CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN + "=" + classId +
-                        " ORDER BY " +
-                        CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + " ASC, " +
-                        CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + " ASC";
-
-        Log.d("CRA", rawQuery);
-        c = db.rawQuery(rawQuery, null);
-        c.moveToFirst();
+        c = cursor;
     }
 
     // Create new views (invoked by the layout manager)
