@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference android:title="@string/settings_language"
+    <!--ListPreference android:title="@string/settings_language"
         android:icon="@drawable/ic_translate_24dp"
         android:dialogIcon="@drawable/ic_translate_24dp"
-        android:key="language"
+        android:key="@string/pref_key_locale"
         android:defaultValue="0"
         android:entries="@array/languages"
         android:entryValues="@array/languages_values"
-        android:summary="[current language]"/>
+        android:summary="[current language]"/-->
 </PreferenceScreen>

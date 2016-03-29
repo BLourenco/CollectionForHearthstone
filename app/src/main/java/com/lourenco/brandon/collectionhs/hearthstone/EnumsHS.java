@@ -4,6 +4,7 @@ import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Brandon on 2016-03-13.
@@ -519,15 +520,16 @@ public class EnumsHS {
             return enUS;
         }
 
-        public static Locale getAppLangByDeviceLocale(String name)
+        public static Locale getEnumByDeviceLocale()
         {
+            String name = java.util.Locale.getDefault().toString().replace("_", "");
             for (Locale locale : Locale.values())
             {
                 if (name.equals(locale.name())) return locale;
             }
             for (Locale locale : Locale.values())
             {
-                if (name.substring(0,2).equals(locale.name().substring(0,2))) return locale;
+                if (name.substring(0,2).equals(locale.name().substring(0, 2))) return locale;
             }
             return enUS;
         }

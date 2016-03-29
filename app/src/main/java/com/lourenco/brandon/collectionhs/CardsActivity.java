@@ -3,7 +3,6 @@ package com.lourenco.brandon.collectionhs;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
@@ -25,7 +24,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +32,6 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
 import com.lourenco.brandon.collectionhs.db.CollectionDbHelper;
@@ -80,16 +77,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
         initViews();
         db = new CollectionDbHelper(this).getWritableDatabase(); // TODO Put in AsyncTask
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("language",
-                sharedPreferences.getString("language",
-                        EnumsHS.Locale.getAppLangByDeviceLocale(
-                                Locale.getDefault().toString().replace("_", "")).getValue() + ""));
-        editor.commit();
     }
-
 
     public void initViews()
     {
@@ -416,7 +404,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
                             "=" +
                             CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE +
                             " WHERE " +
-                            CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=" + sharedPreferences.getString("language", "0") +
+                            CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=" + EnumsHS.Locale.getEnumByDeviceLocale().getValue()  +
                             " AND " +
                             CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN + "=" + classId +
                             " ORDER BY " +
