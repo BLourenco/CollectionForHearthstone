@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="4dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Mana Cost"
+        android:id="@+id/textView2" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/tglFilterMana0"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="0"
+            android:textOn="0"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterMana1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="1"
+            android:textOn="1"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterMana2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="2"
+            android:textOn="2"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterMana3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="3"
+            android:textOn="3"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterMana4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="4"
+            android:textOn="4"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterMana5"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="5"
+            android:textOn="5"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterMana6"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="6"
+            android:textOn="6"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterMana7plus"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="7+"
+            android:textOn="7+"/>
+
+    </LinearLayout>
+
+</LinearLayout>

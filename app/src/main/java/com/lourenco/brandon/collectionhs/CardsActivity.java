@@ -33,6 +33,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
+import com.lourenco.brandon.collectionhs.db.CardQueryBuilder;
 import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
 import com.lourenco.brandon.collectionhs.db.CollectionDbHelper;
 import com.lourenco.brandon.collectionhs.design.DividerItemDecoration;
@@ -42,6 +43,7 @@ import com.lourenco.brandon.collectionhs.hearthstone.EnumsHS;
 import com.lourenco.brandon.collectionhs.design.AppDesign;
 import com.lourenco.brandon.collectionhs.util.Utils;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import at.markushi.ui.RevealColorView;
@@ -70,6 +72,8 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
     private RevealColorView revealColorView;
 
     static SQLiteDatabase db;
+
+    static ArrayList<Integer> filterMana;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,7 +155,8 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                //TODO Properly implement filter
+                testStartFilterActivity();
             }
         });
 
@@ -165,6 +170,28 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
 
         changeTheme(0); //TODO change to favourite class' theme and tab
+    }
+
+    private void testStartFilterActivity()
+    {
+        startActivityForResult(new Intent(this, CardFilterActivity.class), 96);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == 96) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                Bundle extras = intent.getExtras();
+                if (extras != null)
+                {
+                    filterMana = extras.getIntegerArrayList("mana");
+
+
+                }
+            }
+        }
     }
 
     private void changeTheme(int position)
@@ -189,43 +216,6 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
         fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
     }
-
-/*    public static void initCardObjects(Resources r)
-    {
-        JSONResourceReader reader = new JSONResourceReader(r, R.raw.cards);
-        JSONResourceReader readerUnreleased = new JSONResourceReader(r, R.raw.cards_unreleased);
-
-        Gson gson = new Gson();
-        cards = gson.fromJson(reader.getJSONString(), new TypeToken<List<Card>>(){}.getType());
-        List<Card> unreleased = gson.fromJson(readerUnreleased.getJSONString(), new TypeToken<List<Card>>() {}.getType());
-        cards.addAll(unreleased);
-        Collections.sort(cards, new CardComparator());
-    }*/
-
-
-
-/*    public static List<Card> getClassCards(EnumsHS.CardClass playerClass)
-    {
-        List<Card> classCards = new ArrayList<>();
-
-        for (Card c : cards) {
-            if(c.getCollectible() == null || (!c.getCollectible() && !c.getType().equals("HERO_POWER") *//*|| c.getType().equals("HERO")*//*)) continue; // TODO Add toggle to show/hide non-collectible cards
-            if (c.getPlayerClass() == null) // Neutrals
-            {
-                if (playerClass.name().equals("NEUTRAL"))
-                {
-                    classCards.add(c);
-                }
-            }
-            else // Classes
-            {
-                if (c.getPlayerClass().equals(playerClass.name().toUpperCase())) {
-                    classCards.add(c);
-                }
-            }
-        }
-        return classCards;
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -394,27 +384,14 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
             int classId = EnumsHS.CardClass.getClassAtOrdinal(classOrdinal).getValue();
 
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-            String rawQuery =
-                    "SELECT * FROM " +
-                            CollectionDbContract.CardAlbumView.VIEW_NAME + " INNER JOIN " + CollectionDbContract.CardLocale.TABLE_NAME +
-                            " ON " +
-                            CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID +
-                            "=" +
-                            CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_ID_COMPOSITE +
-                            " WHERE " +
-                            CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE + "=" + EnumsHS.Locale.getEnumByDeviceLocale().getValue()  +
-                            " AND " +
-                            CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN + "=" + classId +
-                            " ORDER BY " +
-                            CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_COST + " ASC, " +
-                            CollectionDbContract.CardLocale.TABLE_NAME + "." + CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME + " ASC";
-
+            String rawQuery = new CardQueryBuilder()
+                    .filterByClass(classId)
+                    .build();
 
 
             // specify an adapter (see also next example)
             mAdapter = new CardRecyclerAdapter(context, db.rawQuery(rawQuery, null));
+            //mAdapter = new CardRecyclerAdapter(context, db.rawQuery(rawQuery + manaFilterClause + orderByClause, null));
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -441,7 +418,6 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 10; //TODO Don't hardcode number of tabs
         }
 
