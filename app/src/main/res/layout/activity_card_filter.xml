@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Mana Cost"
-        android:id="@+id/textView2" />
+        android:text="@string/stat_mana"
+        android:id="@+id/txtTitleFilterMana" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,52 +24,218 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:textOff="0"
-            android:textOn="0"/>
+            android:textOn="0"
+            android:background="@drawable/icon_filter_mana"
+            android:backgroundTint="@color/statMana"
+            android:textColor="@color/color_filter_mana"/>
 
         <ToggleButton
             android:id="@+id/tglFilterMana1"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:textOff="1"
-            android:textOn="1"/>
+            android:textOn="1"
+            android:background="@drawable/icon_filter_mana"
+            android:backgroundTint="@color/statMana"
+            android:textColor="@color/color_filter_mana"/>
 
         <ToggleButton
             android:id="@+id/tglFilterMana2"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:textOff="2"
-            android:textOn="2"/>
+            android:textOn="2"
+            android:background="@drawable/icon_filter_mana"
+            android:backgroundTint="@color/statMana"
+            android:textColor="@color/color_filter_mana"/>
 
         <ToggleButton
             android:id="@+id/tglFilterMana3"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:textOff="3"
-            android:textOn="3"/>
+            android:textOn="3"
+            android:background="@drawable/icon_filter_mana"
+            android:backgroundTint="@color/statMana"
+            android:textColor="@color/color_filter_mana"/>
 
         <ToggleButton
             android:id="@+id/tglFilterMana4"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:textOff="4"
-            android:textOn="4"/>
+            android:textOn="4"
+            android:background="@drawable/icon_filter_mana"
+            android:backgroundTint="@color/statMana"
+            android:textColor="@color/color_filter_mana"/>
 
         <ToggleButton
             android:id="@+id/tglFilterMana5"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:textOff="5"
-            android:textOn="5"/>
+            android:textOn="5"
+            android:background="@drawable/icon_filter_mana"
+            android:backgroundTint="@color/statMana"
+            android:textColor="@color/color_filter_mana"/>
 
         <ToggleButton
             android:id="@+id/tglFilterMana6"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:textOff="6"
-            android:textOn="6"/>
+            android:textOn="6"
+            android:background="@drawable/icon_filter_mana"
+            android:backgroundTint="@color/statMana"
+            android:textColor="@color/color_filter_mana"/>
 
         <ToggleButton
             android:id="@+id/tglFilterMana7plus"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="7+"
+            android:textOn="7+"
+            android:background="@drawable/icon_filter_mana"
+            android:backgroundTint="@color/statMana"
+            android:textColor="@color/color_filter_mana"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/stat_attack"
+        android:id="@+id/txtTitleFilterAttack" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/tglFilterAttack0"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="0"
+            android:textOn="0"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterAttack1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="1"
+            android:textOn="1"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterAttack2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="2"
+            android:textOn="2"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterAttack3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="3"
+            android:textOn="3"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterAttack4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="4"
+            android:textOn="4"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterAttack5"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="5"
+            android:textOn="5"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterAttack6"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="6"
+            android:textOn="6"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterAttack7plus"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="7+"
+            android:textOn="7+"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/stat_health"
+        android:id="@+id/txtTitleFilterHealth" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/tglFilterHealth0"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="0"
+            android:textOn="0"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterHealth1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="1"
+            android:textOn="1"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterHealth2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="2"
+            android:textOn="2"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterHealth3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="3"
+            android:textOn="3"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterHealth4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="4"
+            android:textOn="4"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterHealth5"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="5"
+            android:textOn="5"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterHealth6"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:textOff="6"
+            android:textOn="6"/>
+
+        <ToggleButton
+            android:id="@+id/tglFilterHealth7plus"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:textOff="7+"

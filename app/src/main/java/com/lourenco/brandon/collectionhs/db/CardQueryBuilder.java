@@ -9,17 +9,17 @@ public class CardQueryBuilder {
 
     private String[] searchTerms;
 
-    private int[] filterMana;
-    private int[] filterAttack;
-    private int[] filterHealth;
+    private Integer[] filterMana;
+    private Integer[] filterAttack;
+    private Integer[] filterHealth;
 
-    private int[] filterClass;
-    private int[] filterType;
-    private int[] filterSet;
-    private int[] filterRarity;
-    private int[] filterRace;
-    private int[] filterMechanic;
-    private int[] filterFaction;
+    private Integer[] filterClass;
+    private Integer[] filterType;
+    private Integer[] filterSet;
+    private Integer[] filterRarity;
+    private Integer[] filterRace;
+    private Integer[] filterMechanic;
+    private Integer[] filterFaction;
 
     public String build() {
         StringBuilder sb = new StringBuilder();
@@ -52,16 +52,16 @@ public class CardQueryBuilder {
             FILTERS
          */
 
-        sb.append(getFilterClause(filterMana, CollectionDbContract.Card.COLUMN_NAME_COST));
-        sb.append(getFilterClause(filterAttack, CollectionDbContract.Card.COLUMN_NAME_ATTACK));
-        sb.append(getFilterClause(filterHealth, CollectionDbContract.Card.COLUMN_NAME_HEALTH));
+        sb.append(getFilterClause(filterMana, CollectionDbContract.Card.COLUMN_NAME_COST, true));
+        sb.append(getFilterClause(filterAttack, CollectionDbContract.Card.COLUMN_NAME_ATTACK, true));
+        sb.append(getFilterClause(filterHealth, CollectionDbContract.Card.COLUMN_NAME_HEALTH, true));
 
-        sb.append(getFilterClause(filterClass, CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN));
-        sb.append(getFilterClause(filterType, CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN));
-        sb.append(getFilterClause(filterSet, CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN));
-        sb.append(getFilterClause(filterRarity, CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN));
-        sb.append(getFilterClause(filterRace, CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN));
-        sb.append(getFilterClause(filterFaction, CollectionDbContract.Card.COLUMN_NAME_FACTION_ID_FOREIGN));
+        sb.append(getFilterClause(filterClass, CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN, false));
+        sb.append(getFilterClause(filterType, CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN, false));
+        sb.append(getFilterClause(filterSet, CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN, false));
+        sb.append(getFilterClause(filterRarity, CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN, false));
+        sb.append(getFilterClause(filterRace, CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN, false));
+        sb.append(getFilterClause(filterFaction, CollectionDbContract.Card.COLUMN_NAME_FACTION_ID_FOREIGN, false));
 
         //TODO allow filtering by card mechanic
         //sb.append(getFilterClause(filterMechanic, CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN));
@@ -81,7 +81,7 @@ public class CardQueryBuilder {
         return sb.toString();
     }
 
-    private String getFilterClause(int[] filterValues, String filterColumnName) {
+    private String getFilterClause(Integer[] filterValues, String filterColumnName, boolean isStat) {
         StringBuilder sb = new StringBuilder();
         if (filterValues != null) {
             boolean firstFilter = true;
@@ -92,8 +92,16 @@ public class CardQueryBuilder {
                 } else {
                     sb.append(" OR ");
                 }
-                sb.append(CollectionDbContract.CardAlbumView.VIEW_NAME + "." + filterColumnName + "=" + filterValues[i]);
-                //TODO Deal with searching for 7+ mana/attack/health
+
+                //Check for '7+'
+                sb.append(CollectionDbContract.CardAlbumView.VIEW_NAME + "." + filterColumnName);
+
+                if (isStat && filterValues[i] == 7)
+                    sb.append(">=");
+                else
+                    sb.append("=");
+
+                sb.append(filterValues[i]);
             }
 
             if (firstFilter == false)
@@ -112,19 +120,19 @@ public class CardQueryBuilder {
         BUILDER METHODS
      */
 
-    public CardQueryBuilder filterByMana(int... manaCosts)
+    public CardQueryBuilder filterByMana(Integer... manaCosts)
     {
         filterMana = manaCosts;
         return this;
     }
 
-    public CardQueryBuilder filterByAttack(int... attackValues)
+    public CardQueryBuilder filterByAttack(Integer... attackValues)
     {
         filterAttack = attackValues;
         return this;
     }
 
-    public CardQueryBuilder filterByHealth(int... healthValues)
+    public CardQueryBuilder filterByHealth(Integer... healthValues)
     {
         filterHealth = healthValues;
         return this;
@@ -132,42 +140,42 @@ public class CardQueryBuilder {
 
 
 
-    public CardQueryBuilder filterByClass(int... classIds)
+    public CardQueryBuilder filterByClass(Integer... classIds)
     {
         filterClass = classIds;
         return this;
     }
 
-    public CardQueryBuilder filterByType(int... typeIds)
+    public CardQueryBuilder filterByType(Integer... typeIds)
     {
         filterType = typeIds;
         return this;
     }
 
-    public CardQueryBuilder filterBySet(int... setIds)
+    public CardQueryBuilder filterBySet(Integer... setIds)
     {
         filterSet = setIds;
         return this;
     }
 
-    public CardQueryBuilder filterByRarity(int... rarityIds)
+    public CardQueryBuilder filterByRarity(Integer... rarityIds)
     {
         filterRarity = rarityIds;
         return this;
     }
 
-    public CardQueryBuilder filterByRace(int... raceIds)
+    public CardQueryBuilder filterByRace(Integer... raceIds)
     {
         filterRace = raceIds;
         return this;
     }
-    public CardQueryBuilder filterByMechanic(int... mechanicIds)
+    public CardQueryBuilder filterByMechanic(Integer... mechanicIds)
     {
         filterMechanic = mechanicIds;
         return this;
     }
 
-    public CardQueryBuilder filterByFaction(int... factionIds)
+    public CardQueryBuilder filterByFaction(Integer... factionIds)
     {
         filterFaction = factionIds;
         return this;

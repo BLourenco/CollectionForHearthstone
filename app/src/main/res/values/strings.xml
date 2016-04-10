@@ -23,6 +23,11 @@
     <string name="pref_file_key">com.lourenco.brandon.collectionhs.PREF_FILE_KEY</string>
     <string name="pref_key_locale">pref_locale</string>
 
+    <string name="stat_mana">Mana Cost</string>
+    <string name="stat_attack">Attack</string>
+    <string name="stat_health">Health</string>
+    <string name="stat_durability">Durability</string>
+
     <string-array name="languages">
         <item>English</item>            <!-- English -->
         <item>Français</item>           <!-- French -->

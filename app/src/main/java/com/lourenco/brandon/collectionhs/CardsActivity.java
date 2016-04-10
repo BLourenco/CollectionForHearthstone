@@ -2,10 +2,8 @@ package com.lourenco.brandon.collectionhs;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -34,17 +32,14 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
 import com.lourenco.brandon.collectionhs.db.CardQueryBuilder;
-import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
 import com.lourenco.brandon.collectionhs.db.CollectionDbHelper;
 import com.lourenco.brandon.collectionhs.design.DividerItemDecoration;
 import com.lourenco.brandon.collectionhs.hearthstone.CardRecyclerAdapter;
 import com.lourenco.brandon.collectionhs.hearthstone.ResourcesHS;
 import com.lourenco.brandon.collectionhs.hearthstone.EnumsHS;
 import com.lourenco.brandon.collectionhs.design.AppDesign;
-import com.lourenco.brandon.collectionhs.util.Utils;
-
-import java.util.ArrayList;
-import java.util.Locale;
+import com.lourenco.brandon.collectionhs.util.AndroidUtils;
+import com.lourenco.brandon.collectionhs.util.ArrayUtils;
 
 import at.markushi.ui.RevealColorView;
 
@@ -73,7 +68,11 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     static SQLiteDatabase db;
 
-    static ArrayList<Integer> filterMana;
+    static Integer[] filterMana;
+    static Integer[] filterAttack;
+    static Integer[] filterHealth;
+
+    private final int REQUEST_CODE_FILTER = 1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +93,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         AppDesign.setOverflowButtonColor(toolbar, Color.WHITE);
 
         // Adjust toolbar height for API < 21
-        if (!Utils.hasLollipop()) {
+        if (!AndroidUtils.hasLollipop()) {
             final int DEFAULT_STATUSBAR_HEIGHT = 24;
             final int DEFAULT_TOOLBAR_HEIGHT = 56;
             final int DEFAULT_TEXT_OR_ICON_TAB_HEIGHT = 48;
@@ -103,19 +102,19 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             // Appbar Height
             AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
             CoordinatorLayout.LayoutParams paramsAppbar = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
-            paramsAppbar.height = Utils.dpToPx(this, DEFAULT_TOOLBAR_HEIGHT + DEFAULT_TEXT_OR_ICON_TAB_HEIGHT);
+            paramsAppbar.height = AndroidUtils.dpToPx(this, DEFAULT_TOOLBAR_HEIGHT + DEFAULT_TEXT_OR_ICON_TAB_HEIGHT);
             appBarLayout.setLayoutParams(paramsAppbar);
 
             // Toolbar Height & Top Margin
             FrameLayout.LayoutParams paramsToolbar = (FrameLayout.LayoutParams) toolbar.getLayoutParams();
-            paramsToolbar.height = Utils.dpToPx(this, DEFAULT_TOOLBAR_HEIGHT);
+            paramsToolbar.height = AndroidUtils.dpToPx(this, DEFAULT_TOOLBAR_HEIGHT);
             paramsToolbar.topMargin = 0;
             toolbar.setLayoutParams(paramsToolbar);
 
             // Frame (BG Color) Height
             FrameLayout toolbarFrame = (FrameLayout) findViewById(R.id.toolbarFrame);
             AppBarLayout.LayoutParams paramsFrame = (AppBarLayout.LayoutParams) toolbarFrame.getLayoutParams();
-            paramsFrame.height = Utils.dpToPx(this, DEFAULT_TOOLBAR_HEIGHT + DEFAULT_TEXT_OR_ICON_TAB_HEIGHT);
+            paramsFrame.height = AndroidUtils.dpToPx(this, DEFAULT_TOOLBAR_HEIGHT + DEFAULT_TEXT_OR_ICON_TAB_HEIGHT);
             toolbarFrame.setLayoutParams(paramsFrame);
 
 
@@ -174,21 +173,36 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     private void testStartFilterActivity()
     {
-        startActivityForResult(new Intent(this, CardFilterActivity.class), 96);
+        Intent intent = new Intent(this, CardFilterActivity.class);
+        if (filterMana != null)
+            intent.putIntegerArrayListExtra("mana", ArrayUtils.arrayToArrayList(filterMana));
+        else
+            intent.putIntegerArrayListExtra("mana", null);
+        if (filterAttack != null)
+            intent.putIntegerArrayListExtra("attack", ArrayUtils.arrayToArrayList(filterAttack));
+        else
+            intent.putIntegerArrayListExtra("attack", null);
+        if (filterHealth != null)
+            intent.putIntegerArrayListExtra("health", ArrayUtils.arrayToArrayList(filterHealth));
+        else
+            intent.putIntegerArrayListExtra("health", null);
+        startActivityForResult(intent, REQUEST_CODE_FILTER);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
         super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == 96) {
+        if (requestCode == REQUEST_CODE_FILTER) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 Bundle extras = intent.getExtras();
                 if (extras != null)
                 {
-                    filterMana = extras.getIntegerArrayList("mana");
+                    filterMana = extras.getIntegerArrayList("mana").toArray(new Integer[0]);
+                    filterAttack = extras.getIntegerArrayList("attack").toArray(new Integer[0]);
+                    filterHealth = extras.getIntegerArrayList("health").toArray(new Integer[0]);
 
-
+                    this.recreate();
                 }
             }
         }
@@ -362,12 +376,12 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
                     if (isVisible && scrollDist > MIN_TRIGGER_DISTANCE) {
                         floatingActionButton.animate().translationY(floatingActionButton.getHeight() + 56).setInterpolator(new AccelerateInterpolator(2)).start();
-                        //Utils.reveal(floatingActionButton, floatingActionButton.getWidth() / 2, floatingActionButton.getHeight() / 2);
+                        //AndroidUtils.reveal(floatingActionButton, floatingActionButton.getWidth() / 2, floatingActionButton.getHeight() / 2);
                         scrollDist = 0;
                         isVisible = false;
                     } else if (!isVisible && scrollDist < -MIN_TRIGGER_DISTANCE) {
                         floatingActionButton.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
-                        //Utils.unReveal(floatingActionButton, floatingActionButton.getWidth() / 2, floatingActionButton.getHeight() / 2);
+                        //AndroidUtils.unReveal(floatingActionButton, floatingActionButton.getWidth() / 2, floatingActionButton.getHeight() / 2);
                         scrollDist = 0;
                         isVisible = true;
                     }
@@ -386,6 +400,9 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
             String rawQuery = new CardQueryBuilder()
                     .filterByClass(classId)
+                    .filterByMana(filterMana)
+                    .filterByAttack(filterAttack)
+                    .filterByHealth(filterHealth)
                     .build();
 
 
