@@ -27,6 +27,12 @@
     <string name="stat_attack">Attack</string>
     <string name="stat_health">Health</string>
     <string name="stat_durability">Durability</string>
+    <string name="stat_health_durability">Health/Durability</string>
+    <string name="stat_type">Type</string>
+    <string name="stat_set">Set</string>
+    <string name="stat_rarity">Rarity</string>
+    <string name="stat_race">Race</string>
+    <string name="stat_mechanic">Mechanic</string>
 
     <string-array name="languages">
         <item>English</item>            <!-- English -->
@@ -118,5 +124,15 @@
         <item>HERO</item>
         <item>HERO POWER</item>
         <item>ENCHANTMENT</item>
+    </string-array>
+
+    <string-array name="races">
+        <item>MURLOC</item>
+        <item>DEMON</item>
+        <item>MECH</item>
+        <item>BEAST</item>
+        <item>TOTEM</item>
+        <item>PIRATE</item>
+        <item>DRAGON</item>
     </string-array>
 </resources>

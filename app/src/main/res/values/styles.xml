@@ -52,4 +52,147 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="CustomToggleButton">
+        <item name="android:textOff"></item>
+        <item name="android:textOn"></item>
+    </style>
+
+    <style name="CustomToggleButton.Stat">
+        <item name="android:textColor">@color/color_filter_mana</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+    </style>
+
+    <style name="CustomToggleButton.Stat.Mana">
+        <item name="android:background">@drawable/icon_filter_mana</item>
+    </style>
+
+    <style name="CustomToggleButton.Stat.Attack">
+        <item name="android:background">@drawable/icon_filter_attack</item>
+    </style>
+
+    <style name="CustomToggleButton.Stat.Health">
+        <item name="android:background">@drawable/icon_filter_health</item>
+    </style>
+
+    <style name="CustomToggleButton.Type">
+    </style>
+
+    <style name="CustomToggleButton.Type.Minion">
+        <item name="android:background">@drawable/icon_type_minion_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Type.Spell">
+        <item name="android:background">@drawable/icon_type_spell_toggle</item>
+    </style>
+    <style name="CustomToggleButton.Type.Weapon">
+        <item name="android:background">@drawable/icon_type_weapon_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Rarity">
+    </style>
+
+    <style name="CustomToggleButton.Rarity.Common">
+        <item name="android:background">@drawable/icon_rarity_common_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Rarity.Rare">
+        <item name="android:background">@drawable/icon_rarity_rare_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Rarity.Epic">
+        <item name="android:background">@drawable/icon_rarity_epic_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Rarity.Legendary">
+        <item name="android:background">@drawable/icon_rarity_legendary_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.Basic">
+        <item name="android:background">@drawable/icon_set_core_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.Classic">
+        <item name="android:background">@drawable/icon_set_classic_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.Reward">
+        <item name="android:background">@drawable/icon_set_reward_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.Naxx">
+        <item name="android:background">@drawable/icon_set_naxx_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.GVG">
+        <item name="android:background">@drawable/icon_set_gvg_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.BRM">
+        <item name="android:background">@drawable/icon_set_brm_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.TGT">
+        <item name="android:background">@drawable/icon_set_tgt_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.LOE">
+        <item name="android:background">@drawable/icon_set_loe_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.WOG">
+        <item name="android:background">@drawable/icon_set_wog_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.Format">
+    </style>
+
+    <style name="CustomToggleButton.Set.Format.Kraken">
+        <item name="android:background">@drawable/icon_format_standard_kraken_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Set.Format.Wild">
+        <item name="android:background">@drawable/icon_format_wild_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Race">
+    </style>
+
+    <style name="CustomToggleButton.Race.Murloc">
+        <item name="android:background">@drawable/icon_race_murloc_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Race.Demon">
+        <item name="android:background">@drawable/icon_race_demon_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Race.Mech">
+        <item name="android:background">@drawable/icon_race_mech_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Race.Beast">
+        <item name="android:background">@drawable/icon_race_beast_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Race.Totem">
+        <item name="android:background">@drawable/icon_race_totem_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Race.Pirate">
+        <item name="android:background">@drawable/icon_race_pirate_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Race.Dragon">
+        <item name="android:background">@drawable/icon_race_dragon_toggle</item>
+    </style>
+
+
 </resources>

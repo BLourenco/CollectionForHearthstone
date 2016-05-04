@@ -29,6 +29,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public ImageView imgCardArt;
+        public ImageView imgCardFrameLegendary;
         public ImageView imgSetIcon;
         public TextView txtName;
         public ImageView imgRaceIcon;
@@ -43,6 +44,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         public ViewHolder(View v) {
             super(v);
             this.imgCardArt = (ImageView) v.findViewById(R.id.imgCardViewArt);
+            this.imgCardFrameLegendary = (ImageView) v.findViewById(R.id.imgCardViewFrameDragon);
             this.imgSetIcon = (ImageView) v.findViewById(R.id.imgCardViewSetIcon);
             this.txtName = (TextView)v.findViewById(R.id.txtCardViewName);
             this.imgRaceIcon = (ImageView) v.findViewById(R.id.imgCardViewRaceIcon);
@@ -103,6 +105,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         MaskTransformation transform = new MaskTransformation(context, ResourcesHS.getCardTypeMask(EnumsHS.CardType.getEnumByValue(type)));
         Picasso.with(context)
                 .load(ResourcesHS.getCartArtResourceId(context, id))
+                .fit()
                 .placeholder(R.drawable.placeholder_missing)
                 .transform(transform)
                 .into(holder.imgCardArt);
@@ -121,6 +124,17 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         holder.txtName.setTextColor(
                 ResourcesHS.getRarityTextColor(context,
                         EnumsHS.Rarity.getEnumByValue(rarity)));
+
+        // Legendary Dragon Frame
+        if (EnumsHS.Rarity.getEnumByValue(rarity) == EnumsHS.Rarity.LEGENDARY &&
+                EnumsHS.CardType.getEnumByValue(type) == EnumsHS.CardType.MINION)
+        {
+            holder.imgCardFrameLegendary.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.imgCardFrameLegendary.setVisibility(View.GONE);
+        }
 
         // Card Text
         if (text != null) {
@@ -169,16 +183,17 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
 
         // Race Stat
-/*        if (card.getRace() != null) {
-            String race = card.getRace();
-            holder.txtRace.setText(race.charAt(0) + race.substring(1).toLowerCase());
+        if (race != EnumsHS.Race.INVALID.getValue()) {
+            String raceText = ResourcesHS.getRaceText(context, EnumsHS.Race.getEnumByValue(race));
+            raceText = raceText.toUpperCase().charAt(0) + raceText.substring(1).toLowerCase();
+            holder.txtRace.setText(raceText);
             holder.imgRaceIcon.setImageResource(R.drawable.icon_stat_race);
             holder.imgRaceIcon.setColorFilter(context.getResources().getColor(R.color.statRace));
         }
         else {
             holder.txtRace.setText("");
             holder.imgRaceIcon.setImageResource(0);
-        }*/
+        }
 
     }
 

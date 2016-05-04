@@ -93,10 +93,10 @@ public class CardQueryBuilder {
                     sb.append(" OR ");
                 }
 
-                //Check for '7+'
+                //Check for '10+'
                 sb.append(CollectionDbContract.CardAlbumView.VIEW_NAME + "." + filterColumnName);
 
-                if (isStat && filterValues[i] == 7)
+                if (isStat && filterValues[i] == 10)
                     sb.append(">=");
                 else
                     sb.append("=");

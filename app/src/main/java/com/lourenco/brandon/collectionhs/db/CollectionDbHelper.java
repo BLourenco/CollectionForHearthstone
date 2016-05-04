@@ -126,7 +126,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 Integer durability = card.has("durability") ? card.getInt("durability") : null;
                 String race = card.has("race") ? card.getString("race") : null;
                 JSONArray arrayMechanics = card.has("mechanics") ? card.getJSONArray("mechanics") : null; // Iterate
-                //JSONObject jsonFlavor = card.has("flavor") ? card.getJSONObject("flavor") : null;
+                JSONObject jsonFlavor = card.has("flavor") ? card.getJSONObject("flavor") : null;
                 JSONObject jsonHowToEarn = card.has("howToEarn") ? card.getJSONObject("howToEarn") : null;
                 JSONObject jsonHowToEarnGolden = card.has("howToEarnGolden") ? card.getJSONObject("howToEarnGolden") : null;
                 JSONArray arrayEntourage = card.has("entourage") ? card.getJSONArray("entourage") : null; // Iterate
@@ -234,7 +234,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 for (EnumsHS.Locale locale : EnumsHS.Locale.getUsedLocales()) {
                     String name = null;
                     String text = null;
-                    //String flavor = null;
+                    String flavor = null;
                     String howToEarn = null;
                     String howToEarnGolden = null;
 
@@ -242,8 +242,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                         name = jsonNames.has(locale.name()) ? jsonNames.getString(locale.name()) : null;
                     if (jsonText != null)
                         text = jsonText.has(locale.name()) ? jsonText.getString(locale.name()) : null;
-                    //if (jsonFlavor != null)
-                    //flavor = jsonFlavor.has(locale.name()) ? jsonNames.getString(locale.name()) : null;
+                    if (jsonFlavor != null)
+                        flavor = jsonFlavor.has(locale.name()) ? jsonNames.getString(locale.name()) : null;
                     if (jsonHowToEarn != null)
                         howToEarn = jsonHowToEarn.has(locale.name()) ? jsonHowToEarn.getString(locale.name()) : null;
                     if (jsonHowToEarnGolden != null)
@@ -256,7 +256,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                     localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_LOCALE_ID_COMPOSITE, locale.getValue());
                     localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME, name);
                     localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT, text);
-                    //localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_FLAVOR, flavor);
+                    localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_FLAVOR, flavor);
                     localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_HOW_TO_EARN, howToEarn);
                     localeValues.put(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_HOW_TO_EARN_GOLDEN, howToEarnGolden);
 

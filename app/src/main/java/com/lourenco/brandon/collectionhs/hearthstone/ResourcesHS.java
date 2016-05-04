@@ -206,7 +206,7 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setTGT);
             case LOE:
                 return ContextCompat.getColor(context, R.color.setLOE);
-            case WOG:
+            case OG:
                 return ContextCompat.getColor(context, R.color.setWOG);
             default:
                 return Color.BLACK;
@@ -235,7 +235,7 @@ public class ResourcesHS {
                 return R.drawable.icon_set_tgt;
             case LOE:
                 return R.drawable.icon_set_loe;
-            case WOG:
+            case OG:
                 return R.drawable.icon_set_wog;
             default:
                 return R.drawable.placeholder_missing;
@@ -272,7 +272,7 @@ public class ResourcesHS {
         else if (setArray.length > i && setName.equals(setArray[i++]))
             return EnumsHS.CardSet.LOE;
         else if (setArray.length > i && setName.equals(setArray[i++]))
-            return EnumsHS.CardSet.WOG;
+            return EnumsHS.CardSet.OG;
         else
             return EnumsHS.CardSet.INVALID;
     }
@@ -364,5 +364,31 @@ public class ResourcesHS {
             resourceId = R.drawable.placeholder_missing;
         }
         return resourceId;
+    }
+
+    /*
+        RACE TEXT
+     */
+    public static String getRaceText(Context context, EnumsHS.Race race)
+    {
+        switch (race)
+        {
+            case MURLOC:
+                return context.getResources().getStringArray(R.array.races)[0];
+            case DEMON:
+                return context.getResources().getStringArray(R.array.races)[1];
+            case MECHANICAL:
+                return context.getResources().getStringArray(R.array.races)[2];
+            case BEAST:
+                return context.getResources().getStringArray(R.array.races)[3];
+            case TOTEM:
+                return context.getResources().getStringArray(R.array.races)[4];
+            case PIRATE:
+                return context.getResources().getStringArray(R.array.races)[5];
+            case DRAGON:
+                return context.getResources().getStringArray(R.array.races)[6];
+            default:
+                return null;
+        }
     }
 }

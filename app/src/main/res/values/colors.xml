@@ -51,12 +51,14 @@
     <color name="statWeaponDurability">#616161</color>
     <color name="statRace">#A1887F</color>
 
+    <color name="golden">#FBC02D</color>
+
     <color name="rarityCommon">#9E9E9E</color>
     <color name="rarityRare">#1976D2</color>
     <color name="rarityEpic">#9C27B0</color>
     <color name="rarityLegendary">#FF9800</color>
 
-    <color name="setCore">#E0E0E0</color>
+    <color name="setCore">#A1887F</color>
     <color name="setHeroSkins">#FFC107</color>
     <color name="setClassic">#2196F3</color>
     <color name="setReward">#FFC107</color>

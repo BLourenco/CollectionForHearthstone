@@ -2,6 +2,7 @@ package com.lourenco.brandon.collectionhs;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
@@ -30,6 +31,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.TabHost;
 
 import com.lourenco.brandon.collectionhs.db.CardQueryBuilder;
 import com.lourenco.brandon.collectionhs.db.CollectionDbHelper;
@@ -68,9 +70,11 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     static SQLiteDatabase db;
 
-    static Integer[] filterMana;
+/*    static Integer[] filterMana;
     static Integer[] filterAttack;
-    static Integer[] filterHealth;
+    static Integer[] filterHealth;*/
+
+    static CardFilter filter;
 
     private final int REQUEST_CODE_FILTER = 1;
 
@@ -174,7 +178,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
     private void testStartFilterActivity()
     {
         Intent intent = new Intent(this, CardFilterActivity.class);
-        if (filterMana != null)
+/*        if (filterMana != null)
             intent.putIntegerArrayListExtra("mana", ArrayUtils.arrayToArrayList(filterMana));
         else
             intent.putIntegerArrayListExtra("mana", null);
@@ -185,7 +189,8 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         if (filterHealth != null)
             intent.putIntegerArrayListExtra("health", ArrayUtils.arrayToArrayList(filterHealth));
         else
-            intent.putIntegerArrayListExtra("health", null);
+            intent.putIntegerArrayListExtra("health", null);*/
+        intent.putExtra("filter", filter);
         startActivityForResult(intent, REQUEST_CODE_FILTER);
     }
 
@@ -198,9 +203,11 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
                 Bundle extras = intent.getExtras();
                 if (extras != null)
                 {
-                    filterMana = extras.getIntegerArrayList("mana").toArray(new Integer[0]);
+/*                    filterMana = extras.getIntegerArrayList("mana").toArray(new Integer[0]);
                     filterAttack = extras.getIntegerArrayList("attack").toArray(new Integer[0]);
-                    filterHealth = extras.getIntegerArrayList("health").toArray(new Integer[0]);
+                    filterHealth = extras.getIntegerArrayList("health").toArray(new Integer[0]);*/
+
+                    filter = intent.getParcelableExtra("filter");
 
                     this.recreate();
                 }
@@ -398,16 +405,34 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
             int classId = EnumsHS.CardClass.getClassAtOrdinal(classOrdinal).getValue();
 
-            String rawQuery = new CardQueryBuilder()
-                    .filterByClass(classId)
-                    .filterByMana(filterMana)
-                    .filterByAttack(filterAttack)
-                    .filterByHealth(filterHealth)
-                    .build();
+            CardQueryBuilder cqb = new CardQueryBuilder()
+                    .filterByClass(classId);
 
+            if (filter != null) {
+                if (!filter.mana.isEmpty())
+                    cqb.filterByMana(filter.mana.toArray(new Integer[filter.mana.size()]));
+                if (!filter.attack.isEmpty())
+                    cqb.filterByAttack(filter.attack.toArray(new Integer[filter.attack.size()]));
+                if (!filter.health.isEmpty())
+                    cqb.filterByHealth(filter.health.toArray(new Integer[filter.health.size()]));
+
+                if (!filter.type.isEmpty())
+                    cqb.filterByType(filter.type.toArray(new Integer[filter.type.size()]));
+                if (!filter.set.isEmpty())
+                    cqb.filterBySet(filter.set.toArray(new Integer[filter.set.size()]));
+                if (!filter.race.isEmpty())
+                    cqb.filterByRace(filter.race.toArray(new Integer[filter.race.size()]));
+                if (!filter.rarity.isEmpty())
+                    cqb.filterByRarity(filter.rarity.toArray(new Integer[filter.rarity.size()]));
+                if (!filter.mechanic.isEmpty())
+                    cqb.filterByMechanic(filter.mechanic.toArray(new Integer[filter.mechanic.size()]));
+            }
+
+            String rawQuery = cqb.build();
 
             // specify an adapter (see also next example)
-            mAdapter = new CardRecyclerAdapter(context, db.rawQuery(rawQuery, null));
+            Cursor c = db.rawQuery(rawQuery, null);
+            mAdapter = new CardRecyclerAdapter(context, c);
             //mAdapter = new CardRecyclerAdapter(context, db.rawQuery(rawQuery + manaFilterClause + orderByClause, null));
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());

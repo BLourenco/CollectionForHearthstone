@@ -86,7 +86,8 @@ public class EnumsHS {
         BRM(14, true, CardSetType.ADVENTURE, 2015),
         TGT(15, true, CardSetType.EXPANSION, 2015),
         LOE(20, true, CardSetType.ADVENTURE, 2015),
-        WOG(21, true, CardSetType.EXPANSION, 2016),
+        OG(21, true, CardSetType.EXPANSION, 2016),
+        OG_RESERVE(22, false, CardSetType.INVALID, 0),
 
         HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
 

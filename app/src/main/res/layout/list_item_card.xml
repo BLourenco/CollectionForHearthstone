@@ -18,7 +18,15 @@
             android:id="@+id/imgCardViewArt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:layout_margin="5dp" />
+
+        <ImageView
+            android:id="@+id/imgCardViewFrameDragon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/frame_minion_legendary"/>
 
         <FrameLayout
             android:layout_width="22dp"
@@ -103,7 +111,7 @@
 
     </FrameLayout>
 
-    <!-- Name, Race, and Text -->
+    <!-- Name and Text -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -136,7 +144,7 @@
     <!-- Set Icon -->
     <ImageView
         android:id="@+id/imgCardViewSetIcon"
-        android:layout_width="80dp"
+        android:layout_width="60dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
@@ -145,5 +153,59 @@
         android:paddingTop="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"/>
+
+    <LinearLayout
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgCardViewCountRegular"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:src="@drawable/icon_card_counter"
+                android:tint="@color/classNeutralPrimary"/>
+
+            <TextView
+                android:id="@+id/txtCardViewCountRegular"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="right|center"
+                android:text="0"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgCardViewCountGolden"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:src="@drawable/icon_card_counter"
+                android:tint="@color/golden"/>
+
+            <TextView
+                android:id="@+id/txtCardViewCountGolden"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="right|center"
+                android:text="0"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

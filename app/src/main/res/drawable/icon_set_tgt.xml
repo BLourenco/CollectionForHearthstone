@@ -5,7 +5,7 @@
         android:strokeAlpha="1" android:strokeColor="#000000"
         android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeWidth="1"/>
     <path android:fillAlpha="1" android:fillColor="#000000"
-        android:pathData="m115.15,47.47c-30.45,0.54 -31.39,9.94 -63.65,9.94 0,19.97 2.21,37.17 5.82,51.97l57.83,0 0,-61.91zM119.78,114.01 L119.78,192.73c8.34,-4.1 42.63,-23.93 57.56,-78.72l-57.56,0z"
+        android:pathData="m117.65,40.33c-30.45,0.54 -38.89,12.08 -71.15,12.08 0,19.97 3.82,43.78 7.43,58.58l63.54,-0.36zM117.82,110.8 L118.53,199.69c8.34,-4.1 46.66,-26.16 63.81,-88.36z"
         android:strokeAlpha="1" android:strokeColor="#000000"
         android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeWidth="0.66426617"/>
 </vector>
