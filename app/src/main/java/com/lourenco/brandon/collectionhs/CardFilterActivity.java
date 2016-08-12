@@ -30,7 +30,7 @@ public class CardFilterActivity extends AppCompatActivity{
     ToggleButton[] tglFilterRarity;
     ToggleButton[] tglFilterSet;
     ToggleButton[] tglFilterRace;
-    ToggleButton[] tglFilterMechanic;
+    CheckBox[] cbFilterMechanic;
 
     ToggleButton tglFilterPreset_AllSets;
     ToggleButton tglFilterPreset_StandardSets;
@@ -108,6 +108,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 (ToggleButton)findViewById(R.id.tglFilterSetTGT),
                 (ToggleButton)findViewById(R.id.tglFilterSetLOE),
                 (ToggleButton)findViewById(R.id.tglFilterSetWOG),
+                (ToggleButton)findViewById(R.id.tglFilterSetONiK),
         };
 
         for (int i = 0; i < tglFilterSet.length; i++)
@@ -147,6 +148,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[6].setChecked(false);
                 tglFilterSet[7].setChecked(false);
                 tglFilterSet[8].setChecked(false);
+                tglFilterSet[9].setChecked(false);
 
                 tglFilterPreset_StandardSets.setChecked(false);
             }
@@ -171,6 +173,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[6].setChecked(checked);
                 tglFilterSet[7].setChecked(checked);
                 tglFilterSet[8].setChecked(checked);
+                tglFilterSet[9].setChecked(checked);
 
                 tglFilterPreset_AllSets.setChecked(false);
             }
@@ -184,6 +187,28 @@ public class CardFilterActivity extends AppCompatActivity{
                 (ToggleButton)findViewById(R.id.tglRaceTotem),
                 (ToggleButton)findViewById(R.id.tglRacePirate),
                 (ToggleButton)findViewById(R.id.tglRaceDragon),
+        };
+
+        cbFilterMechanic = new CheckBox[] {
+                (CheckBox)findViewById(R.id.cbMechanicAdjacentBuff),
+                (CheckBox)findViewById(R.id.cbMechanicAura),
+                (CheckBox)findViewById(R.id.cbMechanicBattlecry),
+                (CheckBox)findViewById(R.id.cbMechanicCharge),
+                (CheckBox)findViewById(R.id.cbMechanicChooseOne),
+                (CheckBox)findViewById(R.id.cbMechanicCombo),
+                (CheckBox)findViewById(R.id.cbMechanicDeathrattle),
+                (CheckBox)findViewById(R.id.cbMechanicDivineShield),
+                (CheckBox)findViewById(R.id.cbMechanicEnraged),
+                (CheckBox)findViewById(R.id.cbMechanicForgetful),
+                (CheckBox)findViewById(R.id.cbMechanicFreeze),
+                (CheckBox)findViewById(R.id.cbMechanicInspire),
+                (CheckBox)findViewById(R.id.cbMechanicPoisonous),
+                (CheckBox)findViewById(R.id.cbMechanicSecret),
+                (CheckBox)findViewById(R.id.cbMechanicSilence),
+                (CheckBox)findViewById(R.id.cbMechanicStealth),
+                (CheckBox)findViewById(R.id.cbMechanicTaunt),
+                (CheckBox)findViewById(R.id.cbMechanicTopDeck),
+                (CheckBox)findViewById(R.id.cbMechanicWindfury),
         };
 
         // Load proper button states
@@ -246,6 +271,7 @@ public class CardFilterActivity extends AppCompatActivity{
                     else if (i == EnumsHS.CardSet.TGT.getValue()) tglFilterSet[6].setChecked(true);
                     else if (i == EnumsHS.CardSet.LOE.getValue()) tglFilterSet[7].setChecked(true);
                     else if (i == EnumsHS.CardSet.OG.getValue()) tglFilterSet[8].setChecked(true);
+                    else if (i == EnumsHS.CardSet.KARA.getValue()) tglFilterSet[9].setChecked(true);
                 }
                 calculatePresetToggleState();
             }
@@ -264,6 +290,32 @@ public class CardFilterActivity extends AppCompatActivity{
                     else if (i == EnumsHS.Race.DRAGON.getValue()) tglFilterRace[6].setChecked(true);
                 }
             }
+
+            if (filter.mechanic != null)
+            {
+                for (Integer i : filter.mechanic)
+                {
+                    if (i == EnumsHS.Mechanic.ADJACENT_BUFF.getValue()) cbFilterMechanic[0].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.AURA.getValue()) cbFilterMechanic[1].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.BATTLECRY.getValue()) cbFilterMechanic[2].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.CHARGE.getValue()) cbFilterMechanic[3].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.CHOOSE_ONE.getValue()) cbFilterMechanic[4].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.COMBO.getValue()) cbFilterMechanic[5].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.DEATHRATTLE.getValue()) cbFilterMechanic[6].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.DIVINE_SHIELD.getValue()) cbFilterMechanic[7].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.ENRAGED.getValue()) cbFilterMechanic[8].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.FORGETFUL.getValue()) cbFilterMechanic[9].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.FREEZE.getValue()) cbFilterMechanic[10].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.INSPIRE.getValue()) cbFilterMechanic[11].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.POISONOUS.getValue()) cbFilterMechanic[12].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.SECRET.getValue()) cbFilterMechanic[13].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.SILENCE.getValue()) cbFilterMechanic[14].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.STEALTH.getValue()) cbFilterMechanic[15].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.TAUNT.getValue()) cbFilterMechanic[16].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.TOPDECK.getValue()) cbFilterMechanic[17].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.WINDFURY.getValue()) cbFilterMechanic[18].setChecked(true);
+                }
+            }
         }
 
 
@@ -279,7 +331,8 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[5].isChecked() &&
                 tglFilterSet[6].isChecked() &&
                 tglFilterSet[7].isChecked() &&
-                tglFilterSet[8].isChecked())
+                tglFilterSet[8].isChecked() &&
+                tglFilterSet[9].isChecked())
         {
             tglFilterPreset_StandardSets.setChecked(true);
         }
@@ -296,7 +349,8 @@ public class CardFilterActivity extends AppCompatActivity{
                 !tglFilterSet[5].isChecked() &&
                 !tglFilterSet[6].isChecked() &&
                 !tglFilterSet[7].isChecked() &&
-                !tglFilterSet[8].isChecked())
+                !tglFilterSet[8].isChecked() &&
+                !tglFilterSet[9].isChecked())
         {
             tglFilterPreset_AllSets.setChecked(true);
         }
@@ -333,6 +387,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 filter.rarity = getSelectedRarityFilters();
                 filter.set = getSelectedSetFilters();
                 filter.race = getSelectedRaceFilters();
+                filter.mechanic = getSelectedMechanicFilters();
 
                 Intent intent = new Intent();
                 intent.putExtra("filter", filter);
@@ -419,6 +474,7 @@ public class CardFilterActivity extends AppCompatActivity{
         if (tglFilterSet[6].isChecked()) setFilters.add(EnumsHS.CardSet.TGT.getValue());
         if (tglFilterSet[7].isChecked()) setFilters.add(EnumsHS.CardSet.LOE.getValue());
         if (tglFilterSet[8].isChecked()) setFilters.add(EnumsHS.CardSet.OG.getValue());
+        if (tglFilterSet[9].isChecked()) setFilters.add(EnumsHS.CardSet.KARA.getValue());
 
         return setFilters;
     }
@@ -435,5 +491,31 @@ public class CardFilterActivity extends AppCompatActivity{
         if (tglFilterRace[6].isChecked()) raceFilters.add(EnumsHS.Race.DRAGON.getValue());
 
         return raceFilters;
+    }
+
+    private ArrayList<Integer> getSelectedMechanicFilters()
+    {
+        ArrayList<Integer> mechanicFilters = new ArrayList<>();
+        if (cbFilterMechanic[0].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.ADJACENT_BUFF.getValue());
+        if (cbFilterMechanic[1].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.AURA.getValue());
+        if (cbFilterMechanic[2].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.BATTLECRY.getValue());
+        if (cbFilterMechanic[3].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.CHARGE.getValue());
+        if (cbFilterMechanic[4].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.CHOOSE_ONE.getValue());
+        if (cbFilterMechanic[5].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.COMBO.getValue());
+        if (cbFilterMechanic[6].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.DEATHRATTLE.getValue());
+        if (cbFilterMechanic[7].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.DIVINE_SHIELD.getValue());
+        if (cbFilterMechanic[8].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.ENRAGED.getValue());
+        if (cbFilterMechanic[9].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.FORGETFUL.getValue());
+        if (cbFilterMechanic[10].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.FREEZE.getValue());
+        if (cbFilterMechanic[11].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.INSPIRE.getValue());
+        if (cbFilterMechanic[12].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.POISONOUS.getValue());
+        if (cbFilterMechanic[13].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.SECRET.getValue());
+        if (cbFilterMechanic[14].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.SILENCE.getValue());
+        if (cbFilterMechanic[15].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.STEALTH.getValue());
+        if (cbFilterMechanic[16].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.TAUNT.getValue());
+        if (cbFilterMechanic[17].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.TOPDECK.getValue());
+        if (cbFilterMechanic[18].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.WINDFURY.getValue());
+
+        return mechanicFilters;
     }
 }

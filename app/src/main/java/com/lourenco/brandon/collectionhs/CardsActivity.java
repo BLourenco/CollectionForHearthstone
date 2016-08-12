@@ -425,7 +425,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
                 if (!filter.rarity.isEmpty())
                     cqb.filterByRarity(filter.rarity.toArray(new Integer[filter.rarity.size()]));
                 if (!filter.mechanic.isEmpty())
-                    cqb.filterByMechanic(filter.mechanic.toArray(new Integer[filter.mechanic.size()]));
+                    cqb.filterByMechanic(db, filter.mechanic.toArray(new Integer[filter.mechanic.size()]));
             }
 
             String rawQuery = cqb.build();

@@ -1,5 +1,8 @@
 package com.lourenco.brandon.collectionhs.db;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.lourenco.brandon.collectionhs.hearthstone.EnumsHS;
 
 /**
@@ -20,6 +23,8 @@ public class CardQueryBuilder {
     private Integer[] filterRace;
     private Integer[] filterMechanic;
     private Integer[] filterFaction;
+
+    private SQLiteDatabase db; // Needed to query Mechanic Composite table //TODO: Verify if this is needed
 
     public String build() {
         StringBuilder sb = new StringBuilder();
@@ -64,7 +69,7 @@ public class CardQueryBuilder {
         sb.append(getFilterClause(filterFaction, CollectionDbContract.Card.COLUMN_NAME_FACTION_ID_FOREIGN, false));
 
         //TODO allow filtering by card mechanic
-        //sb.append(getFilterClause(filterMechanic, CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN));
+        sb.append(getFilterClauseMechanic(filterMechanic));
 
         /*
             ORDERING
@@ -114,6 +119,64 @@ public class CardQueryBuilder {
         }
 
         return sb.toString();
+    }
+
+    private String getFilterClauseMechanic(Integer[] filterValues)
+    {
+        if (filterValues == null || filterValues.length == 0) return "";
+
+        // Get list of card ids with matching mechanics
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(
+                "SELECT DISTINCT " +
+                        CollectionDbContract.CardMechanic.COLUMN_NAME_CARD_ID_COMPOSITE +
+                        " FROM " +
+                        CollectionDbContract.CardMechanic.TABLE_NAME +
+                        " WHERE "
+        );
+
+        for (int i = 0; i < filterValues.length; i++)
+        {
+            if (i > 0)
+            {
+                sb.append(" OR ");
+            }
+            sb.append(
+                    CollectionDbContract.CardMechanic.COLUMN_NAME_MECHANIC_ID_COMPOSITE +
+                    "=" +
+                    filterValues[i]
+            );
+        }
+
+        // Now build the album view query
+        Cursor c = db.rawQuery(sb.toString(), null);
+        StringBuilder sb2 = new StringBuilder();
+        c.moveToFirst();
+        boolean firstFilter = true;
+        for (int i = 0; i < c.getCount(); i++)
+        {
+            if (firstFilter)
+            {
+                sb2.append(" AND (");
+                firstFilter = false;
+            }
+            else
+            {
+                sb2.append(" OR ");
+            }
+
+            sb2.append(CollectionDbContract.CardAlbumView.VIEW_NAME + "." + CollectionDbContract.Card.COLUMN_NAME_CARD_ID +
+                    "='" + c.getString(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_ID)) + "'");
+            c.moveToNext();
+        }
+
+        if (firstFilter == false)
+        {
+            sb2.append(") ");
+        }
+
+        return sb2.toString();
     }
 
     /*
@@ -169,9 +232,10 @@ public class CardQueryBuilder {
         filterRace = raceIds;
         return this;
     }
-    public CardQueryBuilder filterByMechanic(Integer... mechanicIds)
+    public CardQueryBuilder filterByMechanic(SQLiteDatabase db, Integer... mechanicIds)
     {
         filterMechanic = mechanicIds;
+        this.db = db;
         return this;
     }
 

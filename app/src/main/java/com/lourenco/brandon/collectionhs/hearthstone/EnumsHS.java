@@ -88,6 +88,8 @@ public class EnumsHS {
         LOE(20, true, CardSetType.ADVENTURE, 2015),
         OG(21, true, CardSetType.EXPANSION, 2016),
         OG_RESERVE(22, false, CardSetType.INVALID, 0),
+        KARA(23, true, CardSetType.ADVENTURE, 2016),
+        KARA_RESERVE(24, false, CardSetType.INVALID, 0),
 
         HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
 
@@ -555,6 +557,7 @@ public class EnumsHS {
         AURA(2),
         BATTLECRY(3),
         CHARGE(4),
+        CHOOSE_ONE(25),
         COMBO(5),
         DEATHRATTLE(6),
         DIVINE_SHIELD(7),
@@ -562,19 +565,26 @@ public class EnumsHS {
         FORGETFUL(9),
         FREEZE(10),
         INSPIRE(11),
-        MORPH(12),
-        OVERLOAD(13),
         POISONOUS(14),
         SECRET(15),
         SILENCE(16),
         STEALTH(17),
-        SPELLPOWER(18),
-        TAG_ONE_TURN_EFFECT(19),
         TAUNT(20),
-        TREASURE(21),
+        TOPDECK(21), // Flame Leviathan, Burrowing Mine...
         WINDFURY(22),
         ImmuneToSpellpower(23),
-        InvisibleDeathrattle(24);
+        InvisibleDeathrattle(24),
+
+        // Not really used
+        MORPH(12),
+        TAG_ONE_TURN_EFFECT(19), // Only on enchantments
+
+
+        // Retired
+        TREASURE(26),
+        SPELLPOWER(18), // Now a card field
+        OVERLOAD(13); // Now a card field
+
 
         private int value;
         Mechanic (int value) {this.value = value;}

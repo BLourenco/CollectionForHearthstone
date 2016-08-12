@@ -152,6 +152,10 @@
         <item name="android:background">@drawable/icon_set_wog_toggle</item>
     </style>
 
+    <style name="CustomToggleButton.Set.ONIK">
+        <item name="android:background">@drawable/icon_set_onik_toggle</item>
+    </style>
+
     <style name="CustomToggleButton.Set.Format">
     </style>
 

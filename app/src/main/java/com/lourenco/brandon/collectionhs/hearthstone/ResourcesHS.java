@@ -208,6 +208,8 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setLOE);
             case OG:
                 return ContextCompat.getColor(context, R.color.setWOG);
+            case KARA:
+                return ContextCompat.getColor(context, R.color.setKARA);
             default:
                 return Color.BLACK;
         }
@@ -237,6 +239,8 @@ public class ResourcesHS {
                 return R.drawable.icon_set_loe;
             case OG:
                 return R.drawable.icon_set_wog;
+            case KARA:
+                return R.drawable.icon_set_onik;
             default:
                 return R.drawable.placeholder_missing;
         }
@@ -273,6 +277,8 @@ public class ResourcesHS {
             return EnumsHS.CardSet.LOE;
         else if (setArray.length > i && setName.equals(setArray[i++]))
             return EnumsHS.CardSet.OG;
+        else if (setArray.length > i && setName.equals(setArray[i++]))
+            return EnumsHS.CardSet.KARA;
         else
             return EnumsHS.CardSet.INVALID;
     }
@@ -343,6 +349,7 @@ public class ResourcesHS {
      */
     public static int getCartArtResourceId(Context context, String cardId)
     {
+        //TODO: Find a better way to identify cards with postfix's
         if (cardId.endsWith("e") ||
                 cardId.endsWith("b") ||
                 cardId.endsWith("o") ||
