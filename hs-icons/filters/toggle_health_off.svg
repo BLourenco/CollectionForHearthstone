@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 200 200"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="toggle_health_off.svg"
+   width="200"
+   height="200">
+  <metadata
+     id="metadata5285">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>icon-health</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="990"
+     id="namedview5283"
+     showgrid="false"
+     inkscape:zoom="1.9666667"
+     inkscape:cx="220.44277"
+     inkscape:cy="97.637185"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs5273">
+    <style
+       id="style5275">.cls-1{fill:#f44336;}</style>
+  </defs>
+  <title
+     id="title5277">icon-health</title>
+  <path
+     style="fill:none;fill-opacity:1;stroke:#f44336;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 58.972703,31.283679 C 32.54909,45.969795 14.669242,74.168061 14.669242,106.54239 c 0,47.52002 38.522583,86.0426 86.042598,86.0426 47.52002,0 86.0426,-38.52258 86.0426,-86.0426 0,-32.410307 -17.91961,-60.635274 -44.39161,-75.307639"
+     id="circle5279"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="csssc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#f44336;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 59.027274,31.255121 100.71184,8.2079971 142.31958,31.255121"
+     id="polygon5281"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccc" />
+</svg>

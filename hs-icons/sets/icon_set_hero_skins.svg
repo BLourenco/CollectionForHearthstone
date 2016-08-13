@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg4136"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   width="271"
+   height="271"
+   viewBox="0 0 271 271"
+   sodipodi:docname="icon_set_hero_skins.svg">
+  <metadata
+     id="metadata4142">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4140" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="987"
+     id="namedview4138"
+     showgrid="true"
+     fit-margin-top="15"
+     fit-margin-left="30"
+     fit-margin-right="30"
+     fit-margin-bottom="15"
+     inkscape:zoom="2.3216673"
+     inkscape:cx="155.01115"
+     inkscape:cy="140.92483"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4136">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4146"
+       originx="-13.5"
+       originy="16.500065" />
+  </sodipodi:namedview>
+  <path
+     style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 135.5 15.5 C 135.5 15.5 30.5 55.499994 30.5 120.5 L 30.5 255.5 L 240.5 255.5 L 240.5 120.5 C 240.5 55.499994 135.5 15.5 135.5 15.5 z M 135.50781 43.394531 C 135.50781 43.394531 216.79688 74.079912 216.79688 123.94141 L 216.79688 227.5 L 54.216797 227.5 L 54.216797 123.94141 C 54.216797 74.079912 135.50781 43.394531 135.50781 43.394531 z "
+     id="path4157" />
+  <path
+     style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5602271px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 100.30078 152.21875 C 83.974092 161.04679 68.121094 173.57613 68.121094 188.99219 L 68.121094 255.00977 L 202.90039 255.00977 L 202.90039 188.99219 C 202.90039 173.724 187.3491 161.28843 171.18945 152.47461 A 45.788731 45.788731 0 0 1 135.85156 169.18359 A 45.788731 45.788731 0 0 1 100.30078 152.21875 z "
+     id="path4157-6-9" />
+  <circle
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99900001;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path4761"
+     cx="135.81972"
+     cy="123.36406"
+     r="37.5" />
+</svg>

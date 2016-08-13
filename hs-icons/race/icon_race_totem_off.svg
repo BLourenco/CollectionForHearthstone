@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   viewBox="0 0 200 200"
+   id="svg4140"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="icon_race_totem_off.svg">
+  <defs
+     id="defs4142" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="160.84709"
+     inkscape:cy="45.5503"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1212"
+     inkscape:window-height="847"
+     inkscape:window-x="389"
+     inkscape:window-y="105"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4688" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4145">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-852.36216)">
+    <path
+       style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.15887129;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 61.376953 5.0703125 C 61.376953 5.0703125 30.538405 59.210759 76.064453 58.917969 L 75.625 41.119141 C 57.932026 47.076141 61.376953 5.0703125 61.376953 5.0703125 z M 138.65234 5.1308594 C 138.65234 5.1308594 142.09728 47.136687 124.4043 41.179688 L 123.96484 58.980469 C 169.49088 59.273259 138.65234 5.1308594 138.65234 5.1308594 z M 99.773438 24.126953 C 92.322742 24.019256 83.874856 25.660613 75.425781 30.912109 L 76.998047 99.306641 C 62.292885 99.254744 60.410156 84.550781 60.410156 84.550781 L 6.1289062 79.638672 C 5.899948 105.23679 31.734321 136.18875 60.375 119.41992 C 68.191077 115.24337 77.382812 117.3457 77.382812 117.3457 C 77.382812 117.3457 77.275792 111.822 77.216797 108.83789 L 78.935547 183.68164 C 101.21942 197.67994 121.07227 183.68164 121.07227 183.68164 L 122.59766 117.33789 C 122.77989 117.29681 131.83298 115.28544 139.57031 119.41992 C 168.21099 136.18875 194.04537 105.23484 193.81641 79.636719 L 139.53516 84.550781 C 139.53516 84.550781 137.65823 99.210335 123.01172 99.304688 L 124.58398 30.912109 C 124.58398 30.912109 113.99749 24.332556 99.773438 24.126953 z M 76.826172 48.228516 L 94.208984 54.021484 C 76.825916 65.610194 76.826172 48.228516 76.826172 48.228516 z M 123.18164 48.228516 C 123.18164 48.228516 123.1819 65.610194 105.79883 54.021484 L 123.18164 48.228516 z M 99.119141 65.615234 C 109.54093 65.247406 117.38672 88.789064 117.38672 88.789062 C 117.38672 88.789062 100.00417 59.817273 82.621094 88.789062 C 88.324915 71.677605 94.029429 65.794871 99.119141 65.615234 z "
+       transform="translate(0,852.36216)"
+       id="path4690" />
+  </g>
+</svg>

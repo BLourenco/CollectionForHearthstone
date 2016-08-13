@@ -1,0 +1,9 @@
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\bin\Release\HsArtExtractorRunner.exe.config
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\bin\Release\HsArtExtractorRunner.exe
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\bin\Release\HsArtExtractorRunner.pdb
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\bin\Release\HsArtExtractor.dll
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\bin\Release\LZ4.dll
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\bin\Release\HsArtExtractor.pdb
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\obj\Release\HsArtExtractorRunner.csprojResolveAssemblyReference.cache
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\obj\Release\HsArtExtractorRunner.exe
+D:\Repos\Hearthstone Art Extractor\hs-art-extractor-master\HsArtExtractorRunner\obj\Release\HsArtExtractorRunner.pdb
