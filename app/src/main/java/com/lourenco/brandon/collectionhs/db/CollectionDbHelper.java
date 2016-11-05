@@ -99,8 +99,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         try {
             JSONArray arrayCards = new JSONArray(reader.getStringFromJSON(R.raw.cards));
             insertCardArray(db, arrayCards);
-            //JSONArray arrayUnreleasedCards = new JSONArray(reader.getStringFromJSON(R.raw.cards_unreleased)); // TODO LOW_PRIORITY: add unreleased card
-            //insertCardArray(db, arrayUnreleasedCards);
+            JSONArray arrayUnreleasedCards = new JSONArray(reader.getStringFromJSON(R.raw.cards_unreleased)); // TODO LOW_PRIORITY: add unreleased card
+            insertCardArray(db, arrayUnreleasedCards);
 
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error getting JSON string from JSON resource.");

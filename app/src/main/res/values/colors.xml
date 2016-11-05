@@ -59,9 +59,9 @@
     <color name="rarityLegendary">#FF9800</color>
 
     <color name="setCore">#A1887F</color>
-    <color name="setHeroSkins">#FFC107</color>
+    <color name="setHeroSkins">#A1887F</color>
     <color name="setClassic">#2196F3</color>
-    <color name="setReward">#FFC107</color>
+    <color name="setReward">#A1887F</color>
     <color name="setNaxx">#8BC34A</color>
     <color name="setGVG">#FF9800</color>
     <color name="setBRM">#B71C1C</color>
@@ -69,5 +69,6 @@
     <color name="setLOE">#009688</color>
     <color name="setWOG">#BA68C8</color>
     <color name="setKARA">#8C9EFF</color>
+    <color name="setMSG">#FFC107</color>
 
 </resources>

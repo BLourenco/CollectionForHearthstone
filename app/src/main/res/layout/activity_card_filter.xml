@@ -648,6 +648,22 @@
                                 android:text="ONiK" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="48dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ToggleButton
+                                android:id="@+id/tglFilterSetMSG"
+                                style="@style/CustomToggleButton.Set.MSG" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="MSG" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </HorizontalScrollView>

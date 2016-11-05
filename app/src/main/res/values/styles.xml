@@ -156,6 +156,10 @@
         <item name="android:background">@drawable/icon_set_onik_toggle</item>
     </style>
 
+    <style name="CustomToggleButton.Set.MSG">
+        <item name="android:background">@drawable/icon_set_msg_toggle</item>
+    </style>
+
     <style name="CustomToggleButton.Set.Format">
     </style>
 

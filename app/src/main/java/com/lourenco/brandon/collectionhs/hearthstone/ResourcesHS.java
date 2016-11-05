@@ -210,6 +210,8 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setWOG);
             case KARA:
                 return ContextCompat.getColor(context, R.color.setKARA);
+            case MSG:
+                return ContextCompat.getColor(context, R.color.setMSG);
             default:
                 return Color.BLACK;
         }
@@ -218,29 +220,31 @@ public class ResourcesHS {
         switch (set)
         {
             case CORE:
-                return R.drawable.icon_set_core;
+                return R.drawable.icon_set_core_color;
             case EXPERT1:
-                return R.drawable.icon_set_classic;
+                return R.drawable.icon_set_classic_color;
             case PROMO:
                 return R.drawable.icon_set_promo;
             case REWARD:
-                return R.drawable.icon_set_reward;
+                return R.drawable.icon_set_reward_color;
             case HERO_SKINS:
                 return R.drawable.icon_set_hero_skins;
             case NAXX:
-                return R.drawable.icon_set_naxx;
+                return R.drawable.icon_set_naxx_color;
             case GVG:
-                return R.drawable.icon_set_gvg;
+                return R.drawable.icon_set_gvg_color;
             case BRM:
-                return R.drawable.icon_set_brm;
+                return R.drawable.icon_set_brm_color;
             case TGT:
-                return R.drawable.icon_set_tgt;
+                return R.drawable.icon_set_tgt_color;
             case LOE:
-                return R.drawable.icon_set_loe;
+                return R.drawable.icon_set_loe_color;
             case OG:
-                return R.drawable.icon_set_wog;
+                return R.drawable.icon_set_wog_color;
             case KARA:
-                return R.drawable.icon_set_onik;
+                return R.drawable.icon_set_onik_color;
+            case MSG:
+                return R.drawable.icon_set_msg_color;
             default:
                 return R.drawable.placeholder_missing;
         }
