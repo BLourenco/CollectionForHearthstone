@@ -15,13 +15,17 @@ import android.widget.TextView;
 
 import com.lourenco.brandon.collectionhs.R;
 import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
+import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import jp.wasabeef.picasso.transformations.MaskTransformation;
 
 public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapter.ViewHolder> {
     private Context context;
-    private Cursor c;
+    //private Cursor c;
+    private List<Card> classCards;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -60,9 +64,9 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CardRecyclerAdapter(Context context, Cursor cursor) {
+    public CardRecyclerAdapter(Context context, List<Card> classCards) {
         this.context = context;
-        c = cursor;
+        this.classCards = classCards;
     }
 
     // Create new views (invoked by the layout manager)
@@ -83,7 +87,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
 
 
-        c.moveToPosition(position);
+/*        c.moveToPosition(position);
         String id = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_ID));
         Integer type = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN));
         Integer set = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN));
@@ -93,18 +97,18 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         Integer cost = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_COST));
         Integer attack = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_ATTACK));
         Integer health = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_HEALTH));
-        Integer race = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN));
+        Integer race = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN));*/
 
-
+        Card card = classCards.get(position);
 
 
 
 
 
         // Card Art
-        MaskTransformation transform = new MaskTransformation(context, ResourcesHS.getCardTypeMask(EnumsHS.CardType.getEnumByValue(type)));
+        MaskTransformation transform = new MaskTransformation(context, ResourcesHS.getCardTypeMask(EnumsHS.CardType.getEnumByValue(card.getCardTypeId())));
         Picasso.with(context)
-                .load(ResourcesHS.getCartArtResourceId(context, id))
+                .load(ResourcesHS.getCartArtResourceId(context, card.getCardId()))
                 .fit()
                 .placeholder(R.drawable.placeholder_missing)
                 .transform(transform)
@@ -112,22 +116,22 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
         // Set Icon
         holder.imgSetIcon.setImageResource(
-                ResourcesHS.getSetIcon(EnumsHS.CardSet.getEnumByValue(set)));
+                ResourcesHS.getSetIcon(EnumsHS.CardSet.getEnumByValue(card.getCardSetId())));
 
         // Set Icon Color
         holder.imgSetIcon.setColorFilter(
                 ResourcesHS.getSetColor(context,
-                        EnumsHS.CardSet.getEnumByValue(set)));
+                        EnumsHS.CardSet.getEnumByValue(card.getCardSetId())));
 
         // Card Name & Rarity Color
-        holder.txtName.setText(name);
+        holder.txtName.setText(card.getName());
         holder.txtName.setTextColor(
                 ResourcesHS.getRarityTextColor(context,
-                        EnumsHS.Rarity.getEnumByValue(rarity)));
+                        EnumsHS.Rarity.getEnumByValue(card.getRarityId())));
 
         // Legendary Dragon Frame
-        if (EnumsHS.Rarity.getEnumByValue(rarity) == EnumsHS.Rarity.LEGENDARY &&
-                EnumsHS.CardType.getEnumByValue(type) == EnumsHS.CardType.MINION)
+        if (EnumsHS.Rarity.getEnumByValue(card.getRarityId()) == EnumsHS.Rarity.LEGENDARY &&
+                EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.MINION)
         {
             holder.imgCardFrameLegendary.setVisibility(View.VISIBLE);
         }
@@ -137,8 +141,8 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
 
         // Card Text
-        if (text != null) {
-            holder.txtText.setText(Html.fromHtml(text));
+        if (card.getText() != null) {
+            holder.txtText.setText(Html.fromHtml(card.getText()));
             holder.txtText.setVisibility(View.VISIBLE);
         }
         else {
@@ -146,9 +150,9 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.txtText.setVisibility(View.GONE);
         }
 
-        if (cost != null)
+        if (card.getCost() != null)
         {
-            holder.txtCost.setText(String.format("%d", cost));
+            holder.txtCost.setText(String.format("%d", card.getCost()));
             holder.imgCostIcon.setImageResource(R.drawable.icon_stat_mana);
         }
         else {
@@ -156,10 +160,10 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.imgCostIcon.setImageResource(0);
         }
 
-        if (type == EnumsHS.CardType.MINION.getValue() || type == EnumsHS.CardType.WEAPON.getValue()) {
-            holder.txtAttack.setText(String.format("%d", attack));
+        if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.WEAPON.getValue()) {
+            holder.txtAttack.setText(String.format("%d", card.getAttack()));
             //holder.imgAttackIcon.setImageResource(R.drawable.icon_attack);
-            if (type == EnumsHS.CardType.MINION.getValue())
+            if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue())
                 holder.imgAttackIcon.setImageResource(R.drawable.icon_stat_attack_minion);
             else
                 holder.imgAttackIcon.setImageResource(R.drawable.icon_stat_attack_weapon);
@@ -169,12 +173,12 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.imgAttackIcon.setImageResource(0);
         }
 
-        if (type == EnumsHS.CardType.MINION.getValue() || type == EnumsHS.CardType.HERO.getValue()) {
-            holder.txtHealth.setText(String.format("%d", health));
+        if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.HERO.getValue()) {
+            holder.txtHealth.setText(String.format("%d", card.getHealth()));
             holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_minion);
         }
-        else if (type == EnumsHS.CardType.WEAPON.getValue()) {
-            holder.txtHealth.setText(String.format("%d", health));
+        else if (card.getCardTypeId() == EnumsHS.CardType.WEAPON.getValue()) {
+            holder.txtHealth.setText(String.format("%d", card.getHealth()));
             holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_weapon);
         }
         else {
@@ -183,8 +187,8 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
 
         // Race Stat
-        if (race != EnumsHS.Race.INVALID.getValue()) {
-            String raceText = ResourcesHS.getRaceText(context, EnumsHS.Race.getEnumByValue(race));
+        if (card.getRaceId() != EnumsHS.Race.INVALID.getValue()) {
+            String raceText = ResourcesHS.getRaceText(context, EnumsHS.Race.getEnumByValue(card.getRaceId()));
             raceText = raceText.toUpperCase().charAt(0) + raceText.substring(1).toLowerCase();
             holder.txtRace.setText(raceText);
             holder.imgRaceIcon.setImageResource(R.drawable.icon_stat_race);
@@ -200,7 +204,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return c.getCount();
+        return classCards.size();
     }
 
 

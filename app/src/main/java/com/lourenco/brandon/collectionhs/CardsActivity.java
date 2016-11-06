@@ -31,7 +31,6 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.TabHost;
 
 import com.lourenco.brandon.collectionhs.db.CardQueryBuilder;
 import com.lourenco.brandon.collectionhs.db.CollectionDbHelper;
@@ -40,8 +39,11 @@ import com.lourenco.brandon.collectionhs.hearthstone.CardRecyclerAdapter;
 import com.lourenco.brandon.collectionhs.hearthstone.ResourcesHS;
 import com.lourenco.brandon.collectionhs.hearthstone.EnumsHS;
 import com.lourenco.brandon.collectionhs.design.AppDesign;
+import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
 import com.lourenco.brandon.collectionhs.util.AndroidUtils;
-import com.lourenco.brandon.collectionhs.util.ArrayUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import at.markushi.ui.RevealColorView;
 
@@ -55,7 +57,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private static SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -68,12 +70,9 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     private RevealColorView revealColorView;
 
+    private static List<List<Card>> cards;
+
     static SQLiteDatabase db;
-
-/*    static Integer[] filterMana;
-    static Integer[] filterAttack;
-    static Integer[] filterHealth;*/
-
     static CardFilter filter;
 
     private final int REQUEST_CODE_FILTER = 1;
@@ -82,8 +81,10 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initViews();
         db = new CollectionDbHelper(this).getWritableDatabase(); // TODO Put in AsyncTask
+
+        initCardLists();
+        initViews();
     }
 
     public void initViews()
@@ -124,34 +125,6 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
         }
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabsClass);
-        tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition());
-                changeTheme(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
         revealColorView = (RevealColorView) findViewById(R.id.toolbarReveal);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -172,24 +145,90 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        changeTheme(0); //TODO change to favourite class' theme and tab
+
+
+        //If no cards exist, display a single Fragment displaying "No Results Found."
+        if (!cards.isEmpty())
+        {
+            // Create the adapter that will return a fragment for each of the classes
+            mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+            // Set up the ViewPager with the sections adapter.
+            mViewPager = (ViewPager) findViewById(R.id.container);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+
+            tabLayout = (TabLayout) findViewById(R.id.tabsClass);
+            tabLayout.setupWithViewPager(mViewPager);
+            tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    mViewPager.setCurrentItem(tab.getPosition());
+                    changeTheme(tab.getPosition());
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+
+                }
+            });
+        }
+
+        changeTheme(0); //TODO change to first tab's theme
+    }
+
+    public void initCardLists()
+    {
+        cards = new ArrayList<List<Card>>(); //TODO: Don't hardcode numbers
+
+        for (int i = 0; i < 10; i++)
+        {
+            CardQueryBuilder cqb = new CardQueryBuilder();
+
+            if (filter != null) {
+                if (!filter.mana.isEmpty())
+                    cqb.filterByMana(filter.mana.toArray(new Integer[filter.mana.size()]));
+                if (!filter.attack.isEmpty())
+                    cqb.filterByAttack(filter.attack.toArray(new Integer[filter.attack.size()]));
+                if (!filter.health.isEmpty())
+                    cqb.filterByHealth(filter.health.toArray(new Integer[filter.health.size()]));
+
+                if (!filter.type.isEmpty())
+                    cqb.filterByType(filter.type.toArray(new Integer[filter.type.size()]));
+                if (!filter.set.isEmpty())
+                    cqb.filterBySet(filter.set.toArray(new Integer[filter.set.size()]));
+                if (!filter.race.isEmpty())
+                    cqb.filterByRace(filter.race.toArray(new Integer[filter.race.size()]));
+                if (!filter.rarity.isEmpty())
+                    cqb.filterByRarity(filter.rarity.toArray(new Integer[filter.rarity.size()]));
+                if (!filter.mechanic.isEmpty())
+                    cqb.filterByMechanic(db, filter.mechanic.toArray(new Integer[filter.mechanic.size()]));
+            }
+            int classId = EnumsHS.CardClass.getClassAtOrdinal(i).getValue();
+            String rawQuery = cqb.filterByClass(classId).build();
+            Cursor c = db.rawQuery(rawQuery, null);
+
+            if (c.getCount() == 0) continue;
+            List<Card> classCards = new ArrayList<>();
+
+            for (int j = 0; j < c.getCount(); j++)
+            {
+                Card card = new Card(c, j);
+                classCards.add(card);
+            }
+            cards.add(classCards);
+        }
     }
 
     private void testStartFilterActivity()
     {
         Intent intent = new Intent(this, CardFilterActivity.class);
-/*        if (filterMana != null)
-            intent.putIntegerArrayListExtra("mana", ArrayUtils.arrayToArrayList(filterMana));
-        else
-            intent.putIntegerArrayListExtra("mana", null);
-        if (filterAttack != null)
-            intent.putIntegerArrayListExtra("attack", ArrayUtils.arrayToArrayList(filterAttack));
-        else
-            intent.putIntegerArrayListExtra("attack", null);
-        if (filterHealth != null)
-            intent.putIntegerArrayListExtra("health", ArrayUtils.arrayToArrayList(filterHealth));
-        else
-            intent.putIntegerArrayListExtra("health", null);*/
         intent.putExtra("filter", filter);
         startActivityForResult(intent, REQUEST_CODE_FILTER);
     }
@@ -203,10 +242,6 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
                 Bundle extras = intent.getExtras();
                 if (extras != null)
                 {
-/*                    filterMana = extras.getIntegerArrayList("mana").toArray(new Integer[0]);
-                    filterAttack = extras.getIntegerArrayList("attack").toArray(new Integer[0]);
-                    filterHealth = extras.getIntegerArrayList("health").toArray(new Integer[0]);*/
-
                     filter = intent.getParcelableExtra("filter");
 
                     this.recreate();
@@ -217,25 +252,31 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
     private void changeTheme(int position)
     {
-        EnumsHS.CardClass selectedClass = EnumsHS.CardClass.values()[position];
+        EnumsHS.CardClass selectedClass = !cards.isEmpty() ?
+                EnumsHS.CardClass.getEnumByValue(cards.get(position).get(0).getPlayerClassId()) :
+                EnumsHS.CardClass.NEUTRAL;
 
-        AppDesign.changeThemeColor(
-                getApplicationContext(),
-                revealColorView,
-                AppDesign.getLocationInView(toolbar, toolbar),
-                ResourcesHS.getClassColors(getApplicationContext(), selectedClass)[0],
-                240);
+        if (tabLayout != null) {
+            AppDesign.changeThemeColor(
+                    getApplicationContext(),
+                    revealColorView,
+                    AppDesign.getLocationInView(toolbar, toolbar),
+                    ResourcesHS.getClassColors(getApplicationContext(), selectedClass)[0],
+                    240);
 
-        tabLayout.setSelectedTabIndicatorColor(ResourcesHS.getClassColors(getApplicationContext(), selectedClass)[2]);
+            tabLayout.setSelectedTabIndicatorColor(ResourcesHS.getClassColors(getApplicationContext(), selectedClass)[2]);
+        }
 
-        AppDesign.changeFabColor(
-                getApplicationContext(),
-                fab,
-                ResourcesHS.getClassColors(getApplicationContext(), selectedClass)[2],
+        if (fab != null) {
+            AppDesign.changeFabColor(
+                    getApplicationContext(),
+                    fab,
+                    ResourcesHS.getClassColors(getApplicationContext(), selectedClass)[2],
 
-                240);
+                    240);
 
-        fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+            fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
+        }
     }
 
     @Override
@@ -356,6 +397,10 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
             final int classOrdinal = getArguments().getInt(ARG_CLASS_ORDINAL);
 
+            // In the case that only 1 tab should be displayed, prevent the second page from pre-loading.
+            // (The current page and the adjacent pages always try to be loaded)
+            if (classOrdinal >= mSectionsPagerAdapter.getCount()) return rootView;
+
             RecyclerView mRecyclerView;
             RecyclerView.LayoutManager mLayoutManager;
 
@@ -403,36 +448,9 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             mLayoutManager = new LinearLayoutManager(context);
             mRecyclerView.setLayoutManager(mLayoutManager);
 
-            int classId = EnumsHS.CardClass.getClassAtOrdinal(classOrdinal).getValue();
 
-            CardQueryBuilder cqb = new CardQueryBuilder()
-                    .filterByClass(classId);
 
-            if (filter != null) {
-                if (!filter.mana.isEmpty())
-                    cqb.filterByMana(filter.mana.toArray(new Integer[filter.mana.size()]));
-                if (!filter.attack.isEmpty())
-                    cqb.filterByAttack(filter.attack.toArray(new Integer[filter.attack.size()]));
-                if (!filter.health.isEmpty())
-                    cqb.filterByHealth(filter.health.toArray(new Integer[filter.health.size()]));
-
-                if (!filter.type.isEmpty())
-                    cqb.filterByType(filter.type.toArray(new Integer[filter.type.size()]));
-                if (!filter.set.isEmpty())
-                    cqb.filterBySet(filter.set.toArray(new Integer[filter.set.size()]));
-                if (!filter.race.isEmpty())
-                    cqb.filterByRace(filter.race.toArray(new Integer[filter.race.size()]));
-                if (!filter.rarity.isEmpty())
-                    cqb.filterByRarity(filter.rarity.toArray(new Integer[filter.rarity.size()]));
-                if (!filter.mechanic.isEmpty())
-                    cqb.filterByMechanic(db, filter.mechanic.toArray(new Integer[filter.mechanic.size()]));
-            }
-
-            String rawQuery = cqb.build();
-
-            // specify an adapter (see also next example)
-            Cursor c = db.rawQuery(rawQuery, null);
-            mAdapter = new CardRecyclerAdapter(context, c);
+            mAdapter = new CardRecyclerAdapter(context, cards.get(classOrdinal));
             //mAdapter = new CardRecyclerAdapter(context, db.rawQuery(rawQuery + manaFilterClause + orderByClause, null));
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -460,12 +478,13 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
         @Override
         public int getCount() {
-            return 10; //TODO Don't hardcode number of tabs
+            return cards.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return ResourcesHS.getClassString(getApplicationContext(), EnumsHS.CardClass.getClassAtOrdinal(position));
+            int classId = cards.get(position).get(0).getPlayerClassId();
+            return EnumsHS.CardClass.getEnumByValue(classId).name();
         }
     }
 }
