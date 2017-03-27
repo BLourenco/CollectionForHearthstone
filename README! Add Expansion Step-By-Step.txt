@@ -11,6 +11,5 @@
 	c. Add a new "else if" for loading the state of the new filter.
 	d. Update the calculatePresetToggleState() method.
 	e. Update the getSelectedSetFilters() method.
-9. Add icon and color to ResourcesHS.java
-
-10. Add color to colors.xml (Currently, set colors are unused, as the set icons are coloured when imported)
+9. Add color to colors.xml (Currently, set colors are unused, as the set icons are coloured when imported)
+10. Add icon (and optionally, color) to ResourcesHS.java

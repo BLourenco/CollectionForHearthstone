@@ -664,6 +664,22 @@
                                 android:text="MSG" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="48dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ToggleButton
+                                android:id="@+id/tglFilterSetJTU"
+                                style="@style/CustomToggleButton.Set.JTU" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="JTU" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </HorizontalScrollView>

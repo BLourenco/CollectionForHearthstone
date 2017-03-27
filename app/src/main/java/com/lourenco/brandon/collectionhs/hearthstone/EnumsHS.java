@@ -92,6 +92,8 @@ public class EnumsHS {
         KARA_RESERVE(24, false, CardSetType.INVALID, 0),
         MSG(25, true, CardSetType.EXPANSION, 2016),
         MSG_RESERVE(26, false, CardSetType.INVALID, 0),
+        JTU(25, true, CardSetType.EXPANSION, 2017),
+        JTU_RESERVE(26, false, CardSetType.INVALID, 0),
 
         HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
 

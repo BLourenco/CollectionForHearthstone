@@ -212,6 +212,8 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setKARA);
             case MSG:
                 return ContextCompat.getColor(context, R.color.setMSG);
+            case JTU:
+                return ContextCompat.getColor(context, R.color.setJTU);
             default:
                 return Color.BLACK;
         }
@@ -245,6 +247,8 @@ public class ResourcesHS {
                 return R.drawable.icon_set_onik_color;
             case MSG:
                 return R.drawable.icon_set_msg_color;
+            case JTU:
+                return R.drawable.icon_set_jtu_color;
             default:
                 return R.drawable.placeholder_missing;
         }

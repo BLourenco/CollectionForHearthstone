@@ -110,6 +110,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 (ToggleButton)findViewById(R.id.tglFilterSetWOG),
                 (ToggleButton)findViewById(R.id.tglFilterSetONiK),
                 (ToggleButton)findViewById(R.id.tglFilterSetMSG),
+                (ToggleButton)findViewById(R.id.tglFilterSetJTU),
         };
 
         // Add listeners to Set ToggleButtons
@@ -152,6 +153,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[8].setChecked(false);
                 tglFilterSet[9].setChecked(false);
                 tglFilterSet[10].setChecked(false);
+                tglFilterSet[11].setChecked(false);
 
                 tglFilterPreset_StandardSets.setChecked(false);
             }
@@ -178,6 +180,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[8].setChecked(checked);
                 tglFilterSet[9].setChecked(checked);
                 tglFilterSet[10].setChecked(checked);
+                tglFilterSet[11].setChecked(checked);
 
                 tglFilterPreset_AllSets.setChecked(false);
             }
@@ -277,6 +280,7 @@ public class CardFilterActivity extends AppCompatActivity{
                     else if (i == EnumsHS.CardSet.OG.getValue()) tglFilterSet[8].setChecked(true);
                     else if (i == EnumsHS.CardSet.KARA.getValue()) tglFilterSet[9].setChecked(true);
                     else if (i == EnumsHS.CardSet.MSG.getValue()) tglFilterSet[10].setChecked(true);
+                    else if (i == EnumsHS.CardSet.JTU.getValue()) tglFilterSet[11].setChecked(true);
                 }
                 calculatePresetToggleState();
             }
@@ -338,7 +342,8 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[7].isChecked() &&
                 tglFilterSet[8].isChecked() &&
                 tglFilterSet[9].isChecked() &&
-                tglFilterSet[910].isChecked())
+                tglFilterSet[10].isChecked() &&
+                tglFilterSet[11].isChecked())
         {
             tglFilterPreset_StandardSets.setChecked(true);
         }
@@ -357,7 +362,8 @@ public class CardFilterActivity extends AppCompatActivity{
                 !tglFilterSet[7].isChecked() &&
                 !tglFilterSet[8].isChecked() &&
                 !tglFilterSet[9].isChecked() &&
-                !tglFilterSet[10].isChecked())
+                !tglFilterSet[10].isChecked() &&
+                !tglFilterSet[11].isChecked())
         {
             tglFilterPreset_AllSets.setChecked(true);
         }
@@ -483,6 +489,7 @@ public class CardFilterActivity extends AppCompatActivity{
         if (tglFilterSet[8].isChecked()) setFilters.add(EnumsHS.CardSet.OG.getValue());
         if (tglFilterSet[9].isChecked()) setFilters.add(EnumsHS.CardSet.KARA.getValue());
         if (tglFilterSet[10].isChecked()) setFilters.add(EnumsHS.CardSet.MSG.getValue());
+        if (tglFilterSet[11].isChecked()) setFilters.add(EnumsHS.CardSet.JTU.getValue());
 
         return setFilters;
     }
