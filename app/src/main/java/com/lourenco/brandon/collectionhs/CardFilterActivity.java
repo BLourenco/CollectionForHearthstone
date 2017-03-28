@@ -29,7 +29,7 @@ public class CardFilterActivity extends AppCompatActivity{
     ToggleButton[] tglFilterType;
     ToggleButton[] tglFilterRarity;
     ToggleButton[] tglFilterSet;
-    ToggleButton[] tglFilterRace;
+    CheckBox[] cbFilterRace;
     CheckBox[] cbFilterMechanic;
 
     ToggleButton tglFilterPreset_AllSets;
@@ -186,14 +186,15 @@ public class CardFilterActivity extends AppCompatActivity{
             }
         });
 
-        tglFilterRace = new ToggleButton[] {
-                (ToggleButton)findViewById(R.id.tglRaceMurloc),
-                (ToggleButton)findViewById(R.id.tglRaceDemon),
-                (ToggleButton)findViewById(R.id.tglRaceMech),
-                (ToggleButton)findViewById(R.id.tglRaceBeast),
-                (ToggleButton)findViewById(R.id.tglRaceTotem),
-                (ToggleButton)findViewById(R.id.tglRacePirate),
-                (ToggleButton)findViewById(R.id.tglRaceDragon),
+        cbFilterRace = new CheckBox[] {
+                (CheckBox)findViewById(R.id.cbRaceBeast),
+                (CheckBox)findViewById(R.id.cbRaceMurloc),
+                (CheckBox)findViewById(R.id.cbRaceDemon),
+                (CheckBox)findViewById(R.id.cbRaceTotem),
+                (CheckBox)findViewById(R.id.cbRacePirate),
+                (CheckBox)findViewById(R.id.cbRaceDragon),
+                (CheckBox)findViewById(R.id.cbRaceMech),
+                (CheckBox)findViewById(R.id.cbRaceElemental),
         };
 
         cbFilterMechanic = new CheckBox[] {
@@ -290,13 +291,14 @@ public class CardFilterActivity extends AppCompatActivity{
                 for (Integer i : filter.race)
                 {
 
-                    if (i == EnumsHS.Race.MURLOC.getValue()) tglFilterRace[0].setChecked(true);
-                    else if (i == EnumsHS.Race.DEMON.getValue()) tglFilterRace[1].setChecked(true);
-                    else if (i == EnumsHS.Race.MECHANICAL.getValue()) tglFilterRace[2].setChecked(true);
-                    else if (i == EnumsHS.Race.BEAST.getValue()) tglFilterRace[3].setChecked(true);
-                    else if (i == EnumsHS.Race.TOTEM.getValue()) tglFilterRace[4].setChecked(true);
-                    else if (i == EnumsHS.Race.PIRATE.getValue()) tglFilterRace[5].setChecked(true);
-                    else if (i == EnumsHS.Race.DRAGON.getValue()) tglFilterRace[6].setChecked(true);
+                    if (i == EnumsHS.Race.BEAST.getValue()) cbFilterRace[0].setChecked(true);
+                    else if (i == EnumsHS.Race.MURLOC.getValue()) cbFilterRace[1].setChecked(true);
+                    else if (i == EnumsHS.Race.DEMON.getValue()) cbFilterRace[2].setChecked(true);
+                    else if (i == EnumsHS.Race.TOTEM.getValue()) cbFilterRace[3].setChecked(true);
+                    else if (i == EnumsHS.Race.PIRATE.getValue()) cbFilterRace[4].setChecked(true);
+                    else if (i == EnumsHS.Race.DRAGON.getValue()) cbFilterRace[5].setChecked(true);
+                    else if (i == EnumsHS.Race.MECHANICAL.getValue()) cbFilterRace[6].setChecked(true);
+                    else if (i == EnumsHS.Race.ELEMENTAL.getValue()) cbFilterRace[7].setChecked(true);
                 }
             }
 
@@ -497,13 +499,14 @@ public class CardFilterActivity extends AppCompatActivity{
     private ArrayList<Integer> getSelectedRaceFilters()
     {
         ArrayList<Integer> raceFilters = new ArrayList<>();
-        if (tglFilterRace[0].isChecked()) raceFilters.add(EnumsHS.Race.MURLOC.getValue());
-        if (tglFilterRace[1].isChecked()) raceFilters.add(EnumsHS.Race.DEMON.getValue());
-        if (tglFilterRace[2].isChecked()) raceFilters.add(EnumsHS.Race.MECHANICAL.getValue());
-        if (tglFilterRace[3].isChecked()) raceFilters.add(EnumsHS.Race.BEAST.getValue());
-        if (tglFilterRace[4].isChecked()) raceFilters.add(EnumsHS.Race.TOTEM.getValue());
-        if (tglFilterRace[5].isChecked()) raceFilters.add(EnumsHS.Race.PIRATE.getValue());
-        if (tglFilterRace[6].isChecked()) raceFilters.add(EnumsHS.Race.DRAGON.getValue());
+        if (cbFilterRace[0].isChecked()) raceFilters.add(EnumsHS.Race.BEAST.getValue());
+        if (cbFilterRace[1].isChecked()) raceFilters.add(EnumsHS.Race.MURLOC.getValue());
+        if (cbFilterRace[2].isChecked()) raceFilters.add(EnumsHS.Race.DEMON.getValue());
+        if (cbFilterRace[3].isChecked()) raceFilters.add(EnumsHS.Race.TOTEM.getValue());
+        if (cbFilterRace[4].isChecked()) raceFilters.add(EnumsHS.Race.PIRATE.getValue());
+        if (cbFilterRace[5].isChecked()) raceFilters.add(EnumsHS.Race.DRAGON.getValue());
+        if (cbFilterRace[6].isChecked()) raceFilters.add(EnumsHS.Race.MECHANICAL.getValue());
+        if (cbFilterRace[7].isChecked()) raceFilters.add(EnumsHS.Race.ELEMENTAL.getValue());
 
         return raceFilters;
     }

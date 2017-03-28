@@ -798,172 +798,80 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!-- Race, row 1 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <!-- Race, col 1 -->
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ToggleButton
-                    android:id="@+id/tglRaceMurloc"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    style="@style/CustomToggleButton.Race.Murloc"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Murloc" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ToggleButton
-                    android:id="@+id/tglRaceDemon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    style="@style/CustomToggleButton.Race.Demon"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Demon" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ToggleButton
-                    android:id="@+id/tglRaceMech"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    style="@style/CustomToggleButton.Race.Mech"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Mech" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ToggleButton
-                    android:id="@+id/tglRaceBeast"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    style="@style/CustomToggleButton.Race.Beast"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Beast" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Race, row 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <ToggleButton
-                    android:id="@+id/tglRaceTotem"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    style="@style/CustomToggleButton.Race.Totem"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Totem" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <ToggleButton
-                    android:id="@+id/tglRacePirate"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    style="@style/CustomToggleButton.Race.Pirate"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Pirate" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <ToggleButton
-                    android:id="@+id/tglRaceDragon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    style="@style/CustomToggleButton.Race.Dragon"
-                    android:layout_gravity="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Dragon" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:layout_weight="1"
                 android:orientation="vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp">
+
+                <CheckBox
+                    android:id="@+id/cbRaceBeast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Beast"/>
+
+                <CheckBox
+                    android:id="@+id/cbRaceMurloc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Murloc"/>
+
+                <CheckBox
+                    android:id="@+id/cbRaceDemon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Demon"/>
+
+                <CheckBox
+                    android:id="@+id/cbRaceTotem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Totem"/>
+
+            </LinearLayout>
+
+            <!-- Race, col 2 -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp">
+
+                <CheckBox
+                    android:id="@+id/cbRacePirate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pirate"/>
+
+                <CheckBox
+                    android:id="@+id/cbRaceDragon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dragon"/>
+
+                <CheckBox
+                    android:id="@+id/cbRaceMech"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mech"/>
+
+                <CheckBox
+                    android:id="@+id/cbRaceElemental"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Elemental"/>
+
+            </LinearLayout>
         </LinearLayout>
 
         <!-- Mechanics -->
