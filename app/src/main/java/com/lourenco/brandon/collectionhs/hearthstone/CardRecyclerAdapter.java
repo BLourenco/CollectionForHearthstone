@@ -1,12 +1,8 @@
 package com.lourenco.brandon.collectionhs.hearthstone;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lourenco.brandon.collectionhs.R;
-import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
 import com.lourenco.brandon.collectionhs.hearthstone.model.Card;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +35,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         public TextView txtRace;
         public TextView txtText;
         public ImageView imgCostIcon;
+        public ImageView imgTriClassBannerIcon;
         public TextView txtCost;
         public ImageView imgAttackIcon;
         public TextView txtAttack;
@@ -55,6 +51,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             this.txtRace = (TextView)v.findViewById(R.id.txtCardViewRace);
             this.txtText = (TextView)v.findViewById(R.id.txtCardViewText);
             this.imgCostIcon = (ImageView) v.findViewById(R.id.imgCardViewCostIcon);
+            this.imgTriClassBannerIcon = (ImageView) v.findViewById(R.id.imgCardViewTriClassBanner);
             this.txtCost = (TextView)v.findViewById(R.id.txtCardViewCost);
             this.imgAttackIcon = (ImageView) v.findViewById(R.id.imgCardViewAttackIcon);
             this.txtAttack = (TextView)v.findViewById(R.id.txtCardViewAttack);
@@ -85,25 +82,13 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-
-
-/*        c.moveToPosition(position);
-        String id = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_ID));
-        Integer type = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN));
-        Integer set = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN));
-        String name = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_NAME));
-        Integer rarity = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN));
-        String text = c.getString(c.getColumnIndexOrThrow(CollectionDbContract.CardLocale.COLUMN_NAME_CARD_TEXT));
-        Integer cost = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_COST));
-        Integer attack = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_ATTACK));
-        Integer health = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_HEALTH));
-        Integer race = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN));*/
-
         Card card = classCards.get(position);
 
-
-
-
+        // TEST
+        //holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_grimy_goons_banner);
+        //holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_jade_lotus_banner);
+        //holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_kabal_banner);
+        // TEST
 
         // Card Art
         MaskTransformation transform = new MaskTransformation(context, ResourcesHS.getCardTypeMask(EnumsHS.CardType.getEnumByValue(card.getCardTypeId())));
