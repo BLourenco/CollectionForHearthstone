@@ -280,7 +280,7 @@ public class CardFilterActivity extends AppCompatActivity{
                     else if (i == EnumsHS.CardSet.LOE.getValue()) tglFilterSet[7].setChecked(true);
                     else if (i == EnumsHS.CardSet.OG.getValue()) tglFilterSet[8].setChecked(true);
                     else if (i == EnumsHS.CardSet.KARA.getValue()) tglFilterSet[9].setChecked(true);
-                    else if (i == EnumsHS.CardSet.MSG.getValue()) tglFilterSet[10].setChecked(true);
+                    else if (i == EnumsHS.CardSet.GANGS.getValue()) tglFilterSet[10].setChecked(true);
                     else if (i == EnumsHS.CardSet.JTU.getValue()) tglFilterSet[11].setChecked(true);
                 }
                 calculatePresetToggleState();
@@ -490,7 +490,7 @@ public class CardFilterActivity extends AppCompatActivity{
         if (tglFilterSet[7].isChecked()) setFilters.add(EnumsHS.CardSet.LOE.getValue());
         if (tglFilterSet[8].isChecked()) setFilters.add(EnumsHS.CardSet.OG.getValue());
         if (tglFilterSet[9].isChecked()) setFilters.add(EnumsHS.CardSet.KARA.getValue());
-        if (tglFilterSet[10].isChecked()) setFilters.add(EnumsHS.CardSet.MSG.getValue());
+        if (tglFilterSet[10].isChecked()) setFilters.add(EnumsHS.CardSet.GANGS.getValue());
         if (tglFilterSet[11].isChecked()) setFilters.add(EnumsHS.CardSet.JTU.getValue());
 
         return setFilters;

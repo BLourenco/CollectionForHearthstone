@@ -210,7 +210,7 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setWOG);
             case KARA:
                 return ContextCompat.getColor(context, R.color.setKARA);
-            case MSG:
+            case GANGS:
                 return ContextCompat.getColor(context, R.color.setMSG);
             case JTU:
                 return ContextCompat.getColor(context, R.color.setJTU);
@@ -245,7 +245,7 @@ public class ResourcesHS {
                 return R.drawable.icon_set_wog_color;
             case KARA:
                 return R.drawable.icon_set_onik_color;
-            case MSG:
+            case GANGS:
                 return R.drawable.icon_set_msg_color;
             case JTU:
                 return R.drawable.icon_set_jtu_color;
