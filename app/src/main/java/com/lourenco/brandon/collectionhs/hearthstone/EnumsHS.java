@@ -87,13 +87,9 @@ public class EnumsHS {
         TGT(15, true, CardSetType.EXPANSION, 2015),
         LOE(20, true, CardSetType.ADVENTURE, 2015),
         OG(21, true, CardSetType.EXPANSION, 2016),
-        OG_RESERVE(22, false, CardSetType.INVALID, 0),
-        KARA(23, true, CardSetType.ADVENTURE, 2016),
-        KARA_RESERVE(24, false, CardSetType.INVALID, 0),
-        MSG(25, true, CardSetType.EXPANSION, 2016),
-        MSG_RESERVE(26, false, CardSetType.INVALID, 0),
-        JTU(27, true, CardSetType.EXPANSION, 2017),
-        JTU_RESERVE(28, false, CardSetType.INVALID, 0),
+        KARA(22, true, CardSetType.ADVENTURE, 2016),
+        GANGS(23, true, CardSetType.EXPANSION, 2016),
+        JTU(24, true, CardSetType.EXPANSION, 2017),// Need to confirm name when released
 
         HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
 
@@ -585,7 +581,7 @@ public class EnumsHS {
 
 
         // Retired
-        TREASURE(26),
+        DISCOVER(26),
         SPELLPOWER(18), // Now a card field
         OVERLOAD(13); // Now a card field
 
@@ -599,6 +595,37 @@ public class EnumsHS {
             for (Mechanic m : Mechanic.values())
             {
                 if (m.name().equals(name)) return m.value;
+            }
+            return INVALID.value;
+        }
+    }
+
+    public enum MultiClassGroup
+    {
+        INVALID(0),
+        GRIMY_GOONS(1),
+        JADE_LOTUS(2),
+        KABAL(3);
+
+        private int value;
+        MultiClassGroup (int value) {this.value = value;}
+        public int getValue() {return value;}
+
+        public static MultiClassGroup[] getValidMultiClassGroups() {
+            MultiClassGroup[] multiClassGroups = new MultiClassGroup[] {
+                    GRIMY_GOONS,
+                    JADE_LOTUS,
+                    KABAL
+            };
+
+            return multiClassGroups;
+        }
+
+        public static int getValueByName(String name)
+        {
+            for (MultiClassGroup mcg : MultiClassGroup.values())
+            {
+                if (mcg.name().equals(name)) return mcg.value;
             }
             return INVALID.value;
         }
