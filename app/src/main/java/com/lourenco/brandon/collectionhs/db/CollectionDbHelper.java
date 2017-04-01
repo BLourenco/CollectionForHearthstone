@@ -37,6 +37,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         db.execSQL(CollectionDbContract.CardType.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.PlayerClass.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.TriClass.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardClasses.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Rarity.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Race.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Faction.CREATE_TABLE_SQL);
@@ -71,6 +72,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         db.execSQL(CollectionDbContract.Faction.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Race.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Rarity.DELETE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.CardClasses.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.TriClass.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.PlayerClass.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardType.DELETE_TABLE_SQL);
@@ -121,6 +123,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 String set = card.has("set") ? card.getString("set") : null;
                 String playerClass = card.has("playerClass") ? card.getString("playerClass") : "NEUTRAL";
                 String triClass = card.has("multiClassGroup") ? card.getString("multiClassGroup") : null;
+                JSONArray arrayClasses = card.has("classes") ? card.getJSONArray("classes") : null; // Iterate
                 String rarity = card.has("rarity") ? card.getString("rarity") : null;
                 JSONObject jsonNames = card.has("name") ? card.getJSONObject("name") : null;
                 JSONObject jsonText = card.has("text") ? card.getJSONObject("text") : null;
@@ -303,7 +306,25 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                     }
 
 
-                // MECHANICS & ENTOURAGE ARRAYS
+                // ARRAYS
+
+                if (arrayClasses != null)
+                    for (int c = 0; c < arrayClasses.length(); c++) {
+                        Integer classId = EnumsHS.CardClass.valueOf(arrayClasses.getString(c)).getValue();
+
+                        if (classId == EnumsHS.CardClass.INVALID.getValue() || classId == null)
+                            continue;
+
+                        ContentValues classValues = new ContentValues();
+                        classValues.put(CollectionDbContract.CardClasses.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                        classValues.put(CollectionDbContract.CardClasses.COLUMN_NAME_PLAYER_CLASS_ID_COMPOSITE, classId);
+
+                        db.insert(
+                                CollectionDbContract.CardClasses.TABLE_NAME,
+                                null,
+                                classValues
+                        );
+                    }
 
                 if (arrayMechanics != null)
                     for (int m = 0; m < arrayMechanics.length(); m++) {

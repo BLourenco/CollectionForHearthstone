@@ -904,10 +904,22 @@
                 android:layout_marginRight="8dp">
 
                 <CheckBox
+                    android:id="@+id/cbMechanicAdapt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adapt"/>
+
+                <CheckBox
                     android:id="@+id/cbMechanicAdjacentBuff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Adjacent Buff"/>
+
+                <CheckBox
+                    android:id="@+id/cbMechanicAura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aura"/>
 
                 <CheckBox
                     android:id="@+id/cbMechanicBattlecry"
@@ -916,10 +928,22 @@
                     android:text="Battlecry"/>
 
                 <CheckBox
+                    android:id="@+id/cbMechanicCharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Charge"/>
+
+                <CheckBox
                     android:id="@+id/cbMechanicChooseOne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Choose One"/>
+
+                <CheckBox
+                    android:id="@+id/cbMechanicCombo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Combo"/>
 
                 <CheckBox
                     android:id="@+id/cbMechanicDeathrattle"
@@ -928,41 +952,22 @@
                     android:text="Deathrattle"/>
 
                 <CheckBox
+                    android:id="@+id/cbMechanicDiscover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discover"/>
+
+                <CheckBox
+                    android:id="@+id/cbMechanicDivineShield"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Divine Shield"/>
+
+                <CheckBox
                     android:id="@+id/cbMechanicEnraged"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Enraged"/>
-
-                <CheckBox
-                    android:id="@+id/cbMechanicFreeze"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Freeze"/>
-
-                <CheckBox
-                    android:id="@+id/cbMechanicPoisonous"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Poisonous"/>
-
-                <CheckBox
-                    android:id="@+id/cbMechanicSilence"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Silence"/>
-
-                <CheckBox
-                    android:id="@+id/cbMechanicTaunt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Taunt"/>
-
-                <CheckBox
-                    android:id="@+id/cbMechanicWindfury"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Windfury"/>
-
 
             </LinearLayout>
 
@@ -976,34 +981,16 @@
                 android:layout_marginRight="8dp">
 
                 <CheckBox
-                    android:id="@+id/cbMechanicAura"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aura"/>
-
-                <CheckBox
-                    android:id="@+id/cbMechanicCharge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Charge"/>
-
-                <CheckBox
-                    android:id="@+id/cbMechanicCombo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Combo"/>
-
-                <CheckBox
-                    android:id="@+id/cbMechanicDivineShield"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Divine Shield"/>
-
-                <CheckBox
                     android:id="@+id/cbMechanicForgetful"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Forgetful"/>
+
+                <CheckBox
+                    android:id="@+id/cbMechanicFreeze"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Freeze"/>
 
                 <CheckBox
                     android:id="@+id/cbMechanicInspire"
@@ -1012,10 +999,22 @@
                     android:text="Inspire"/>
 
                 <CheckBox
+                    android:id="@+id/cbMechanicPoisonous"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Poisonous"/>
+
+                <CheckBox
                     android:id="@+id/cbMechanicSecret"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Secret"/>
+
+                <CheckBox
+                    android:id="@+id/cbMechanicSilence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Silence"/>
 
                 <CheckBox
                     android:id="@+id/cbMechanicStealth"
@@ -1024,11 +1023,22 @@
                     android:text="Stealth"/>
 
                 <CheckBox
+                    android:id="@+id/cbMechanicTaunt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Taunt"/>
+
+                <CheckBox
                     android:id="@+id/cbMechanicTopDeck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Top Deck"/>
 
+                <CheckBox
+                    android:id="@+id/cbMechanicWindfury"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Windfury"/>
 
             </LinearLayout>
         </LinearLayout>

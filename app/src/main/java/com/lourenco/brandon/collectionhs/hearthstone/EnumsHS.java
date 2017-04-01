@@ -550,6 +550,7 @@ public class EnumsHS {
     {
         INVALID(0),
 
+        ADAPT(99),
         ADJACENT_BUFF(1),
         AURA(2),
         BATTLECRY(3),
@@ -557,6 +558,7 @@ public class EnumsHS {
         CHOOSE_ONE(25),
         COMBO(5),
         DEATHRATTLE(6),
+        DISCOVER(26),
         DIVINE_SHIELD(7),
         ENRAGED(8),
         FORGETFUL(9),
@@ -578,7 +580,6 @@ public class EnumsHS {
 
 
         // Retired
-        DISCOVER(26),
         SPELLPOWER(18), // Now a card field
         OVERLOAD(13); // Now a card field
 

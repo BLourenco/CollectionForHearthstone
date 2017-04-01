@@ -256,6 +256,21 @@ public final class CollectionDbContract {
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 
+    public static abstract class CardClasses implements BaseColumns {
+        public static final String TABLE_NAME = "card_classes";
+        public static final String COLUMN_NAME_CARD_ID_COMPOSITE = "card_id";
+        public static final String COLUMN_NAME_PLAYER_CLASS_ID_COMPOSITE = "player_class_id";
+
+        public static final String CREATE_TABLE_SQL =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_NAME_CARD_ID_COMPOSITE + TYPE_TEXT + COMMA_SEP +
+                        COLUMN_NAME_PLAYER_CLASS_ID_COMPOSITE + TYPE_INTEGER + COMMA_SEP +
+                        CompositeKey(COLUMN_NAME_CARD_ID_COMPOSITE, COLUMN_NAME_PLAYER_CLASS_ID_COMPOSITE) +
+                        " )";
+        public static final String DELETE_TABLE_SQL =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
+    }
+
     public static abstract class CardEntourage implements BaseColumns {
         public static final String TABLE_NAME = "card_entourage";
         public static final String COLUMN_NAME_CARD_ID_COMPOSITE = "card_id";
