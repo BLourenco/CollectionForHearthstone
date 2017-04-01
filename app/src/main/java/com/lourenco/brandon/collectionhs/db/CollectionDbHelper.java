@@ -36,6 +36,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         db.execSQL(CollectionDbContract.CardLocale.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardType.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.PlayerClass.CREATE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.TriClass.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Rarity.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Race.CREATE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Faction.CREATE_TABLE_SQL);
@@ -70,6 +71,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         db.execSQL(CollectionDbContract.Faction.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Race.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.Rarity.DELETE_TABLE_SQL);
+        db.execSQL(CollectionDbContract.TriClass.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.PlayerClass.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardType.DELETE_TABLE_SQL);
         db.execSQL(CollectionDbContract.CardLocale.CREATE_TABLE_SQL);
@@ -82,6 +84,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         initTableLocale(db);
         initTableCardType(db);
         initTablePlayerClass(db);
+        initTableTriClass(db);
         initTableRarity(db);
         initTableRace(db);
         initTableFaction(db);
@@ -99,8 +102,8 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         try {
             JSONArray arrayCards = new JSONArray(reader.getStringFromJSON(R.raw.cards));
             insertCardArray(db, arrayCards);
-            JSONArray arrayUnreleasedCards = new JSONArray(reader.getStringFromJSON(R.raw.cards_unreleased)); // TODO LOW_PRIORITY: add unreleased card
-            insertCardArray(db, arrayUnreleasedCards);
+            //JSONArray arrayUnreleasedCards = new JSONArray(reader.getStringFromJSON(R.raw.cards_unreleased)); // TODO LOW_PRIORITY: add unreleased card
+            //insertCardArray(db, arrayUnreleasedCards);
 
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error getting JSON string from JSON resource.");
@@ -117,6 +120,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 Boolean collectible = card.has("collectible") ? card.getBoolean("collectible") : null;
                 String set = card.has("set") ? card.getString("set") : null;
                 String playerClass = card.has("playerClass") ? card.getString("playerClass") : "NEUTRAL";
+                String triClass = card.has("multiClassGroup") ? card.getString("multiClassGroup") : null;
                 String rarity = card.has("rarity") ? card.getString("rarity") : null;
                 JSONObject jsonNames = card.has("name") ? card.getJSONObject("name") : null;
                 JSONObject jsonText = card.has("text") ? card.getJSONObject("text") : null;
@@ -166,6 +170,15 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                         }
                     }
 
+                Integer convTriClass = null;
+                if (triClass != null)
+                    for (EnumsHS.TriClass cardTriClass : EnumsHS.TriClass.getValidTriClasses()) {
+                        if (cardTriClass.name().equals(triClass)) {
+                            convTriClass = cardTriClass.getValue();
+                            break;
+                        }
+                    }
+
                 Integer convRarity = null;
                 if (rarity != null)
                     for (EnumsHS.Rarity cardRarity : EnumsHS.Rarity.getValidRarities()) {
@@ -201,20 +214,22 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 values.put(CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE, convCollectible);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN, convSet);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN, convClass);
+                values.put(CollectionDbContract.Card.COLUMN_NAME_TRI_CLASS_ID_FOREIGN, convTriClass);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN, convRarity);
-                if (!type.equals("HERO") && !type.equals("ENCHANTMENT"))
-                    values.put(CollectionDbContract.Card.COLUMN_NAME_COST, cost);
-                else
-                    values.putNull(CollectionDbContract.Card.COLUMN_NAME_COST);
-                values.put(CollectionDbContract.Card.COLUMN_NAME_ATTACK, attack);
+                if (type != null) {
+                    if (!type.equals("HERO") && !type.equals("ENCHANTMENT"))
+                        values.put(CollectionDbContract.Card.COLUMN_NAME_COST, cost);
+                    else
+                        values.putNull(CollectionDbContract.Card.COLUMN_NAME_COST);
+                    values.put(CollectionDbContract.Card.COLUMN_NAME_ATTACK, attack);
 
-                if (type.equals("MINION") || type.equals("HERO"))
-                    values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, health);
-                else if (type.equals("WEAPON"))
-                    values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, durability);
-                else
-                    values.putNull(CollectionDbContract.Card.COLUMN_NAME_HEALTH);
-
+                    if (type.equals("MINION") || type.equals("HERO"))
+                        values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, health);
+                    else if (type.equals("WEAPON"))
+                        values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, durability);
+                    else
+                        values.putNull(CollectionDbContract.Card.COLUMN_NAME_HEALTH);
+                }
                 values.put(CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN, convRace);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_ARTIST, artist);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_FACTION_ID_FOREIGN, convFaction);
@@ -366,6 +381,20 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
 
             db.insert(
                     CollectionDbContract.PlayerClass.TABLE_NAME,
+                    null,
+                    values
+            );
+        }
+    }
+
+    private void initTableTriClass(SQLiteDatabase db) {
+        for (EnumsHS.TriClass cardTriClass : EnumsHS.TriClass.getValidTriClasses()) {
+            ContentValues values = new ContentValues();
+            values.put(CollectionDbContract.TriClass.COLUMN_NAME_TRI_CLASS_ID, cardTriClass.getValue());
+            values.put(CollectionDbContract.TriClass.COLUMN_NAME_TRI_CLASS_NAME, cardTriClass.name());
+
+            db.insert(
+                    CollectionDbContract.TriClass.TABLE_NAME,
                     null,
                     values
             );

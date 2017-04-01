@@ -84,12 +84,6 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
         Card card = classCards.get(position);
 
-        // TEST
-        //holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_grimy_goons_banner);
-        //holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_jade_lotus_banner);
-        //holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_kabal_banner);
-        // TEST
-
         // Card Art
         MaskTransformation transform = new MaskTransformation(context, ResourcesHS.getCardTypeMask(EnumsHS.CardType.getEnumByValue(card.getCardTypeId())));
         Picasso.with(context)
@@ -143,6 +137,19 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         else {
             holder.txtCost.setText("");
             holder.imgCostIcon.setImageResource(0);
+        }
+
+        if (card.getTriClassId() == EnumsHS.TriClass.GRIMY_GOONS.getValue())
+        {
+            holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_grimy_goons_banner);
+        }
+        else if (card.getTriClassId() == EnumsHS.TriClass.JADE_LOTUS.getValue())
+        {
+            holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_jade_lotus_banner);
+        }
+        else if (card.getTriClassId() == EnumsHS.TriClass.KABAL.getValue())
+        {
+            holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_kabal_banner);
         }
 
         if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.WEAPON.getValue()) {

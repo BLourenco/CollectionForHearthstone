@@ -77,6 +77,7 @@ public final class CollectionDbContract {
         public static final String COLUMN_NAME_COLLECTIBLE = "collectible";
         public static final String COLUMN_NAME_CARD_SET_ID_FOREIGN = "card_set_id";
         public static final String COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN = "player_class_id";
+        public static final String COLUMN_NAME_TRI_CLASS_ID_FOREIGN = "tri_class_id";
         public static final String COLUMN_NAME_RARITY_ID_FOREIGN = "rarity_id";
         public static final String COLUMN_NAME_COST = "cost";
         public static final String COLUMN_NAME_ATTACK = "attack";
@@ -96,10 +97,11 @@ public final class CollectionDbContract {
         public static final String CREATE_TABLE_SQL =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         COLUMN_NAME_CARD_ID +                   " TEXT PRIMARY KEY," +
-                        COLUMN_NAME_CARD_TYPE_ID_FOREIGN +      TYPE_TEXT +     NOT_NULL +  COMMA_SEP +
+                        COLUMN_NAME_CARD_TYPE_ID_FOREIGN +      TYPE_TEXT +                 COMMA_SEP +
                         COLUMN_NAME_COLLECTIBLE +               TYPE_INTEGER +              COMMA_SEP +
-                        COLUMN_NAME_CARD_SET_ID_FOREIGN +       TYPE_INTEGER +  NOT_NULL +  COMMA_SEP +
+                        COLUMN_NAME_CARD_SET_ID_FOREIGN +       TYPE_INTEGER +              COMMA_SEP +
                         COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN +   TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_TRI_CLASS_ID_FOREIGN +      TYPE_INTEGER +              COMMA_SEP +
                         COLUMN_NAME_RARITY_ID_FOREIGN +         TYPE_INTEGER +              COMMA_SEP +
                         COLUMN_NAME_COST +                      TYPE_INTEGER +              COMMA_SEP +
                         COLUMN_NAME_ATTACK +                    TYPE_INTEGER +              COMMA_SEP +
@@ -114,6 +116,7 @@ public final class CollectionDbContract {
                         ForeignKey(COLUMN_NAME_CARD_TYPE_ID_FOREIGN,    CardType.TABLE_NAME,    CardType.COLUMN_NAME_CARD_TYPE_ID) +        COMMA_SEP +
                         ForeignKey(COLUMN_NAME_CARD_SET_ID_FOREIGN,     CardSet.TABLE_NAME,     CardSet.COLUMN_NAME_CARD_SET_ID) +          COMMA_SEP +
                         ForeignKey(COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN, PlayerClass.TABLE_NAME, PlayerClass.COLUMN_NAME_PLAYER_CLASS_ID) +  COMMA_SEP +
+                        ForeignKey(COLUMN_NAME_TRI_CLASS_ID_FOREIGN,    TriClass.TABLE_NAME,    TriClass.COLUMN_NAME_TRI_CLASS_ID) +        COMMA_SEP +
                         ForeignKey(COLUMN_NAME_RARITY_ID_FOREIGN,       Rarity.TABLE_NAME,      Rarity.COLUMN_NAME_RARITY_ID) +             COMMA_SEP +
                         ForeignKey(COLUMN_NAME_RACE_ID_FOREIGN,         Race.TABLE_NAME,        Race.COLUMN_NAME_RACE_ID) +                 COMMA_SEP +
                         ForeignKey(COLUMN_NAME_FACTION_ID_FOREIGN,      Faction.TABLE_NAME,     Faction.COLUMN_NAME_FACTION_ID) +
@@ -344,6 +347,20 @@ public final class CollectionDbContract {
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         COLUMN_NAME_PLAYER_CLASS_ID + " INTEGER PRIMARY KEY," +
                         COLUMN_NAME_PLAYER_CLASS_NAME + TYPE_TEXT +
+                        " )";
+        public static final String DELETE_TABLE_SQL =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
+    }
+
+    public static abstract class TriClass implements BaseColumns {
+        public static final String TABLE_NAME = "tri_class";
+        public static final String COLUMN_NAME_TRI_CLASS_ID = "tri_class_id";
+        public static final String COLUMN_NAME_TRI_CLASS_NAME = "name";
+
+        public static final String CREATE_TABLE_SQL =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_NAME_TRI_CLASS_ID + " INTEGER PRIMARY KEY," +
+                        COLUMN_NAME_TRI_CLASS_NAME + TYPE_TEXT +
                         " )";
         public static final String DELETE_TABLE_SQL =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;

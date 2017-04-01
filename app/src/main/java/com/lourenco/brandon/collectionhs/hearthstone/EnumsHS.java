@@ -1,10 +1,7 @@
 package com.lourenco.brandon.collectionhs.hearthstone;
 
-import com.lourenco.brandon.collectionhs.db.CollectionDbContract;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Brandon on 2016-03-13.
@@ -600,7 +597,7 @@ public class EnumsHS {
         }
     }
 
-    public enum MultiClassGroup
+    public enum TriClass
     {
         INVALID(0),
         GRIMY_GOONS(1),
@@ -608,24 +605,24 @@ public class EnumsHS {
         KABAL(3);
 
         private int value;
-        MultiClassGroup (int value) {this.value = value;}
+        TriClass(int value) {this.value = value;}
         public int getValue() {return value;}
 
-        public static MultiClassGroup[] getValidMultiClassGroups() {
-            MultiClassGroup[] multiClassGroups = new MultiClassGroup[] {
+        public static TriClass[] getValidTriClasses() {
+            TriClass[] triClasses = new TriClass[] {
                     GRIMY_GOONS,
                     JADE_LOTUS,
                     KABAL
             };
 
-            return multiClassGroups;
+            return triClasses;
         }
 
         public static int getValueByName(String name)
         {
-            for (MultiClassGroup mcg : MultiClassGroup.values())
+            for (TriClass tc : TriClass.values())
             {
-                if (mcg.name().equals(name)) return mcg.value;
+                if (tc.name().equals(name)) return tc.value;
             }
             return INVALID.value;
         }

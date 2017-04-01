@@ -21,6 +21,7 @@ public class Card {
     private Boolean collectible;
     private Integer cardSetId;
     private Integer playerClassId;
+    private Integer triClassId;
     private Integer rarityId;
     private Integer cost;
     private Integer attack;
@@ -48,6 +49,7 @@ public class Card {
         health = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_HEALTH));
         raceId = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN));
         playerClassId = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN));
+        triClassId = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_TRI_CLASS_ID_FOREIGN));
     }
 
     public String getCardId() {
@@ -97,6 +99,12 @@ public class Card {
     public void setPlayerClassId(int playerClassId) {
         this.playerClassId = playerClassId;
     }
+
+    public Integer getTriClassId() {
+        return triClassId;
+    }
+
+    public void setTriClassId(int triClassId) { this.triClassId = triClassId; }
 
     public Integer getRarityId() {
         return rarityId;
