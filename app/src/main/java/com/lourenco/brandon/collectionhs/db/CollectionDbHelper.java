@@ -95,7 +95,6 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
         initTableCardSet(db);
         initTableCard(db);
         initTableMechanic(db);
-        //initTableEntourage(db); not needed
         initTablePlayRequirement(db);
     }
 
@@ -135,6 +134,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 Integer durability = card.has(CollectionJsonContract.CardJson.KEY_DURABILITY) ? card.getInt(CollectionJsonContract.CardJson.KEY_DURABILITY) : null;
                 String race = card.has(CollectionJsonContract.CardJson.KEY_RACE) ? card.getString(CollectionJsonContract.CardJson.KEY_RACE) : null;
                 JSONArray arrayMechanics = card.has(CollectionJsonContract.CardJson.KEY_MECHANICS) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_MECHANICS) : null;
+                JSONArray arrayRefTags = card.has(CollectionJsonContract.CardJson.KEY_REFERENCED_TAGS) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_REFERENCED_TAGS) : null;
                 JSONObject jsonFlavor = card.has(CollectionJsonContract.CardJson.KEY_FLAVOR) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_FLAVOR) : null;
                 JSONObject jsonHowToEarn = card.has(CollectionJsonContract.CardJson.KEY_HOW_TO_EARN) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_HOW_TO_EARN) : null;
                 JSONObject jsonHowToEarnGolden = card.has(CollectionJsonContract.CardJson.KEY_HOW_TO_EARN_GOLDEN) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_HOW_TO_EARN_GOLDEN) : null;
@@ -338,11 +338,31 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                         ContentValues mechValues = new ContentValues();
                         mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_CARD_ID_COMPOSITE, id);
                         mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_MECHANIC_ID_COMPOSITE, mechId);
+                        mechValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_IS_REF_TAG, 0);
 
                         db.insert(
                                 CollectionDbContract.CardMechanic.TABLE_NAME,
                                 null,
                                 mechValues
+                        );
+                    }
+
+                if (arrayRefTags != null)
+                    for (int rt = 0; rt < arrayRefTags.length(); rt++) {
+                        Integer refTagId = EnumsHS.Mechanic.getValueByName(arrayRefTags.getString(rt));
+
+                        if (refTagId == EnumsHS.Mechanic.INVALID.getValue() || refTagId == null)
+                            continue;
+
+                        ContentValues refTagValues = new ContentValues();
+                        refTagValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_CARD_ID_COMPOSITE, id);
+                        refTagValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_MECHANIC_ID_COMPOSITE, refTagId);
+                        refTagValues.put(CollectionDbContract.CardMechanic.COLUMN_NAME_IS_REF_TAG, 1);
+
+                        db.insert(
+                                CollectionDbContract.CardMechanic.TABLE_NAME,
+                                null,
+                                refTagValues
                         );
                     }
 

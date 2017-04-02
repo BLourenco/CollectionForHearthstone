@@ -33,7 +33,7 @@ public class CollectionJsonContract {
         public static final String KEY_DURABILITY = "durability";
 
         public static final String KEY_MECHANICS = "mechanics";
-        public static final String KEY_REF_MECHANICS = "referencedMechanics";
+        public static final String KEY_REFERENCED_TAGS = "referencedTags";
         public static final String KEY_PLAY_REQUIREMENTS = "playRequirements";
         public static final String KEY_ENTOURAGE = "entourage";
 

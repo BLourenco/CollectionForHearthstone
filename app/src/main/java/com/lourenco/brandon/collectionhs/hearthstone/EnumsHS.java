@@ -550,38 +550,40 @@ public class EnumsHS {
     {
         INVALID(0),
 
-        ADAPT(99),
-        ADJACENT_BUFF(1),
-        AURA(2),
-        BATTLECRY(3),
-        CHARGE(4),
-        CHOOSE_ONE(25),
-        COMBO(5),
-        DEATHRATTLE(6),
-        DISCOVER(26),
-        DIVINE_SHIELD(7),
-        ENRAGED(8),
-        FORGETFUL(9),
-        FREEZE(10),
-        INSPIRE(11),
-        POISONOUS(14),
-        SECRET(15),
-        SILENCE(16),
-        STEALTH(17),
-        TAUNT(20),
-        TOPDECK(21), // Flame Leviathan, Burrowing Mine...
-        WINDFURY(22),
-        ImmuneToSpellpower(23),
-        InvisibleDeathrattle(24),
+        ADAPT(1),
+        ADJACENT_BUFF(2),
+        AURA(3),
+        BATTLECRY(4),
+        CANT_BE_TARGETED_BY_SPELLS(5),
+        CANT_BE_TARGETED_BY_HERO_POWERS(6),
+        CHARGE(7),
+        CHOOSE_ONE(8),
+        COMBO(9),
+        DEATHRATTLE(10),
+        DISCOVER(11),
+        DIVINE_SHIELD(12),
+        ENRAGED(13),
+        FORGETFUL(14),
+        FREEZE(15),
+        INSPIRE(16),
+        POISONOUS(17),
+        SECRET(18),
+        SILENCE(19),
+        STEALTH(20),
+        TAUNT(21),
+        TOPDECK(22), // Flame Leviathan, Burrowing Mine...
+        WINDFURY(23),
+        ImmuneToSpellpower(24),
+        InvisibleDeathrattle(25),
 
         // Not really used
-        MORPH(12),
-        TAG_ONE_TURN_EFFECT(19), // Only on enchantments
+        MORPH(100),
+        TAG_ONE_TURN_EFFECT(101), // Only on enchantments
 
 
         // Retired
-        SPELLPOWER(18), // Now a card field
-        OVERLOAD(13); // Now a card field
+        SPELLPOWER(102), // Now a card field
+        OVERLOAD(103); // Now a card field
 
 
         private int value;

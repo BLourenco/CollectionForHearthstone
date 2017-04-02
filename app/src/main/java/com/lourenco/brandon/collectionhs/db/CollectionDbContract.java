@@ -245,11 +245,13 @@ public final class CollectionDbContract {
         public static final String TABLE_NAME = "card_mechanic";
         public static final String COLUMN_NAME_CARD_ID_COMPOSITE = "card_id";
         public static final String COLUMN_NAME_MECHANIC_ID_COMPOSITE = "mechanic_id";
+        public static final String COLUMN_NAME_IS_REF_TAG = "is_ref_tag";
 
         public static final String CREATE_TABLE_SQL =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         COLUMN_NAME_CARD_ID_COMPOSITE + TYPE_TEXT + COMMA_SEP +
                         COLUMN_NAME_MECHANIC_ID_COMPOSITE + TYPE_INTEGER + COMMA_SEP +
+                        COLUMN_NAME_IS_REF_TAG + TYPE_INTEGER + COMMA_SEP +
                         CompositeKey(COLUMN_NAME_CARD_ID_COMPOSITE, COLUMN_NAME_MECHANIC_ID_COMPOSITE) +
                         " )";
         public static final String DELETE_TABLE_SQL =

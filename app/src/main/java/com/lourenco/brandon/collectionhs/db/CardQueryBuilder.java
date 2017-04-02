@@ -68,7 +68,6 @@ public class CardQueryBuilder {
         sb.append(getFilterClause(filterRace, CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN, false));
         sb.append(getFilterClause(filterFaction, CollectionDbContract.Card.COLUMN_NAME_FACTION_ID_FOREIGN, false));
 
-        //TODO allow filtering by card mechanic
         sb.append(getFilterClauseMechanic(filterMechanic));
 
         /*
@@ -121,6 +120,7 @@ public class CardQueryBuilder {
         return sb.toString();
     }
 
+    //TODO Make referenced tags optional by checking if the COLUMN_NAME_IS_REF_TAG value is 0 or 1
     private String getFilterClauseMechanic(Integer[] filterValues)
     {
         if (filterValues == null || filterValues.length == 0) return "";
@@ -144,8 +144,8 @@ public class CardQueryBuilder {
             }
             sb.append(
                     CollectionDbContract.CardMechanic.COLUMN_NAME_MECHANIC_ID_COMPOSITE +
-                    "=" +
-                    filterValues[i]
+                            "=" +
+                            filterValues[i]
             );
         }
 
