@@ -7,33 +7,36 @@ public class CollectionJsonContract {
 
     public static abstract class CardJson {
         //private static final String RESOURCE_NAME = "cards";
-        private static final String KEY_ID = "id";
-        private static final String KEY_RARITY = "rarity";
-        private static final String KEY_FACTION = "faction";
-        private static final String KEY_SET = "set";
-        private static final String KEY_PLAYER_CLASS = "playerClass";
-        private static final String KEY_TYPE = "type";
-        private static final String KEY_RACE = "race";
+        public static final String KEY_ID = "id";
+        public static final String KEY_RARITY = "rarity";
+        public static final String KEY_FACTION = "faction";
+        public static final String KEY_SET = "set";
+        public static final String KEY_CARD_CLASS = "cardClass";
+        public static final String KEY_TRI_CLASS = "multiClassGroup";
+        public static final String KEY_CLASSES = "classes";
+        public static final String KEY_TYPE = "type";
+        public static final String KEY_RACE = "race";
 
-        private static final String KEY_NAME = "name";
-        private static final String KEY_TEXT = "text";
-        private static final String KEY_FLAVOR = "flavor";
-        private static final String KEY_HOW_TO_EARN = "howToEarn";
-        private static final String KEY_HOW_TO_EARN_GOLDEN = "howToEarnGolden";
+        public static final String KEY_NAME = "name";
+        public static final String KEY_TEXT = "text";
+        public static final String KEY_FLAVOR = "flavor";
+        public static final String KEY_HOW_TO_EARN = "howToEarn";
+        public static final String KEY_HOW_TO_EARN_GOLDEN = "howToEarnGolden";
 
-        private static final String KEY_TARGETING_ARROW_TEXT = "targetingArrowText";
-        private static final String KEY_TEXT_IN_PLAY = "textInPlay";
+        public static final String KEY_TARGETING_ARROW_TEXT = "targetingArrowText";
 
-        private static final String KEY_COLLECTIBLE = "collectible";
-        private static final String KEY_COST = "cost";
-        private static final String KEY_ATTACK = "attack";
-        private static final String KEY_HEALTH = "health";
-        private static final String KEY_DURABILITY = "durability";
-        private static final String KEY_DUST = "dust";
+        public static final String KEY_COLLECTIBLE = "collectible";
+        public static final String KEY_COST = "cost";
+        public static final String KEY_ATTACK = "attack";
+        public static final String KEY_HEALTH = "health";
+        public static final String KEY_DURABILITY = "durability";
 
-        private static final String KEY_MECHANICS = "mechanics";
-        private static final String KEY_PLAY_REQUIREMENTS = "playRequirements";
-        private static final String KEY_ENTOURAGE = "entourage";
+        public static final String KEY_MECHANICS = "mechanics";
+        public static final String KEY_REF_MECHANICS = "referencedMechanics";
+        public static final String KEY_PLAY_REQUIREMENTS = "playRequirements";
+        public static final String KEY_ENTOURAGE = "entourage";
+
+        public static final String KEY_ARTIST = "artist";
     }
 
     public static abstract class CardBacksJson {
