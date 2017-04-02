@@ -124,20 +124,21 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 String set = card.has(CollectionJsonContract.CardJson.KEY_SET) ? card.getString(CollectionJsonContract.CardJson.KEY_SET) : null;
                 String playerClass = card.has(CollectionJsonContract.CardJson.KEY_CARD_CLASS) ? card.getString(CollectionJsonContract.CardJson.KEY_CARD_CLASS) : "NEUTRAL";
                 String triClass = card.has(CollectionJsonContract.CardJson.KEY_TRI_CLASS) ? card.getString(CollectionJsonContract.CardJson.KEY_TRI_CLASS) : null;
-                JSONArray arrayClasses = card.has(CollectionJsonContract.CardJson.KEY_CLASSES) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_CLASSES) : null; // Iterate
+                JSONArray arrayClasses = card.has(CollectionJsonContract.CardJson.KEY_CLASSES) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_CLASSES) : null;
                 String rarity = card.has(CollectionJsonContract.CardJson.KEY_RARITY) ? card.getString(CollectionJsonContract.CardJson.KEY_RARITY) : null;
                 JSONObject jsonNames = card.has(CollectionJsonContract.CardJson.KEY_NAME) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_NAME) : null;
-                JSONObject jsonText = card.has(CollectionJsonContract.CardJson.KEY_TEXT) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_TEXT) : null;
+                JSONObject jsonText = card.has(CollectionJsonContract.CardJson.KEY_COLLECTION_TEXT) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_COLLECTION_TEXT) :
+                        card.has(CollectionJsonContract.CardJson.KEY_TEXT) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_TEXT) : null;
                 Integer cost = card.has(CollectionJsonContract.CardJson.KEY_COST) ? card.getInt(CollectionJsonContract.CardJson.KEY_COST) : null;
                 Integer attack = card.has(CollectionJsonContract.CardJson.KEY_ATTACK) ? card.getInt(CollectionJsonContract.CardJson.KEY_ATTACK) : null;
                 Integer health = card.has(CollectionJsonContract.CardJson.KEY_HEALTH) ? card.getInt(CollectionJsonContract.CardJson.KEY_HEALTH) : null;
                 Integer durability = card.has(CollectionJsonContract.CardJson.KEY_DURABILITY) ? card.getInt(CollectionJsonContract.CardJson.KEY_DURABILITY) : null;
                 String race = card.has(CollectionJsonContract.CardJson.KEY_RACE) ? card.getString(CollectionJsonContract.CardJson.KEY_RACE) : null;
-                JSONArray arrayMechanics = card.has(CollectionJsonContract.CardJson.KEY_MECHANICS) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_MECHANICS) : null; // Iterate
+                JSONArray arrayMechanics = card.has(CollectionJsonContract.CardJson.KEY_MECHANICS) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_MECHANICS) : null;
                 JSONObject jsonFlavor = card.has(CollectionJsonContract.CardJson.KEY_FLAVOR) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_FLAVOR) : null;
                 JSONObject jsonHowToEarn = card.has(CollectionJsonContract.CardJson.KEY_HOW_TO_EARN) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_HOW_TO_EARN) : null;
                 JSONObject jsonHowToEarnGolden = card.has(CollectionJsonContract.CardJson.KEY_HOW_TO_EARN_GOLDEN) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_HOW_TO_EARN_GOLDEN) : null;
-                JSONArray arrayEntourage = card.has(CollectionJsonContract.CardJson.KEY_ENTOURAGE) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_ENTOURAGE) : null; // Iterate
+                JSONArray arrayEntourage = card.has(CollectionJsonContract.CardJson.KEY_ENTOURAGE) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_ENTOURAGE) : null;
                 String artist = card.has(CollectionJsonContract.CardJson.KEY_ARTIST) ? card.getString(CollectionJsonContract.CardJson.KEY_ARTIST) : null;
                 String faction = card.has(CollectionJsonContract.CardJson.KEY_FACTION) ? card.getString(CollectionJsonContract.CardJson.KEY_FACTION) : null;
                 JSONObject jsonPlayReq = card.has(CollectionJsonContract.CardJson.KEY_PLAY_REQUIREMENTS) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_PLAY_REQUIREMENTS) : null;

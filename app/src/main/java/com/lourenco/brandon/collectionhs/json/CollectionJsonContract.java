@@ -19,6 +19,7 @@ public class CollectionJsonContract {
 
         public static final String KEY_NAME = "name";
         public static final String KEY_TEXT = "text";
+        public static final String KEY_COLLECTION_TEXT = "collectionText";
         public static final String KEY_FLAVOR = "flavor";
         public static final String KEY_HOW_TO_EARN = "howToEarn";
         public static final String KEY_HOW_TO_EARN_GOLDEN = "howToEarnGolden";
