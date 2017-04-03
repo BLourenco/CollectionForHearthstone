@@ -285,10 +285,6 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <!-- Attack -->
-
-        <!-- Health/Durability -->
-
         <!-- Type -->
         <TextView
             android:id="@+id/txtTitleFilterType"
@@ -475,6 +471,88 @@
 
         </LinearLayout>
 
+        <!-- Format -->
+        <TextView
+            android:id="@+id/txtTitleFilterFormat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:background="@color/button_material_light"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@string/format"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ToggleButton
+                    android:id="@+id/tglFilterFormatWildOnly"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    style="@style/CustomToggleButton.Set.Format.Wild"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Wild Only" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ToggleButton
+                    android:id="@+id/tglFilterFormatKraken"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    style="@style/CustomToggleButton.Set.Format.Kraken"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Kraken" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ToggleButton
+                    android:id="@+id/tglFilterFormatMammoth"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    style="@style/CustomToggleButton.Set.Format.Mammoth"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Mammoth" />
+            </LinearLayout>
+
+        </LinearLayout>
+
         <!-- Set -->
         <TextView
             android:id="@+id/txtTitleFilterSet"
@@ -492,294 +570,288 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+            android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="64dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:text="Core" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetBasic"
+                            style="@style/CustomToggleButton.Set.Basic" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Basic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetClassic"
+                            style="@style/CustomToggleButton.Set.Classic" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Classic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetReward"
+                            style="@style/CustomToggleButton.Set.Reward" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Reward" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetHallOfFame"
+                            style="@style/CustomToggleButton.Set.Reward" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="HoF" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="2014" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetNaxx"
+                            style="@style/CustomToggleButton.Set.Naxx" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Naxx" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetGVG"
+                            style="@style/CustomToggleButton.Set.GVG" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="GVG" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="2015" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetBRM"
+                            style="@style/CustomToggleButton.Set.BRM" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="BRM" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetTGT"
+                            style="@style/CustomToggleButton.Set.TGT" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="TGT" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetLOE"
+                            style="@style/CustomToggleButton.Set.LOE" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="LOE" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="2016" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetWOG"
+                            style="@style/CustomToggleButton.Set.WOG" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="WOG" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetONiK"
+                            style="@style/CustomToggleButton.Set.ONIK" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="ONiK" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ToggleButton
+                            android:id="@+id/tglFilterSetMSG"
+                            style="@style/CustomToggleButton.Set.MSG" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="MSG" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="2017" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <ToggleButton
-                        android:id="@+id/tglFilterSetStandard"
-                        style="@style/CustomToggleButton.Set.Format.Kraken"/>
+                        android:id="@+id/tglFilterSetJTU"
+                        style="@style/CustomToggleButton.Set.JTU" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Standard"
-                        android:textStyle="bold" />
+                        android:text="JTU" />
                 </LinearLayout>
 
-                <ImageView
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/divider_format_standard"
-                    android:background="@color/button_material_light"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp" />
-
-                <HorizontalScrollView
-                    android:id="@+id/scrollSetStandard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetBasic"
-                                style="@style/CustomToggleButton.Set.Basic" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Basic" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetClassic"
-                                style="@style/CustomToggleButton.Set.Classic" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Classic" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetBRM"
-                                style="@style/CustomToggleButton.Set.BRM" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="BRM" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetTGT"
-                                style="@style/CustomToggleButton.Set.TGT" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="TGT" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetLOE"
-                                style="@style/CustomToggleButton.Set.LOE" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="LOE" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetWOG"
-                                style="@style/CustomToggleButton.Set.WOG" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="WOG" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetONiK"
-                                style="@style/CustomToggleButton.Set.ONIK" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="ONiK" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetMSG"
-                                style="@style/CustomToggleButton.Set.MSG" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="MSG" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetJTU"
-                                style="@style/CustomToggleButton.Set.JTU" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="JTU" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </HorizontalScrollView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <LinearLayout
-                    android:layout_width="64dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:orientation="vertical">
-
-                    <ToggleButton
-                        android:id="@+id/tglFilterSetAll"
-                        style="@style/CustomToggleButton.Set.Format.Wild"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Wild Only"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/divider_format_wild"
-                    android:background="@color/button_material_light"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp" />
-
-                <HorizontalScrollView
-                    android:id="@+id/scrollSetRetired"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetReward"
-                                style="@style/CustomToggleButton.Set.Reward" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Reward" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetNaxx"
-                                style="@style/CustomToggleButton.Set.Naxx" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Naxx" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="48dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ToggleButton
-                                android:id="@+id/tglFilterSetGVG"
-                                style="@style/CustomToggleButton.Set.GVG" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="GVG" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </HorizontalScrollView>
             </LinearLayout>
 
         </LinearLayout>

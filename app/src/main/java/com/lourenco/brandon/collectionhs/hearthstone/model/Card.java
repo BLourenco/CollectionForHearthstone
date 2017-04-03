@@ -13,7 +13,7 @@ import java.util.Comparator;
 public class Card {
 
     private static final Comparator<Card> SORT_BY_COST = new CardComparator();
-    //private static final Comparator<Card> SORT_BY_NAME = new CardComparator(); //TODO: Sort by Name
+    //private static final Comparator<Card> SORT_BY_NAME = new CardComparator(); //TODO: Sort by Name (how will this work with different languages?)
 
     private String cardId;
     private String name;

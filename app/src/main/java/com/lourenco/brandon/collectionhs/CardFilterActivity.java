@@ -32,8 +32,9 @@ public class CardFilterActivity extends AppCompatActivity{
     CheckBox[] cbFilterRace;
     CheckBox[] cbFilterMechanic;
 
-    ToggleButton tglFilterPreset_AllSets;
-    ToggleButton tglFilterPreset_StandardSets;
+    ToggleButton tglFilterPreset_Format_Wild_Only;
+    ToggleButton tglFilterPreset_Format_Standard_Kraken;
+    ToggleButton tglFilterPreset_Format_Standard_Mammoth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,18 +129,19 @@ public class CardFilterActivity extends AppCompatActivity{
 
 
 
-        tglFilterPreset_AllSets = (ToggleButton)findViewById(R.id.tglFilterSetAll);
-        tglFilterPreset_StandardSets = (ToggleButton)findViewById(R.id.tglFilterSetStandard);
+        tglFilterPreset_Format_Wild_Only = (ToggleButton)findViewById(R.id.tglFilterFormatWildOnly);
+        tglFilterPreset_Format_Standard_Kraken = (ToggleButton)findViewById(R.id.tglFilterFormatKraken);
+        tglFilterPreset_Format_Standard_Mammoth = (ToggleButton)findViewById(R.id.tglFilterFormatMammoth);
 
         // Enable/Disable Preset Filters
-        tglFilterPreset_AllSets.setOnClickListener(new View.OnClickListener()
+        tglFilterPreset_Format_Wild_Only.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 boolean checked = false;
 
-                if (tglFilterPreset_AllSets.isChecked())
+                if (tglFilterPreset_Format_Wild_Only.isChecked())
                     checked = true;
 
                 tglFilterSet[0].setChecked(false);
@@ -147,26 +149,27 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[2].setChecked(checked);
                 tglFilterSet[3].setChecked(checked);
                 tglFilterSet[4].setChecked(checked);
-                tglFilterSet[5].setChecked(false);
-                tglFilterSet[6].setChecked(false);
-                tglFilterSet[7].setChecked(false);
+                tglFilterSet[5].setChecked(checked);
+                tglFilterSet[6].setChecked(checked);
+                tglFilterSet[7].setChecked(checked);
                 tglFilterSet[8].setChecked(false);
                 tglFilterSet[9].setChecked(false);
                 tglFilterSet[10].setChecked(false);
                 tglFilterSet[11].setChecked(false);
 
-                tglFilterPreset_StandardSets.setChecked(false);
+                tglFilterPreset_Format_Standard_Kraken.setChecked(false);
+                tglFilterPreset_Format_Standard_Mammoth.setChecked(false);
             }
         });
 
-        tglFilterPreset_StandardSets.setOnClickListener(new View.OnClickListener()
+        tglFilterPreset_Format_Standard_Kraken.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 boolean checked = false;
 
-                if (tglFilterPreset_StandardSets.isChecked())
+                if (tglFilterPreset_Format_Standard_Kraken.isChecked())
                     checked = true;
 
                 tglFilterSet[0].setChecked(checked);
@@ -180,9 +183,38 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[8].setChecked(checked);
                 tglFilterSet[9].setChecked(checked);
                 tglFilterSet[10].setChecked(checked);
+                tglFilterSet[11].setChecked(false);
+
+                tglFilterPreset_Format_Wild_Only.setChecked(false);
+                tglFilterPreset_Format_Standard_Mammoth.setChecked(false);
+            }
+        });
+
+        tglFilterPreset_Format_Standard_Mammoth.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                boolean checked = false;
+
+                if (tglFilterPreset_Format_Standard_Mammoth.isChecked())
+                    checked = true;
+
+                tglFilterSet[0].setChecked(checked);
+                tglFilterSet[1].setChecked(checked);
+                tglFilterSet[2].setChecked(false);
+                tglFilterSet[3].setChecked(false);
+                tglFilterSet[4].setChecked(false);
+                tglFilterSet[5].setChecked(false);
+                tglFilterSet[6].setChecked(false);
+                tglFilterSet[7].setChecked(false);
+                tglFilterSet[8].setChecked(checked);
+                tglFilterSet[9].setChecked(checked);
+                tglFilterSet[10].setChecked(checked);
                 tglFilterSet[11].setChecked(checked);
 
-                tglFilterPreset_AllSets.setChecked(false);
+                tglFilterPreset_Format_Wild_Only.setChecked(false);
+                tglFilterPreset_Format_Standard_Kraken.setChecked(false);
             }
         });
 
@@ -335,6 +367,26 @@ public class CardFilterActivity extends AppCompatActivity{
 
     private void calculatePresetToggleState()
     {
+        if (!tglFilterSet[0].isChecked() &&
+                !tglFilterSet[1].isChecked() &&
+                tglFilterSet[2].isChecked() &&
+                tglFilterSet[3].isChecked() &&
+                tglFilterSet[4].isChecked() &&
+                tglFilterSet[5].isChecked() &&
+                tglFilterSet[6].isChecked() &&
+                tglFilterSet[7].isChecked() &&
+                !tglFilterSet[8].isChecked() &&
+                !tglFilterSet[9].isChecked() &&
+                !tglFilterSet[10].isChecked() &&
+                !tglFilterSet[11].isChecked())
+        {
+            tglFilterPreset_Format_Wild_Only.setChecked(true);
+        }
+        else
+        {
+            tglFilterPreset_Format_Wild_Only.setChecked(false);
+        }
+
         if (tglFilterSet[0].isChecked() &&
                 tglFilterSet[1].isChecked() &&
                 !tglFilterSet[2].isChecked() &&
@@ -346,33 +398,33 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[8].isChecked() &&
                 tglFilterSet[9].isChecked() &&
                 tglFilterSet[10].isChecked() &&
-                tglFilterSet[11].isChecked())
+                !tglFilterSet[11].isChecked())
         {
-            tglFilterPreset_StandardSets.setChecked(true);
+            tglFilterPreset_Format_Standard_Kraken.setChecked(true);
         }
         else
         {
-            tglFilterPreset_StandardSets.setChecked(false);
+            tglFilterPreset_Format_Standard_Kraken.setChecked(false);
         }
 
-        if (!tglFilterSet[0].isChecked() &&
-                !tglFilterSet[1].isChecked() &&
-                tglFilterSet[2].isChecked() &&
-                tglFilterSet[3].isChecked() &&
-                tglFilterSet[4].isChecked() &&
+        if (tglFilterSet[0].isChecked() &&
+                tglFilterSet[1].isChecked() &&
+                !tglFilterSet[2].isChecked() &&
+                !tglFilterSet[3].isChecked() &&
+                !tglFilterSet[4].isChecked() &&
                 !tglFilterSet[5].isChecked() &&
                 !tglFilterSet[6].isChecked() &&
                 !tglFilterSet[7].isChecked() &&
-                !tglFilterSet[8].isChecked() &&
-                !tglFilterSet[9].isChecked() &&
-                !tglFilterSet[10].isChecked() &&
-                !tglFilterSet[11].isChecked())
+                tglFilterSet[8].isChecked() &&
+                tglFilterSet[9].isChecked() &&
+                tglFilterSet[10].isChecked() &&
+                tglFilterSet[11].isChecked())
         {
-            tglFilterPreset_AllSets.setChecked(true);
+            tglFilterPreset_Format_Standard_Mammoth.setChecked(true);
         }
         else
         {
-            tglFilterPreset_AllSets.setChecked(false);
+            tglFilterPreset_Format_Standard_Mammoth.setChecked(false);
         }
     }
 

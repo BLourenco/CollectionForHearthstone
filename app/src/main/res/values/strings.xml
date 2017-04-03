@@ -34,6 +34,8 @@
     <string name="stat_race">Minion Type</string>
     <string name="stat_mechanic">Mechanic</string>
 
+    <string name="format">Format</string>
+
     <string-array name="languages">
         <item>English</item>            <!-- English -->
         <item>Français</item>           <!-- French -->

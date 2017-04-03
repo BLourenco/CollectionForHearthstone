@@ -171,6 +171,10 @@
         <item name="android:background">@drawable/icon_format_standard_kraken_toggle</item>
     </style>
 
+    <style name="CustomToggleButton.Set.Format.Mammoth">
+        <item name="android:background">@drawable/icon_format_standard_mammoth_toggle</item>
+    </style>
+
     <style name="CustomToggleButton.Set.Format.Wild">
         <item name="android:background">@drawable/icon_format_wild_toggle</item>
     </style>
