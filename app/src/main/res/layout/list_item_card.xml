@@ -28,7 +28,12 @@
             android:scaleType="centerCrop"
             android:src="@drawable/frame_minion_legendary"/>
 
-        <!-- Legendary Spell Frame Here -->
+        <ImageView
+            android:id="@+id/imgCardViewFrameDragonSpell"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/frame_spell_legendary"/>
 
         <FrameLayout
             android:layout_width="22dp"

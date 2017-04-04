@@ -29,6 +29,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         // each data item is just a string in this case
         public ImageView imgCardArt;
         public ImageView imgCardFrameLegendary;
+        public ImageView imgCardFrameLegendarySpell;
         public ImageView imgSetIcon;
         public TextView txtName;
         public ImageView imgRaceIcon;
@@ -45,6 +46,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             super(v);
             this.imgCardArt = (ImageView) v.findViewById(R.id.imgCardViewArt);
             this.imgCardFrameLegendary = (ImageView) v.findViewById(R.id.imgCardViewFrameDragon);
+            this.imgCardFrameLegendarySpell = (ImageView) v.findViewById(R.id.imgCardViewFrameDragonSpell);
             this.imgSetIcon = (ImageView) v.findViewById(R.id.imgCardViewSetIcon);
             this.txtName = (TextView)v.findViewById(R.id.txtCardViewName);
             this.imgRaceIcon = (ImageView) v.findViewById(R.id.imgCardViewRaceIcon);
@@ -109,14 +111,23 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
                         EnumsHS.Rarity.getEnumByValue(card.getRarityId())));
 
         // Legendary Dragon Frame
-        if (EnumsHS.Rarity.getEnumByValue(card.getRarityId()) == EnumsHS.Rarity.LEGENDARY &&
-                EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.MINION)
+        if (EnumsHS.Rarity.getEnumByValue(card.getRarityId()) == EnumsHS.Rarity.LEGENDARY)
         {
-            holder.imgCardFrameLegendary.setVisibility(View.VISIBLE);
+            if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.MINION)
+            {
+                holder.imgCardFrameLegendary.setVisibility(View.VISIBLE);
+                holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
+            }
+            else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.SPELL)
+            {
+                holder.imgCardFrameLegendary.setVisibility(View.GONE);
+                holder.imgCardFrameLegendarySpell.setVisibility(View.VISIBLE);
+            }
         }
         else
         {
             holder.imgCardFrameLegendary.setVisibility(View.GONE);
+            holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
         }
 
         // Card Text
@@ -201,3 +212,4 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
 
 }
+
