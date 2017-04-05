@@ -162,6 +162,10 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         {
             holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_kabal_banner);
         }
+        else
+        {
+            holder.imgTriClassBannerIcon.setImageResource(0);
+        }
 
         if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.WEAPON.getValue()) {
             holder.txtAttack.setText(String.format("%d", card.getAttack()));

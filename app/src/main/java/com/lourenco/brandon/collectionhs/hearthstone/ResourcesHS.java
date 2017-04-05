@@ -212,7 +212,7 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setKARA);
             case GANGS:
                 return ContextCompat.getColor(context, R.color.setMSG);
-            case JTU:
+            case UNGORO:
                 return ContextCompat.getColor(context, R.color.setJTU);
             default:
                 return Color.BLACK;
@@ -247,7 +247,7 @@ public class ResourcesHS {
                 return R.drawable.icon_set_onik_color;
             case GANGS:
                 return R.drawable.icon_set_msg_color;
-            case JTU:
+            case UNGORO:
                 return R.drawable.icon_set_jtu_color;
             default:
                 return R.drawable.placeholder_missing;
