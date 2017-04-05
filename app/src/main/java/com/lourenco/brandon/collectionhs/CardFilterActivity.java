@@ -102,7 +102,7 @@ public class CardFilterActivity extends AppCompatActivity{
         tglFilterSet = new ToggleButton[] {
                 (ToggleButton)findViewById(R.id.tglFilterSetBasic),
                 (ToggleButton)findViewById(R.id.tglFilterSetClassic),
-                (ToggleButton)findViewById(R.id.tglFilterSetReward),
+                (ToggleButton)findViewById(R.id.tglFilterSetHOF),
                 (ToggleButton)findViewById(R.id.tglFilterSetNaxx),
                 (ToggleButton)findViewById(R.id.tglFilterSetGVG),
                 (ToggleButton)findViewById(R.id.tglFilterSetBRM),
@@ -304,7 +304,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 {
                     if (i == EnumsHS.CardSet.CORE.getValue()) tglFilterSet[0].setChecked(true);
                     else if (i == EnumsHS.CardSet.EXPERT1.getValue()) tglFilterSet[1].setChecked(true);
-                    else if (i == EnumsHS.CardSet.REWARD.getValue()) tglFilterSet[2].setChecked(true);
+                    else if (i == EnumsHS.CardSet.HOF.getValue()) tglFilterSet[2].setChecked(true);
                     else if (i == EnumsHS.CardSet.NAXX.getValue()) tglFilterSet[3].setChecked(true);
                     else if (i == EnumsHS.CardSet.GVG.getValue()) tglFilterSet[4].setChecked(true);
                     else if (i == EnumsHS.CardSet.BRM.getValue()) tglFilterSet[5].setChecked(true);
@@ -531,11 +531,7 @@ public class CardFilterActivity extends AppCompatActivity{
         ArrayList<Integer> setFilters = new ArrayList<>();
         if (tglFilterSet[0].isChecked()) setFilters.add(EnumsHS.CardSet.CORE.getValue());
         if (tglFilterSet[1].isChecked()) setFilters.add(EnumsHS.CardSet.EXPERT1.getValue());
-        if (tglFilterSet[2].isChecked())
-        {
-            setFilters.add(EnumsHS.CardSet.REWARD.getValue());
-            setFilters.add(EnumsHS.CardSet.PROMO.getValue());
-        }
+        if (tglFilterSet[2].isChecked()) setFilters.add(EnumsHS.CardSet.HOF.getValue());
         if (tglFilterSet[3].isChecked()) setFilters.add(EnumsHS.CardSet.NAXX.getValue());
         if (tglFilterSet[4].isChecked()) setFilters.add(EnumsHS.CardSet.GVG.getValue());
         if (tglFilterSet[5].isChecked()) setFilters.add(EnumsHS.CardSet.BRM.getValue());

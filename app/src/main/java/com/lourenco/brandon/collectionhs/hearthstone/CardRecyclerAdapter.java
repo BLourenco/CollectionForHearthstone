@@ -140,6 +140,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.txtText.setVisibility(View.GONE);
         }
 
+        //Mana
         if (card.getCost() != null)
         {
             holder.txtCost.setText(String.format("%d", card.getCost()));
@@ -150,6 +151,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.imgCostIcon.setImageResource(0);
         }
 
+        // TriClass Banner
         if (card.getTriClassId() == EnumsHS.TriClass.GRIMY_GOONS.getValue())
         {
             holder.imgTriClassBannerIcon.setImageResource(R.drawable.icon_triclass_grimy_goons_banner);
@@ -167,6 +169,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.imgTriClassBannerIcon.setImageResource(0);
         }
 
+        //Attack
         if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.WEAPON.getValue()) {
             holder.txtAttack.setText(String.format("%d", card.getAttack()));
             //holder.imgAttackIcon.setImageResource(R.drawable.icon_attack);
@@ -180,6 +183,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             holder.imgAttackIcon.setImageResource(0);
         }
 
+        //Health/Durability
         if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.HERO.getValue()) {
             holder.txtHealth.setText(String.format("%d", card.getHealth()));
             holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_minion);

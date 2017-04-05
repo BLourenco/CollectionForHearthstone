@@ -124,8 +124,8 @@
         <item name="android:background">@drawable/icon_set_classic_toggle</item>
     </style>
 
-    <style name="CustomToggleButton.Set.Reward">
-        <item name="android:background">@drawable/icon_set_reward_toggle</item>
+    <style name="CustomToggleButton.Set.HallOfFame">
+        <item name="android:background">@drawable/icon_set_hof_toggle</item>
     </style>
 
     <style name="CustomToggleButton.Set.Naxx">

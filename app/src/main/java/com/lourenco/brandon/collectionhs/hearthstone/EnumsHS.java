@@ -76,8 +76,7 @@ public class EnumsHS {
 
         CORE(2, false, CardSetType.CORE, 2014),
         EXPERT1(3, true, CardSetType.CORE, 2014),
-        REWARD(4, true, CardSetType.GIFT, 2014),
-        PROMO(11, true, CardSetType.GIFT, 2014),
+        HOF(4, true, CardSetType.CORE, 2017),
         NAXX(12, true, CardSetType.ADVENTURE, 2014),
         GVG(13, true, CardSetType.EXPANSION, 2014),
         BRM(14, true, CardSetType.ADVENTURE, 2015),
@@ -91,6 +90,9 @@ public class EnumsHS {
         HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
 
         TB(18, false, CardSetType.GAME, 2015),
+
+        REWARD(99, true, CardSetType.GIFT, 2014),
+        PROMO(99, true, CardSetType.GIFT, 2014),
 
         TEST_TEMPORARY(1, false, CardSetType.GAME, 0),
         MISSIONS(5, false, CardSetType.GAME, 0),
@@ -151,7 +153,9 @@ public class EnumsHS {
 
             for (CardSet set : CardSet.values())
             {
-                if (set.getSetType() != CardSetType.GAME)
+                if (set.getSetType() == CardSetType.CORE ||
+                        set.getSetType() == CardSetType.ADVENTURE ||
+                        set.getSetType() == CardSetType.EXPANSION)
                     sets.add(set);
             }
 
@@ -349,6 +353,7 @@ public class EnumsHS {
         TOTEM(21),
         PIRATE(23),
         DRAGON(24),
+        ELEMENTAL(18),
 
         // Currently unused
         BLOODELF(1),
@@ -365,7 +370,6 @@ public class EnumsHS {
         WORGEN(12),
         GOBLIN2(13),
         SCOURGE(16),
-        ELEMENTAL(18),
         OGRE(19),
         NERUBIAN(22),
 
@@ -386,7 +390,8 @@ public class EnumsHS {
                     BEAST,
                     TOTEM,
                     PIRATE,
-                    DRAGON
+                    DRAGON,
+                    ELEMENTAL
             };
 
             return race;

@@ -194,6 +194,8 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setReward);
             case REWARD:
                 return ContextCompat.getColor(context, R.color.setReward);
+            case HOF:
+                return ContextCompat.getColor(context, R.color.setHallOfFame);
             case HERO_SKINS:
                 return ContextCompat.getColor(context, R.color.setHeroSkins);
             case NAXX:
@@ -229,6 +231,8 @@ public class ResourcesHS {
                 return R.drawable.icon_set_promo;
             case REWARD:
                 return R.drawable.icon_set_reward_color;
+            case HOF:
+                return R.drawable.icon_set_hof_color;
             case HERO_SKINS:
                 return R.drawable.icon_set_hero_skins;
             case NAXX:
@@ -402,6 +406,8 @@ public class ResourcesHS {
                 return context.getResources().getStringArray(R.array.races)[5];
             case DRAGON:
                 return context.getResources().getStringArray(R.array.races)[6];
+            case ELEMENTAL:
+                return context.getResources().getStringArray(R.array.races)[7];
             default:
                 return null;
         }

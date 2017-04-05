@@ -623,32 +623,15 @@
                         android:orientation="vertical">
 
                         <ToggleButton
-                            android:id="@+id/tglFilterSetReward"
-                            style="@style/CustomToggleButton.Set.Reward" />
+                            android:id="@+id/tglFilterSetHOF"
+                            style="@style/CustomToggleButton.Set.HallOfFame" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Reward" />
+                            android:text="HOF" />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ToggleButton
-                            android:id="@+id/tglFilterSetHallOfFame"
-                            style="@style/CustomToggleButton.Set.Reward" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="HoF" />
-                    </LinearLayout>
-
                 </LinearLayout>
 
             <LinearLayout
