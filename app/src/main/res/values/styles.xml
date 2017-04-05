@@ -38,7 +38,7 @@
 
     <style name="StatText">
         <item name="android:textColor">#ffffffff</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:shadowColor">#000000</item>
         <item name="android:shadowDx">1</item>
@@ -48,7 +48,7 @@
 
     <style name="RaceText" parent="StatText">
         <item name="android:paddingBottom">2dp</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textStyle">normal</item>
     </style>
 
@@ -177,37 +177,6 @@
 
     <style name="CustomToggleButton.Set.Format.Wild">
         <item name="android:background">@drawable/icon_format_wild_toggle</item>
-    </style>
-
-    <style name="CustomToggleButton.Race">
-    </style>
-
-    <style name="CustomToggleButton.Race.Murloc">
-        <item name="android:background">@drawable/icon_race_murloc_toggle</item>
-    </style>
-
-    <style name="CustomToggleButton.Race.Demon">
-        <item name="android:background">@drawable/icon_race_demon_toggle</item>
-    </style>
-
-    <style name="CustomToggleButton.Race.Mech">
-        <item name="android:background">@drawable/icon_race_mech_toggle</item>
-    </style>
-
-    <style name="CustomToggleButton.Race.Beast">
-        <item name="android:background">@drawable/icon_race_beast_toggle</item>
-    </style>
-
-    <style name="CustomToggleButton.Race.Totem">
-        <item name="android:background">@drawable/icon_race_totem_toggle</item>
-    </style>
-
-    <style name="CustomToggleButton.Race.Pirate">
-        <item name="android:background">@drawable/icon_race_pirate_toggle</item>
-    </style>
-
-    <style name="CustomToggleButton.Race.Dragon">
-        <item name="android:background">@drawable/icon_race_dragon_toggle</item>
     </style>
 
 
