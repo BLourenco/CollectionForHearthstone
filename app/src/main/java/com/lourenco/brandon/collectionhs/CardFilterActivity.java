@@ -41,8 +41,10 @@ public class CardFilterActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_filter);
 
-        if (getSupportActionBar() != null)
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Filter");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Displays the back button on the action bar
+        }
 
         tglFilterManaCost = new ToggleButton[] {
                 (ToggleButton)findViewById(R.id.tglFilterMana0),
@@ -444,9 +446,11 @@ public class CardFilterActivity extends AppCompatActivity{
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        switch(id) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
             case R.id.menu_card_filter_apply:
                 filter.mana = getSelectedManaFilters();
                 filter.attack = getSelectedAttackFilters();
@@ -463,9 +467,9 @@ public class CardFilterActivity extends AppCompatActivity{
 
                 finish();
                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /*

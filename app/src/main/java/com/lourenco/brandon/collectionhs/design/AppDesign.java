@@ -100,10 +100,12 @@ public class AppDesign {
     public static void changeMenuItemColor(MenuItem item, int color)
     {
         Drawable drawable = item.getIcon();
-        drawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTint(drawable, color);
+        if (drawable != null) {
+            drawable = DrawableCompat.wrap(drawable);
+            DrawableCompat.setTint(drawable, color);
 
-        DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+            DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+        }
     }
 
     /**
