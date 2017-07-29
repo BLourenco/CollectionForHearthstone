@@ -114,6 +114,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 (ToggleButton)findViewById(R.id.tglFilterSetONiK),
                 (ToggleButton)findViewById(R.id.tglFilterSetMSG),
                 (ToggleButton)findViewById(R.id.tglFilterSetJTU),
+                (ToggleButton)findViewById(R.id.tglFilterSetKFT),
         };
 
         // Add listeners to Set ToggleButtons
@@ -158,6 +159,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[9].setChecked(false);
                 tglFilterSet[10].setChecked(false);
                 tglFilterSet[11].setChecked(false);
+                tglFilterSet[12].setChecked(false);
 
                 tglFilterPreset_Format_Standard_Kraken.setChecked(false);
                 tglFilterPreset_Format_Standard_Mammoth.setChecked(false);
@@ -186,6 +188,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[9].setChecked(checked);
                 tglFilterSet[10].setChecked(checked);
                 tglFilterSet[11].setChecked(false);
+                tglFilterSet[12].setChecked(false);
 
                 tglFilterPreset_Format_Wild_Only.setChecked(false);
                 tglFilterPreset_Format_Standard_Mammoth.setChecked(false);
@@ -214,6 +217,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[9].setChecked(checked);
                 tglFilterSet[10].setChecked(checked);
                 tglFilterSet[11].setChecked(checked);
+                tglFilterSet[12].setChecked(checked);
 
                 tglFilterPreset_Format_Wild_Only.setChecked(false);
                 tglFilterPreset_Format_Standard_Kraken.setChecked(false);
@@ -316,6 +320,7 @@ public class CardFilterActivity extends AppCompatActivity{
                     else if (i == EnumsHS.CardSet.KARA.getValue()) tglFilterSet[9].setChecked(true);
                     else if (i == EnumsHS.CardSet.GANGS.getValue()) tglFilterSet[10].setChecked(true);
                     else if (i == EnumsHS.CardSet.UNGORO.getValue()) tglFilterSet[11].setChecked(true);
+                    else if (i == EnumsHS.CardSet.KFT.getValue()) tglFilterSet[13].setChecked(true);
                 }
                 calculatePresetToggleState();
             }
@@ -380,7 +385,8 @@ public class CardFilterActivity extends AppCompatActivity{
                 !tglFilterSet[8].isChecked() &&
                 !tglFilterSet[9].isChecked() &&
                 !tglFilterSet[10].isChecked() &&
-                !tglFilterSet[11].isChecked())
+                !tglFilterSet[11].isChecked() &&
+                !tglFilterSet[12].isChecked())
         {
             tglFilterPreset_Format_Wild_Only.setChecked(true);
         }
@@ -400,7 +406,8 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[8].isChecked() &&
                 tglFilterSet[9].isChecked() &&
                 tglFilterSet[10].isChecked() &&
-                !tglFilterSet[11].isChecked())
+                !tglFilterSet[11].isChecked() &&
+                !tglFilterSet[12].isChecked())
         {
             tglFilterPreset_Format_Standard_Kraken.setChecked(true);
         }
@@ -420,7 +427,8 @@ public class CardFilterActivity extends AppCompatActivity{
                 tglFilterSet[8].isChecked() &&
                 tglFilterSet[9].isChecked() &&
                 tglFilterSet[10].isChecked() &&
-                tglFilterSet[11].isChecked())
+                tglFilterSet[11].isChecked() &&
+                tglFilterSet[12].isChecked())
         {
             tglFilterPreset_Format_Standard_Mammoth.setChecked(true);
         }
@@ -545,6 +553,7 @@ public class CardFilterActivity extends AppCompatActivity{
         if (tglFilterSet[9].isChecked()) setFilters.add(EnumsHS.CardSet.KARA.getValue());
         if (tglFilterSet[10].isChecked()) setFilters.add(EnumsHS.CardSet.GANGS.getValue());
         if (tglFilterSet[11].isChecked()) setFilters.add(EnumsHS.CardSet.UNGORO.getValue());
+        if (tglFilterSet[12].isChecked()) setFilters.add(EnumsHS.CardSet.KFT.getValue());
 
         return setFilters;
     }

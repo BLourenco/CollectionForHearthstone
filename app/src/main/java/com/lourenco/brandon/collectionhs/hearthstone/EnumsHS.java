@@ -86,6 +86,7 @@ public class EnumsHS {
         KARA(22, true, CardSetType.ADVENTURE, 2016),
         GANGS(23, true, CardSetType.EXPANSION, 2016),
         UNGORO(24, true, CardSetType.EXPANSION, 2017),
+        KFT(25, true, CardSetType.EXPANSION, 2017),
 
         HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
 

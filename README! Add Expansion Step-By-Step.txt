@@ -4,7 +4,7 @@
 4. Copy/paste from other set toggle, replace icons with the 2 above.
 5. In the values\styles.xml file, add a new copy a new <style> element for the new set, using the toggle resource created above.
 6. In activity_card_filter.xml, copy a new <LinearLayout> element to create a new button, giving it a new id, a reference to the created toggle style, and setting the text to the set acronym.
-7. In EnumsHS.java, add the new set in the CardSet enum.
+7. In EnumsHS.java, add the new set in the CardSet enum, increasing the ID#.
 8. In CardFilterActivity.java, complete the following:
 	a. Add a new toggle button reference in the Set ToggleButton array.
 	b. Set if the new button should be enabled/disabled when Standard/Wild Only buttons are 		   pressed.

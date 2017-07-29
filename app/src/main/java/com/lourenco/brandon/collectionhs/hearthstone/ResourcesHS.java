@@ -216,6 +216,8 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setMSG);
             case UNGORO:
                 return ContextCompat.getColor(context, R.color.setJTU);
+            case KFT:
+                return ContextCompat.getColor(context, R.color.setKFT);
             default:
                 return Color.BLACK;
         }
@@ -253,6 +255,8 @@ public class ResourcesHS {
                 return R.drawable.icon_set_msg_color;
             case UNGORO:
                 return R.drawable.icon_set_jtu_color;
+            case KFT:
+                return R.drawable.icon_set_kft_color;
             default:
                 return R.drawable.placeholder_missing;
         }
