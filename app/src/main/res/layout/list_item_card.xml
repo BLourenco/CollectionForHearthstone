@@ -59,6 +59,27 @@
                 android:gravity="center"
                 style="@style/StatText" />
 
+            <TextView
+                android:id="@+id/txtCardViewCost2"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:gravity="center"
+                style="@style/StatText2" />
+
+            <TextView
+                android:id="@+id/txtCardViewCost3"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:gravity="center"
+                style="@style/StatText3" />
+
+            <TextView
+                android:id="@+id/txtCardViewCost4"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:gravity="center"
+                style="@style/StatText4" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -100,6 +121,27 @@
                 android:gravity="center"
                 style="@style/StatText" />
 
+            <TextView
+                android:id="@+id/txtCardViewAttack2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/StatText2" />
+
+            <TextView
+                android:id="@+id/txtCardViewAttack3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/StatText3" />
+
+            <TextView
+                android:id="@+id/txtCardViewAttack4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/StatText4" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -119,6 +161,27 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 style="@style/StatText" />
+
+            <TextView
+                android:id="@+id/txtCardViewHealth2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/StatText2" />
+
+            <TextView
+                android:id="@+id/txtCardViewHealth3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/StatText3" />
+
+            <TextView
+                android:id="@+id/txtCardViewHealth4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/StatText4" />
 
         </FrameLayout>
 

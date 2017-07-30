@@ -38,10 +38,19 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         public ImageView imgCostIcon;
         public ImageView imgTriClassBannerIcon;
         public TextView txtCost;
+        public TextView txtCost2;
+        public TextView txtCost3;
+        public TextView txtCost4;
         public ImageView imgAttackIcon;
         public TextView txtAttack;
+        public TextView txtAttack2;
+        public TextView txtAttack3;
+        public TextView txtAttack4;
         public ImageView imgHealthIcon;
         public TextView txtHealth;
+        public TextView txtHealth2;
+        public TextView txtHealth3;
+        public TextView txtHealth4;
         public ViewHolder(View v) {
             super(v);
             this.imgCardArt = (ImageView) v.findViewById(R.id.imgCardViewArt);
@@ -55,10 +64,19 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             this.imgCostIcon = (ImageView) v.findViewById(R.id.imgCardViewCostIcon);
             this.imgTriClassBannerIcon = (ImageView) v.findViewById(R.id.imgCardViewTriClassBanner);
             this.txtCost = (TextView)v.findViewById(R.id.txtCardViewCost);
+            this.txtCost2 = (TextView)v.findViewById(R.id.txtCardViewCost2);
+            this.txtCost3 = (TextView)v.findViewById(R.id.txtCardViewCost3);
+            this.txtCost4 = (TextView)v.findViewById(R.id.txtCardViewCost4);
             this.imgAttackIcon = (ImageView) v.findViewById(R.id.imgCardViewAttackIcon);
             this.txtAttack = (TextView)v.findViewById(R.id.txtCardViewAttack);
+            this.txtAttack2 = (TextView)v.findViewById(R.id.txtCardViewAttack2);
+            this.txtAttack3 = (TextView)v.findViewById(R.id.txtCardViewAttack3);
+            this.txtAttack4 = (TextView)v.findViewById(R.id.txtCardViewAttack4);
             this.imgHealthIcon = (ImageView) v.findViewById(R.id.imgCardViewHealthIcon);
             this.txtHealth = (TextView)v.findViewById(R.id.txtCardViewHealth);
+            this.txtHealth2 = (TextView)v.findViewById(R.id.txtCardViewHealth2);
+            this.txtHealth3 = (TextView)v.findViewById(R.id.txtCardViewHealth3);
+            this.txtHealth4 = (TextView)v.findViewById(R.id.txtCardViewHealth4);
         }
     }
 
@@ -144,10 +162,16 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         if (card.getCost() != null)
         {
             holder.txtCost.setText(String.format("%d", card.getCost()));
+            holder.txtCost2.setText(String.format("%d", card.getCost()));
+            holder.txtCost3.setText(String.format("%d", card.getCost()));
+            holder.txtCost4.setText(String.format("%d", card.getCost()));
             holder.imgCostIcon.setImageResource(R.drawable.icon_stat_mana);
         }
         else {
             holder.txtCost.setText("");
+            holder.txtCost2.setText("");
+            holder.txtCost3.setText("");
+            holder.txtCost4.setText("");
             holder.imgCostIcon.setImageResource(0);
         }
 
@@ -172,7 +196,9 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         //Attack
         if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.WEAPON.getValue()) {
             holder.txtAttack.setText(String.format("%d", card.getAttack()));
-            //holder.imgAttackIcon.setImageResource(R.drawable.icon_attack);
+            holder.txtAttack2.setText(String.format("%d", card.getAttack()));
+            holder.txtAttack3.setText(String.format("%d", card.getAttack()));
+            holder.txtAttack4.setText(String.format("%d", card.getAttack()));
             if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue())
                 holder.imgAttackIcon.setImageResource(R.drawable.icon_stat_attack_minion);
             else
@@ -180,20 +206,32 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
         else {
             holder.txtAttack.setText("");
+            holder.txtAttack2.setText("");
+            holder.txtAttack3.setText("");
+            holder.txtAttack4.setText("");
             holder.imgAttackIcon.setImageResource(0);
         }
 
         //Health/Durability
         if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.HERO.getValue()) {
             holder.txtHealth.setText(String.format("%d", card.getHealth()));
+            holder.txtHealth2.setText(String.format("%d", card.getHealth()));
+            holder.txtHealth3.setText(String.format("%d", card.getHealth()));
+            holder.txtHealth4.setText(String.format("%d", card.getHealth()));
             holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_minion);
         }
         else if (card.getCardTypeId() == EnumsHS.CardType.WEAPON.getValue()) {
             holder.txtHealth.setText(String.format("%d", card.getHealth()));
+            holder.txtHealth2.setText(String.format("%d", card.getHealth()));
+            holder.txtHealth3.setText(String.format("%d", card.getHealth()));
+            holder.txtHealth4.setText(String.format("%d", card.getHealth()));
             holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_weapon);
         }
         else {
             holder.txtHealth.setText("");
+            holder.txtHealth2.setText("");
+            holder.txtHealth3.setText("");
+            holder.txtHealth4.setText("");
             holder.imgHealthIcon.setImageResource(0);
         }
 
