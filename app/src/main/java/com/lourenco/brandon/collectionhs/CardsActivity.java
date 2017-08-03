@@ -132,7 +132,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onClick(View view) {
                 //TODO Properly implement filter
-                testStartFilterActivity();
+                startFilterActivity();
             }
         });
 
@@ -226,7 +226,7 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    private void testStartFilterActivity()
+    private void startFilterActivity()
     {
         Intent intent = new Intent(this, CardFilterActivity.class);
         intent.putExtra("filter", filter);

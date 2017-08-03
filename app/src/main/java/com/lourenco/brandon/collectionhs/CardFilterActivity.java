@@ -320,7 +320,7 @@ public class CardFilterActivity extends AppCompatActivity{
                     else if (i == EnumsHS.CardSet.KARA.getValue()) tglFilterSet[9].setChecked(true);
                     else if (i == EnumsHS.CardSet.GANGS.getValue()) tglFilterSet[10].setChecked(true);
                     else if (i == EnumsHS.CardSet.UNGORO.getValue()) tglFilterSet[11].setChecked(true);
-                    else if (i == EnumsHS.CardSet.KFT.getValue()) tglFilterSet[13].setChecked(true);
+                    else if (i == EnumsHS.CardSet.KFT.getValue()) tglFilterSet[12].setChecked(true);
                 }
                 calculatePresetToggleState();
             }
