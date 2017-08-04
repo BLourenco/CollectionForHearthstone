@@ -308,19 +308,19 @@ public class CardFilterActivity extends AppCompatActivity{
             {
                 for (Integer i : filter.set)
                 {
-                    if (i == EnumsHS.CardSet.CORE.getValue()) tglFilterSet[0].setChecked(true);
-                    else if (i == EnumsHS.CardSet.EXPERT1.getValue()) tglFilterSet[1].setChecked(true);
-                    else if (i == EnumsHS.CardSet.HOF.getValue()) tglFilterSet[2].setChecked(true);
-                    else if (i == EnumsHS.CardSet.NAXX.getValue()) tglFilterSet[3].setChecked(true);
-                    else if (i == EnumsHS.CardSet.GVG.getValue()) tglFilterSet[4].setChecked(true);
-                    else if (i == EnumsHS.CardSet.BRM.getValue()) tglFilterSet[5].setChecked(true);
-                    else if (i == EnumsHS.CardSet.TGT.getValue()) tglFilterSet[6].setChecked(true);
-                    else if (i == EnumsHS.CardSet.LOE.getValue()) tglFilterSet[7].setChecked(true);
-                    else if (i == EnumsHS.CardSet.OG.getValue()) tglFilterSet[8].setChecked(true);
-                    else if (i == EnumsHS.CardSet.KARA.getValue()) tglFilterSet[9].setChecked(true);
-                    else if (i == EnumsHS.CardSet.GANGS.getValue()) tglFilterSet[10].setChecked(true);
-                    else if (i == EnumsHS.CardSet.UNGORO.getValue()) tglFilterSet[11].setChecked(true);
-                    else if (i == EnumsHS.CardSet.KFT.getValue()) tglFilterSet[12].setChecked(true);
+                    if (i == EnumsHS.CardSet.CORE.getId()) tglFilterSet[0].setChecked(true);
+                    else if (i == EnumsHS.CardSet.EXPERT1.getId()) tglFilterSet[1].setChecked(true);
+                    else if (i == EnumsHS.CardSet.HOF.getId()) tglFilterSet[2].setChecked(true);
+                    else if (i == EnumsHS.CardSet.NAXX.getId()) tglFilterSet[3].setChecked(true);
+                    else if (i == EnumsHS.CardSet.GVG.getId()) tglFilterSet[4].setChecked(true);
+                    else if (i == EnumsHS.CardSet.BRM.getId()) tglFilterSet[5].setChecked(true);
+                    else if (i == EnumsHS.CardSet.TGT.getId()) tglFilterSet[6].setChecked(true);
+                    else if (i == EnumsHS.CardSet.LOE.getId()) tglFilterSet[7].setChecked(true);
+                    else if (i == EnumsHS.CardSet.OG.getId()) tglFilterSet[8].setChecked(true);
+                    else if (i == EnumsHS.CardSet.KARA.getId()) tglFilterSet[9].setChecked(true);
+                    else if (i == EnumsHS.CardSet.GANGS.getId()) tglFilterSet[10].setChecked(true);
+                    else if (i == EnumsHS.CardSet.UNGORO.getId()) tglFilterSet[11].setChecked(true);
+                    else if (i == EnumsHS.CardSet.KFT.getId()) tglFilterSet[12].setChecked(true);
                 }
                 calculatePresetToggleState();
             }
@@ -541,19 +541,19 @@ public class CardFilterActivity extends AppCompatActivity{
     private ArrayList<Integer> getSelectedSetFilters()
     {
         ArrayList<Integer> setFilters = new ArrayList<>();
-        if (tglFilterSet[0].isChecked()) setFilters.add(EnumsHS.CardSet.CORE.getValue());
-        if (tglFilterSet[1].isChecked()) setFilters.add(EnumsHS.CardSet.EXPERT1.getValue());
-        if (tglFilterSet[2].isChecked()) setFilters.add(EnumsHS.CardSet.HOF.getValue());
-        if (tglFilterSet[3].isChecked()) setFilters.add(EnumsHS.CardSet.NAXX.getValue());
-        if (tglFilterSet[4].isChecked()) setFilters.add(EnumsHS.CardSet.GVG.getValue());
-        if (tglFilterSet[5].isChecked()) setFilters.add(EnumsHS.CardSet.BRM.getValue());
-        if (tglFilterSet[6].isChecked()) setFilters.add(EnumsHS.CardSet.TGT.getValue());
-        if (tglFilterSet[7].isChecked()) setFilters.add(EnumsHS.CardSet.LOE.getValue());
-        if (tglFilterSet[8].isChecked()) setFilters.add(EnumsHS.CardSet.OG.getValue());
-        if (tglFilterSet[9].isChecked()) setFilters.add(EnumsHS.CardSet.KARA.getValue());
-        if (tglFilterSet[10].isChecked()) setFilters.add(EnumsHS.CardSet.GANGS.getValue());
-        if (tglFilterSet[11].isChecked()) setFilters.add(EnumsHS.CardSet.UNGORO.getValue());
-        if (tglFilterSet[12].isChecked()) setFilters.add(EnumsHS.CardSet.KFT.getValue());
+        if (tglFilterSet[0].isChecked()) setFilters.add(EnumsHS.CardSet.CORE.getId());
+        if (tglFilterSet[1].isChecked()) setFilters.add(EnumsHS.CardSet.EXPERT1.getId());
+        if (tglFilterSet[2].isChecked()) setFilters.add(EnumsHS.CardSet.HOF.getId());
+        if (tglFilterSet[3].isChecked()) setFilters.add(EnumsHS.CardSet.NAXX.getId());
+        if (tglFilterSet[4].isChecked()) setFilters.add(EnumsHS.CardSet.GVG.getId());
+        if (tglFilterSet[5].isChecked()) setFilters.add(EnumsHS.CardSet.BRM.getId());
+        if (tglFilterSet[6].isChecked()) setFilters.add(EnumsHS.CardSet.TGT.getId());
+        if (tglFilterSet[7].isChecked()) setFilters.add(EnumsHS.CardSet.LOE.getId());
+        if (tglFilterSet[8].isChecked()) setFilters.add(EnumsHS.CardSet.OG.getId());
+        if (tglFilterSet[9].isChecked()) setFilters.add(EnumsHS.CardSet.KARA.getId());
+        if (tglFilterSet[10].isChecked()) setFilters.add(EnumsHS.CardSet.GANGS.getId());
+        if (tglFilterSet[11].isChecked()) setFilters.add(EnumsHS.CardSet.UNGORO.getId());
+        if (tglFilterSet[12].isChecked()) setFilters.add(EnumsHS.CardSet.KFT.getId());
 
         return setFilters;
     }

@@ -161,7 +161,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 if (set != null)
                     for (EnumsHS.CardSet cardSet : EnumsHS.CardSet.values()) {
                         if (cardSet.name().equals(set)) {
-                            convSet = cardSet.getValue();
+                            convSet = cardSet.getId();
                             break;
                         }
                     }
@@ -507,7 +507,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
     private void initTableCardSet(SQLiteDatabase db) {
         for (EnumsHS.CardSet cardSet : EnumsHS.CardSet.getPlayableSets()) {
             ContentValues values = new ContentValues();
-            values.put(CollectionDbContract.CardSet.COLUMN_NAME_CARD_SET_ID, cardSet.getValue());
+            values.put(CollectionDbContract.CardSet.COLUMN_NAME_CARD_SET_ID, cardSet.getId());
             values.put(CollectionDbContract.CardSet.COLUMN_NAME_SET_NAME, cardSet.name());
             values.put(CollectionDbContract.CardSet.COLUMN_NAME_SET_TYPE_FOREIGN, cardSet.getSetType().getValue());
             values.put(CollectionDbContract.CardSet.COLUMN_NAME_RELEASE_YEAR, cardSet.getReleaseYear());

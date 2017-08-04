@@ -92,31 +92,63 @@
     </string-array>
 
     <string-array name="card_set_full_names">
-        <item>BASIC</item>
-        <item>CLASSIC</item>
-        <item>PROMO</item>
-        <item>REWARD</item>
-        <item>HERO SKINS</item>
-        <item>CURSE OF NAXXRAMAS</item>
-        <item>GOBLINS VS GNOMES</item>
-        <item>BLACKROCK MOUNTAIN</item>
-        <item>THE GRAND TOURNAMENT</item>
-        <item>THE LEAGUE OF EXPLORERS</item>
-        <item>WHISPERS OF THE OLD GODS</item>
+        <item>Basic</item>
+        <item>Classic</item>
+        <item>Hall of Fame</item>
+        <item>Curse of Naxxramas</item>
+        <item>Goblins vs Gnomes</item>
+        <item>Blackrock Mountain</item>
+        <item>The Grand Tournament</item>
+        <item>The League of Explorers</item>
+        <item>Whispers of the Old Gods</item>
+        <item>One Night in Karazahn</item>
+        <item>Mean Streets of Gadgetzan</item>
+        <item>Journey to Un\'Goro</item>
+        <item>Knights of the Frozen Throne</item>
     </string-array>
 
-    <string-array name="card_sets">
-        <item>CORE</item>
-        <item>EXPERT1</item>
-        <item>PROMO</item>
-        <item>REWARD</item>
-        <item>HERO SKINS</item>
-        <item>NAXX</item>
-        <item>GVG</item>
+    <string name="set_name_core">Basic</string>
+    <string name="set_name_expert">Classic</string>
+    <string name="set_name_hof">Hall of Fame</string>
+    <string name="set_name_naxx">Curse of Naxxramas</string>
+    <string name="set_name_gvg">Goblins vs Gnomes</string>
+    <string name="set_name_brm">Blackrock Mountain</string>
+    <string name="set_name_tgt">The Grand Torunament</string>
+    <string name="set_name_loe">League of Explorers</string>
+    <string name="set_name_wog">Whispers of the Old Gods</string>
+    <string name="set_name_onk">One Knight in Karazhan</string>
+    <string name="set_name_msg">Mean Streets of Gadgetzan</string>
+    <string name="set_name_jtu">Journey to Un\'Goro</string>
+    <string name="set_name_kft">Knights of the Frozen Throne</string>
+
+    <string name="set_acronym_core">Basic</string>
+    <string name="set_acronym_expert">Classic</string>
+    <string name="set_acronym_hof">HoF</string>
+    <string name="set_acronym_naxx">Naxx</string>
+    <string name="set_acronym_gvg">GvG</string>
+    <string name="set_acronym_brm">BRM</string>
+    <string name="set_acronym_tgt">TGT</string>
+    <string name="set_acronym_loe">LoE</string>
+    <string name="set_acronym_wog">WOG</string>
+    <string name="set_acronym_onk">ONK</string>
+    <string name="set_acronym_msg">MSG</string>
+    <string name="set_acronym_jtu">JtU</string>
+    <string name="set_acronym_kft">KFT</string>
+
+    <string-array name="card_set_acronyms">
+        <item>Basic</item>
+        <item>Classic</item>
+        <item>HoF</item>
+        <item>Naxx</item>
+        <item>GvG</item>
         <item>BRM</item>
         <item>TGT</item>
-        <item>LOE</item>
+        <item>LoE</item>
         <item>WOG</item>
+        <item>ONK</item>
+        <item>MSG</item>
+        <item>JtU</item>
+        <item>KFT</item>
     </string-array>
 
     <string-array name="card_types">

@@ -190,14 +190,8 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setCore);
             case EXPERT1:
                 return ContextCompat.getColor(context, R.color.setClassic);
-            case PROMO:
-                return ContextCompat.getColor(context, R.color.setReward);
-            case REWARD:
-                return ContextCompat.getColor(context, R.color.setReward);
             case HOF:
                 return ContextCompat.getColor(context, R.color.setHallOfFame);
-            case HERO_SKINS:
-                return ContextCompat.getColor(context, R.color.setHeroSkins);
             case NAXX:
                 return ContextCompat.getColor(context, R.color.setNaxx);
             case GVG:
@@ -226,43 +220,37 @@ public class ResourcesHS {
         switch (set)
         {
             case CORE:
-                return R.drawable.icon_set_core_color;
+                return R.drawable.icon_set_core;
             case EXPERT1:
-                return R.drawable.icon_set_classic_color;
-            case PROMO:
-                return R.drawable.icon_set_promo;
-            case REWARD:
-                return R.drawable.icon_set_reward_color;
+                return R.drawable.icon_set_classic;
             case HOF:
-                return R.drawable.icon_set_hof_color;
-            case HERO_SKINS:
-                return R.drawable.icon_set_hero_skins;
+                return R.drawable.icon_set_hof;
             case NAXX:
-                return R.drawable.icon_set_naxx_color;
+                return R.drawable.icon_set_naxx;
             case GVG:
-                return R.drawable.icon_set_gvg_color;
+                return R.drawable.icon_set_gvg;
             case BRM:
-                return R.drawable.icon_set_brm_color;
+                return R.drawable.icon_set_brm;
             case TGT:
-                return R.drawable.icon_set_tgt_color;
+                return R.drawable.icon_set_tgt;
             case LOE:
-                return R.drawable.icon_set_loe_color;
+                return R.drawable.icon_set_loe;
             case OG:
-                return R.drawable.icon_set_wog_color;
+                return R.drawable.icon_set_wog;
             case KARA:
-                return R.drawable.icon_set_onik_color;
+                return R.drawable.icon_set_onik;
             case GANGS:
-                return R.drawable.icon_set_msg_color;
+                return R.drawable.icon_set_msg;
             case UNGORO:
-                return R.drawable.icon_set_jtu_color;
+                return R.drawable.icon_set_jtu;
             case KFT:
-                return R.drawable.icon_set_kft_color;
+                return R.drawable.icon_set_kft;
             default:
                 return R.drawable.placeholder_missing;
         }
     }
     public static EnumsHS.CardSet getSetEnum(Context context, String setName) {
-        String[] setArray = context.getResources().getStringArray(R.array.card_sets);
+        String[] setArray = context.getResources().getStringArray(R.array.card_set_full_names);
 
         if (setName == null || setArray == null)
             return EnumsHS.CardSet.INVALID;
@@ -275,12 +263,6 @@ public class ResourcesHS {
             return EnumsHS.CardSet.CORE;
         else if (setArray.length > i && setName.equals(setArray[i++]))
             return EnumsHS.CardSet.EXPERT1;
-        else if (setArray.length > i && setName.equals(setArray[i++]))
-            return EnumsHS.CardSet.PROMO;
-        else if (setArray.length > i && setName.equals(setArray[i++]))
-            return EnumsHS.CardSet.REWARD;
-        else if (setArray.length > i && setName.equals(setArray[i++]))
-            return EnumsHS.CardSet.HERO_SKINS;
         else if (setArray.length > i && setName.equals(setArray[i++]))
             return EnumsHS.CardSet.NAXX;
         else if (setArray.length > i && setName.equals(setArray[i++]))
@@ -300,15 +282,15 @@ public class ResourcesHS {
     }
     public String getSetNameFullString(Context context, EnumsHS.CardSet set) {
         String[] setArray = context.getResources().getStringArray(R.array.card_set_full_names);
-        if (set.getValue() >= setArray.length || set.getValue() < 0)
+        if (set.getId() >= setArray.length || set.getId() < 0)
             return null;
-        return context.getResources().getStringArray(R.array.card_set_full_names)[set.getValue()];
+        return context.getResources().getStringArray(R.array.card_set_full_names)[set.getId()];
     }
     public String getSetNameShortString(Context context, EnumsHS.CardSet set) {
-        String[] setArray = context.getResources().getStringArray(R.array.card_sets);
-        if (set.getValue() >= setArray.length || set.getValue() < 0)
+        String[] setArray = context.getResources().getStringArray(R.array.card_set_full_names);
+        if (set.getId() >= setArray.length || set.getId() < 0)
             return null;
-        return context.getResources().getStringArray(R.array.card_sets)[set.getValue()];
+        return context.getResources().getStringArray(R.array.card_set_acronyms)[set.getId()];
     }
 
     /*

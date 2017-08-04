@@ -1,5 +1,9 @@
 package com.lourenco.brandon.collectionhs.hearthstone;
 
+import android.graphics.Color;
+
+import com.lourenco.brandon.collectionhs.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,25 +76,26 @@ public class EnumsHS {
 
     public enum CardSet
     {
-        INVALID(0, false, CardSetType.INVALID, 0),
 
-        CORE(2, false, CardSetType.CORE, 2014),
-        EXPERT1(3, true, CardSetType.CORE, 2014),
-        HOF(4, true, CardSetType.CORE, 2017),
-        NAXX(12, true, CardSetType.ADVENTURE, 2014),
-        GVG(13, true, CardSetType.EXPANSION, 2014),
-        BRM(14, true, CardSetType.ADVENTURE, 2015),
-        TGT(15, true, CardSetType.EXPANSION, 2015),
-        LOE(20, true, CardSetType.ADVENTURE, 2015),
-        OG(21, true, CardSetType.EXPANSION, 2016),
-        KARA(22, true, CardSetType.ADVENTURE, 2016),
-        GANGS(23, true, CardSetType.EXPANSION, 2016),
-        UNGORO(24, true, CardSetType.EXPANSION, 2017),
-        KFT(25, true, CardSetType.EXPANSION, 2017),
+        INVALID(0, -1, -1, false, false, false, CardSetType.INVALID, -1, -1, Color.BLACK, -1, -1),
 
-        HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
+        CORE(2, R.string.set_name_core, R.string.set_acronym_core, false, true, true, CardSetType.CORE, 2014, R.drawable.icon_set_core, R.color.setCore, R.drawable.icon_set_core_grey, R.drawable.icon_set_core_color),
+        EXPERT1(3, R.string.set_name_expert, R.string.set_acronym_expert, true, true, true, CardSetType.CORE, 2014, R.drawable.icon_set_classic, R.color.setClassic, R.drawable.icon_set_classic_grey, R.drawable.icon_set_classic_color),
+        HOF(4, R.string.set_name_hof, R.string.set_acronym_hof, true, true, false, CardSetType.CORE, 2017, R.drawable.icon_set_hof, R.color.setHallOfFame, R.drawable.icon_set_hof_grey, R.drawable.icon_set_hof_color),
+        NAXX(12, R.string.set_name_naxx, R.string.set_acronym_naxx, true, true, false, CardSetType.ADVENTURE, 2014, R.drawable.icon_set_naxx, R.color.setNaxx, R.drawable.icon_set_naxx_grey, R.drawable.icon_set_naxx_color),
+        GVG(13, R.string.set_name_gvg, R.string.set_acronym_gvg, true, true, false, CardSetType.EXPANSION, 2014, R.drawable.icon_set_gvg, R.color.setGVG, R.drawable.icon_set_gvg_grey, R.drawable.icon_set_gvg_color),
+        BRM(14, R.string.set_name_brm, R.string.set_acronym_brm, true, true, false, CardSetType.ADVENTURE, 2015, R.drawable.icon_set_brm, R.color.setBRM, R.drawable.icon_set_brm_grey, R.drawable.icon_set_brm_color),
+        TGT(15, R.string.set_name_tgt, R.string.set_acronym_tgt, true, true, false, CardSetType.EXPANSION, 2015, R.drawable.icon_set_tgt, R.color.setTGT, R.drawable.icon_set_tgt_grey, R.drawable.icon_set_tgt_color),
+        LOE(20, R.string.set_name_loe, R.string.set_acronym_loe, true, true, false, CardSetType.ADVENTURE, 2015, R.drawable.icon_set_loe, R.color.setLOE, R.drawable.icon_set_loe_grey, R.drawable.icon_set_loe_color),
+        OG(21, R.string.set_name_wog, R.string.set_acronym_wog, true, true, false, CardSetType.EXPANSION, 2016, R.drawable.icon_set_wog, R.color.setWOG, R.drawable.icon_set_wog_grey, R.drawable.icon_set_wog_color),
+        KARA(22, R.string.set_name_onk, R.string.set_acronym_onk, true, true, false, CardSetType.ADVENTURE, 2016, R.drawable.icon_set_onik, R.color.setKARA, R.drawable.icon_set_onik_grey, R.drawable.icon_set_onik_color),
+        GANGS(23, R.string.set_name_msg, R.string.set_acronym_msg, true, true, false, CardSetType.EXPANSION, 2016, R.drawable.icon_set_msg, R.color.setMSG, R.drawable.icon_set_msg_grey, R.drawable.icon_set_msg_color),
+        UNGORO(24, R.string.set_name_jtu, R.string.set_acronym_jtu, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_jtu, R.color.setJTU, R.drawable.icon_set_jtu_grey, R.drawable.icon_set_jtu_color),
+        KFT(25, R.string.set_name_kft, R.string.set_acronym_kft, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_kft, R.color.setKFT, R.drawable.icon_set_kft_grey, R.drawable.icon_set_kft_color);
 
-        TB(18, false, CardSetType.GAME, 2015),
+        //HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
+
+        /*TB(18, false, CardSetType.GAME, 2015),
 
         REWARD(99, true, CardSetType.GIFT, 2014),
         PROMO(99, true, CardSetType.GIFT, 2014),
@@ -103,7 +108,7 @@ public class EnumsHS {
         BLANK(9, false, CardSetType.GAME, 0),
         DEBUG_SP(10, false, CardSetType.GAME, 0),
         CREDITS(16, false, CardSetType.GAME, 0),
-        SLUSH(19, false, CardSetType.GAME, 0);
+        SLUSH(19, false, CardSetType.GAME, 0);*/
 
         // Aliased from the original enums
         //FP1(NAXX.getValue(), NAXX.isCraftable(), NAXX.getSetType(), NAXX.getReleaseYear()),
@@ -113,37 +118,55 @@ public class EnumsHS {
         //FP2(BRM.getValue(), BRM.isCraftable(), BRM.getSetType(), BRM.getReleaseYear()),
         //PE2(TGT.getValue(), TGT.isCraftable(), TGT.getSetType(), TGT.getReleaseYear());
 
-        private int value;
-        private boolean craftable;
-        private int releaseYear;
+        private int id;
+        private int setName;
+        private int setNameAcronym;
+        private boolean isCraftable;
+        private boolean isCollectible;
+        private boolean isAlwaysInStandardSet;
         private CardSetType setType;
+        private int releaseYear;
 
-        private static final int LATEST_RELEASE = 2016;
-        private static final int SET_ROTATION_LENGTH_YRS = 2;
+        private int icon;
+        private int iconColor;
+        private int iconToggleOff;
+        private int iconToggleOn;
 
-        CardSet(int value, boolean craftable, CardSetType setType, int releaseYear) {
-            this.value = value;
-            this.craftable = craftable;
+        public static final int SET_ROTATION_LENGTH_YRS = 2;
+
+        CardSet(int id, int setNameResource, int setNameAcronymResource, boolean isCraftable, boolean isCollectible, boolean isAlwaysInStandardSet, CardSetType setType, int releaseYear, int icon, int iconColor, int iconToggleOff, int iconToggleOn) {
+            this.id = id;
+            this.setName = setNameResource;
+            this.setNameAcronym = setNameAcronymResource;
+            this.isCraftable = isCraftable;
+            this.isCollectible = isCollectible;
             this.setType = setType;
             this.releaseYear = releaseYear;
+            this.isAlwaysInStandardSet = isAlwaysInStandardSet;
+            this.icon = icon;
+            this.iconColor = iconColor;
+            this.iconToggleOff = iconToggleOff;
+            this.iconToggleOn = iconToggleOn;
         }
 
-        public int getValue() {return value;}
+        public int getLatestRelease()
+        {
+            int latestRelease = -1;
+            for (CardSet set : CardSet.values())
+            {
+                if (set.getReleaseYear() > latestRelease)
+                    latestRelease = set.getReleaseYear();
+            }
+            return latestRelease;
+        }
+
+        public int getId() {return id;}
         public CardSetType getSetType() {return setType;}
         public int getReleaseYear() {return  releaseYear;}
-        public boolean isCraftable() {
-            if (!craftable) return false;
-            else if (setType == CardSetType.ADVENTURE && isStandard()) {
-                return false;
-            }
-            return true;
-        }
         public boolean isStandard() {
-            if (name().equals("CORE") ||
-                    name().equals("EXPERT1") ||
-                    name().equals("HERO_SKINS"))
+            if (isAlwaysInStandardSet)
                 return true;
-            return releaseYear >= (LATEST_RELEASE - SET_ROTATION_LENGTH_YRS);
+            return releaseYear > (getLatestRelease() - SET_ROTATION_LENGTH_YRS);
         }
         public boolean isForPurchase() {
             return (setType == CardSetType.ADVENTURE) && isStandard();
@@ -167,7 +190,7 @@ public class EnumsHS {
         {
             for (CardSet cardSet : CardSet.values())
             {
-                if (value == cardSet.getValue()) return cardSet;
+                if (value == cardSet.getId()) return cardSet;
             }
             return INVALID;
         }
