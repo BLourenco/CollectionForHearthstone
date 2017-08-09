@@ -210,7 +210,7 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setMSG);
             case UNGORO:
                 return ContextCompat.getColor(context, R.color.setJTU);
-            case KFT:
+            case ICECROWN:
                 return ContextCompat.getColor(context, R.color.setKFT);
             default:
                 return Color.BLACK;
@@ -243,7 +243,7 @@ public class ResourcesHS {
                 return R.drawable.icon_set_msg;
             case UNGORO:
                 return R.drawable.icon_set_jtu;
-            case KFT:
+            case ICECROWN:
                 return R.drawable.icon_set_kft;
             default:
                 return R.drawable.placeholder_missing;

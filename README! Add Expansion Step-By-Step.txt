@@ -13,3 +13,10 @@
 	e. Update the getSelectedSetFilters() method.
 9. Add color to colors.xml (Currently, set colors are unused, as the set icons are coloured when imported)
 10. Add icon (and optionally, color) to ResourcesHS.java
+
+================
+New Instructions
+================
+
+1. Create a black vector icon of the set.
+2. Import the icon.

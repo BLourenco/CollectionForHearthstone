@@ -1,6 +1,7 @@
 package com.lourenco.brandon.collectionhs.hearthstone;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -97,12 +98,14 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
         // Set Icon
         holder.imgSetIcon.setImageResource(
-                ResourcesHS.getSetIcon(EnumsHS.CardSet.getEnumByValue(card.getCardSetId())));
+                EnumsHS.CardSet.getEnumById(card.getCardSetId()).getIcon());
 
         // Set Icon Color
         holder.imgSetIcon.setColorFilter(
-                ResourcesHS.getSetColor(context,
-                        EnumsHS.CardSet.getEnumByValue(card.getCardSetId())));
+                ContextCompat.getColor(context,
+                        EnumsHS.CardSet.getEnumById(card.getCardSetId()).getIconColor()));
+
+
 
         // Card Name & Rarity Color
         holder.txtName.setText(card.getName());

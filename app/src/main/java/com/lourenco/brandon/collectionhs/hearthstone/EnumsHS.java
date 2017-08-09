@@ -91,7 +91,7 @@ public class EnumsHS {
         KARA(22, R.string.set_name_onk, R.string.set_acronym_onk, true, true, false, CardSetType.ADVENTURE, 2016, R.drawable.icon_set_onik, R.color.setKARA, R.drawable.icon_set_onik_grey, R.drawable.icon_set_onik_color),
         GANGS(23, R.string.set_name_msg, R.string.set_acronym_msg, true, true, false, CardSetType.EXPANSION, 2016, R.drawable.icon_set_msg, R.color.setMSG, R.drawable.icon_set_msg_grey, R.drawable.icon_set_msg_color),
         UNGORO(24, R.string.set_name_jtu, R.string.set_acronym_jtu, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_jtu, R.color.setJTU, R.drawable.icon_set_jtu_grey, R.drawable.icon_set_jtu_color),
-        KFT(25, R.string.set_name_kft, R.string.set_acronym_kft, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_kft, R.color.setKFT, R.drawable.icon_set_kft_grey, R.drawable.icon_set_kft_color);
+        ICECROWN(25, R.string.set_name_kft, R.string.set_acronym_kft, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_kft, R.color.setKFT, R.drawable.icon_set_kft_grey, R.drawable.icon_set_kft_color);
 
         //HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
 
@@ -161,16 +161,47 @@ public class EnumsHS {
         }
 
         public int getId() {return id;}
+        public int getSetName() {
+            return setName;
+        }
+        public int getSetNameAcronym() {
+            return setNameAcronym;
+        }
+        public boolean isCraftable() {
+            return isCraftable;
+        }
+        public boolean isCollectible() {
+            return isCollectible;
+        }
+        public boolean isAlwaysInStandardSet() {
+            return isAlwaysInStandardSet;
+        }
         public CardSetType getSetType() {return setType;}
         public int getReleaseYear() {return  releaseYear;}
+
+        public int getIcon() {
+            return icon;
+        }
+
+        public int getIconColor() {
+            return iconColor;
+        }
+
+        public int getIconToggleOff() {
+            return iconToggleOff;
+        }
+
+        public int getIconToggleOn() {
+            return iconToggleOn;
+        }
+
         public boolean isStandard() {
             if (isAlwaysInStandardSet)
                 return true;
             return releaseYear > (getLatestRelease() - SET_ROTATION_LENGTH_YRS);
         }
-        public boolean isForPurchase() {
-            return (setType == CardSetType.ADVENTURE) && isStandard();
-        }
+
+        /// Get all sets that players actually play with in regular mode. Ignores tavern brawl, credits, etc. sets
         public static CardSet[] getPlayableSets()
         {
             List<CardSet> sets = new ArrayList<>();
@@ -186,11 +217,11 @@ public class EnumsHS {
             return sets.toArray(new CardSet[0]);
         }
 
-        public static CardSet getEnumByValue(int value)
+        public static CardSet getEnumById(int id)
         {
             for (CardSet cardSet : CardSet.values())
             {
-                if (value == cardSet.getId()) return cardSet;
+                if (id == cardSet.getId()) return cardSet;
             }
             return INVALID;
         }

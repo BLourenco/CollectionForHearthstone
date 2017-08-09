@@ -1,4 +1,4 @@
-1. Update the extractor from the github link.
+1. Update the extractor from bitbucket.
 2. Follow the "Build" section of the readme on github, using the '.paket' stuff.
 3. Copy the extractor using the Programming interface code shown at the bottom of the "Usage" section.
 4. Change the file paths to the appropriate ones, and then run the program. (Nothing will appear in the console while running)
