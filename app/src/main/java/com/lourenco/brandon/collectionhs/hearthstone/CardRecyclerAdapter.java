@@ -29,8 +29,13 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public ImageView imgCardArt;
-        public ImageView imgCardFrameLegendary;
+        public ImageView imgCardFrameMinion;
+        public ImageView imgCardFrameSpell;
+        public ImageView imgCardFrameWeapon;
+        public ImageView imgCardFrameHero;
+        public ImageView imgCardFrameLegendaryMinion;
         public ImageView imgCardFrameLegendarySpell;
+        public ImageView imgCardFrameLegendaryHero;
         public ImageView imgSetIcon;
         public TextView txtName;
         public ImageView imgRaceIcon;
@@ -46,8 +51,13 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         public ViewHolder(View v) {
             super(v);
             this.imgCardArt = (ImageView) v.findViewById(R.id.imgCardViewArt);
-            this.imgCardFrameLegendary = (ImageView) v.findViewById(R.id.imgCardViewFrameDragon);
-            this.imgCardFrameLegendarySpell = (ImageView) v.findViewById(R.id.imgCardViewFrameDragonSpell);
+            this.imgCardFrameMinion = (ImageView) v.findViewById(R.id.imgCardViewFrameMinion);
+            this.imgCardFrameSpell = (ImageView) v.findViewById(R.id.imgCardViewFrameSpell);
+            this.imgCardFrameWeapon = (ImageView) v.findViewById(R.id.imgCardViewFrameWeapon);
+            this.imgCardFrameHero = (ImageView) v.findViewById(R.id.imgCardViewFrameHero);
+            this.imgCardFrameLegendaryMinion = (ImageView) v.findViewById(R.id.imgCardViewFrameLegendaryMinion);
+            this.imgCardFrameLegendarySpell = (ImageView) v.findViewById(R.id.imgCardViewFrameLegendarySpell);
+            this.imgCardFrameLegendaryHero = (ImageView) v.findViewById(R.id.imgCardViewFrameLegendaryHero);
             this.imgSetIcon = (ImageView) v.findViewById(R.id.imgCardViewSetIcon);
             this.txtName = (TextView)v.findViewById(R.id.txtCardViewName);
             this.imgRaceIcon = (ImageView) v.findViewById(R.id.imgCardViewRaceIcon);
@@ -113,24 +123,72 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
                 ResourcesHS.getRarityTextColor(context,
                         EnumsHS.Rarity.getEnumByValue(card.getRarityId())));
 
+        //Art Frame
+        if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.MINION)
+        {
+            holder.imgCardFrameMinion.setVisibility(View.VISIBLE);
+            holder.imgCardFrameSpell.setVisibility(View.GONE);
+            holder.imgCardFrameWeapon.setVisibility(View.GONE);
+            holder.imgCardFrameHero.setVisibility(View.GONE);
+        }
+        else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.SPELL)
+        {
+            holder.imgCardFrameMinion.setVisibility(View.GONE);
+            holder.imgCardFrameSpell.setVisibility(View.VISIBLE);
+            holder.imgCardFrameWeapon.setVisibility(View.GONE);
+            holder.imgCardFrameHero.setVisibility(View.GONE);
+
+        }
+        else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.WEAPON)
+        {
+            holder.imgCardFrameMinion.setVisibility(View.GONE);
+            holder.imgCardFrameSpell.setVisibility(View.GONE);
+            holder.imgCardFrameWeapon.setVisibility(View.VISIBLE);
+            holder.imgCardFrameHero.setVisibility(View.GONE);
+        }
+        else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.HERO)
+        {
+            holder.imgCardFrameMinion.setVisibility(View.GONE);
+            holder.imgCardFrameSpell.setVisibility(View.GONE);
+            holder.imgCardFrameWeapon.setVisibility(View.GONE);
+            holder.imgCardFrameHero.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.imgCardFrameMinion.setVisibility(View.GONE);
+            holder.imgCardFrameSpell.setVisibility(View.GONE);
+            holder.imgCardFrameWeapon.setVisibility(View.GONE);
+            holder.imgCardFrameHero.setVisibility(View.GONE);
+        }
+
+
         // Legendary Dragon Frame
         if (EnumsHS.Rarity.getEnumByValue(card.getRarityId()) == EnumsHS.Rarity.LEGENDARY)
         {
             if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.MINION)
             {
-                holder.imgCardFrameLegendary.setVisibility(View.VISIBLE);
+                holder.imgCardFrameLegendaryMinion.setVisibility(View.VISIBLE);
                 holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
+                holder.imgCardFrameLegendaryHero.setVisibility(View.GONE);
             }
             else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.SPELL)
             {
-                holder.imgCardFrameLegendary.setVisibility(View.GONE);
+                holder.imgCardFrameLegendaryMinion.setVisibility(View.GONE);
                 holder.imgCardFrameLegendarySpell.setVisibility(View.VISIBLE);
+                holder.imgCardFrameLegendaryHero.setVisibility(View.GONE);
+            }
+            else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.HERO)
+            {
+                holder.imgCardFrameLegendaryMinion.setVisibility(View.GONE);
+                holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
+                holder.imgCardFrameLegendaryHero.setVisibility(View.VISIBLE);
             }
         }
         else
         {
-            holder.imgCardFrameLegendary.setVisibility(View.GONE);
+            holder.imgCardFrameLegendaryMinion.setVisibility(View.GONE);
             holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
+            holder.imgCardFrameLegendaryHero.setVisibility(View.GONE);
         }
 
         // Card Text
@@ -179,7 +237,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue())
                 holder.imgAttackIcon.setImageResource(R.drawable.icon_stat_attack_minion);
             else
-                holder.imgAttackIcon.setImageResource(R.drawable.icon_stat_attack_weapon);
+                holder.imgAttackIcon.setImageResource(R.drawable.icon_stat_attack_weapon_alt2);
         }
         else {
             holder.txtAttack.setText("");
@@ -187,13 +245,17 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
 
         //Health/Durability
-        if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue() || card.getCardTypeId() == EnumsHS.CardType.HERO.getValue()) {
+        if (card.getCardTypeId() == EnumsHS.CardType.MINION.getValue()) {
             holder.txtHealth.setText(String.format("%d", card.getHealth()));
             holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_minion);
         }
         else if (card.getCardTypeId() == EnumsHS.CardType.WEAPON.getValue()) {
             holder.txtHealth.setText(String.format("%d", card.getHealth()));
-            holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_health_weapon);
+            holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_armor);
+        }
+        else if (card.getCardTypeId() == EnumsHS.CardType.HERO.getValue()) {
+            holder.txtHealth.setText(String.format("%d", card.getHealth()));
+            holder.imgHealthIcon.setImageResource(R.drawable.icon_stat_armor);
         }
         else {
             holder.txtHealth.setText("");

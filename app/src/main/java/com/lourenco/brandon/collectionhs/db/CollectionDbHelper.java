@@ -222,14 +222,16 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 values.put(CollectionDbContract.Card.COLUMN_NAME_TRI_CLASS_ID_FOREIGN, convTriClass);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_RARITY_ID_FOREIGN, convRarity);
                 if (type != null) {
-                    if (!type.equals("HERO") && !type.equals("ENCHANTMENT"))
+                    if (!type.equals("ENCHANTMENT"))
                         values.put(CollectionDbContract.Card.COLUMN_NAME_COST, cost);
                     else
                         values.putNull(CollectionDbContract.Card.COLUMN_NAME_COST);
                     values.put(CollectionDbContract.Card.COLUMN_NAME_ATTACK, attack);
 
-                    if (type.equals("MINION") || type.equals("HERO"))
+                    if (type.equals("MINION"))
                         values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, health);
+                    else if (type.equals("HERO"))
+                        values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, 5); // Armor seems to be hard coded.
                     else if (type.equals("WEAPON"))
                         values.put(CollectionDbContract.Card.COLUMN_NAME_HEALTH, durability);
                     else

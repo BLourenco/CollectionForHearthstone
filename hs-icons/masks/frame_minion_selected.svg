@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500"
+   height="500"
+   id="svg8307"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="frame_minion_selected.svg">
+  <metadata
+     id="metadata8315">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8313" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="987"
+     id="namedview8311"
+     showgrid="false"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="386.46132"
+     inkscape:cy="352.71273"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8307"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="250,404.66102"
+       orientation="1,0"
+       id="guide8873" />
+    <sodipodi:guide
+       position="283.89831,250"
+       orientation="0,1"
+       id="guide8875" />
+  </sodipodi:namedview>
+  <ellipse
+     cx="250"
+     cy="250"
+     rx="170"
+     ry="230"
+     fill="#000"
+     stroke="#000"
+     stroke-width="8"
+     id="ellipse8309"
+     style="fill:#cfd8dc;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke:#b0bec5;stroke-opacity:1;fill-opacity:1" />
+  <g
+     style="fill:#ffffff"
+     id="g8869"
+     transform="matrix(13.291375,0,0,13.291375,90.504917,90.504967)">
+    <path
+       id="path8859"
+       d="M 0,0 24,0 24,24 0,24 Z"
+       inkscape:connector-curvature="0"
+       style="fill:none" />
+    <path
+       id="path8861"
+       d="M 9,16.2 4.8,12 3.4,13.4 9,19 21,7 19.6,5.6 9,16.2 Z"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

@@ -110,6 +110,7 @@
     <string name="set_name_core">Basic</string>
     <string name="set_name_expert">Classic</string>
     <string name="set_name_hof">Hall of Fame</string>
+    <string name="set_name_hero_skins">Hero Portraits</string>
     <string name="set_name_naxx">Curse of Naxxramas</string>
     <string name="set_name_gvg">Goblins vs Gnomes</string>
     <string name="set_name_brm">Blackrock Mountain</string>
@@ -124,6 +125,7 @@
     <string name="set_acronym_core">Basic</string>
     <string name="set_acronym_expert">Classic</string>
     <string name="set_acronym_hof">HoF</string>
+    <string name="set_acronym_hero_skins">Skins</string>
     <string name="set_acronym_naxx">Naxx</string>
     <string name="set_acronym_gvg">GvG</string>
     <string name="set_acronym_brm">BRM</string>
@@ -171,3 +173,4 @@
         <item>ELEMENTAL</item>
     </string-array>
 </resources>
+

@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_checked="false"
-        android:drawable="@drawable/mask_minion_off"/>
+        android:drawable="@drawable/frame_minion"/>
     <item
         android:state_checked="true"
-        android:drawable="@drawable/mask_minion_on"/>
+        android:drawable="@drawable/frame_minion_selected"/>
 </selector>

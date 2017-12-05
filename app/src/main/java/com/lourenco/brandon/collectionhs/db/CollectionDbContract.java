@@ -506,8 +506,14 @@ public final class CollectionDbContract {
                         " AND " +
                         Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.HERO_POWER.getValue() +
                         " AND " +
-                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "!=" + EnumsHS.CardType.HERO.getValue() +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_SET_ID_FOREIGN + "!=" + EnumsHS.CardSet.HERO_SKINS.getId() +
                         " AND " +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_SET_ID_FOREIGN + "!=" + EnumsHS.CardSet.HERO_SKINS.getId() +
+                        " AND NOT (" +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_SET_ID_FOREIGN + "==" + EnumsHS.CardSet.CORE.getId() +
+                        " AND " +
+                        Card.TABLE_NAME + "." + Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN + "==" + EnumsHS.CardType.HERO.getValue() +
+                        ") AND " +
                         Card.TABLE_NAME + "." + Card.COLUMN_NAME_COLLECTIBLE + "=1" +
                         " ORDER BY " +
                         Card.TABLE_NAME + "." + Card.COLUMN_NAME_COST + " ASC";

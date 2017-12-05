@@ -92,6 +92,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 (ToggleButton)findViewById(R.id.tglTypeMinion),
                 (ToggleButton)findViewById(R.id.tglTypeSpell),
                 (ToggleButton)findViewById(R.id.tglTypeWeapon),
+                (ToggleButton)findViewById(R.id.tglTypeHero),
         };
 
         tglFilterRarity = new ToggleButton[] {
@@ -290,6 +291,7 @@ public class CardFilterActivity extends AppCompatActivity{
                     if (i == EnumsHS.CardType.MINION.getValue()) tglFilterType[0].setChecked(true);
                     else if (i == EnumsHS.CardType.SPELL.getValue()) tglFilterType[1].setChecked(true);
                     else if (i == EnumsHS.CardType.WEAPON.getValue()) tglFilterType[2].setChecked(true);
+                    else if (i == EnumsHS.CardType.HERO.getValue()) tglFilterType[3].setChecked(true);
                 }
             }
 
@@ -523,6 +525,7 @@ public class CardFilterActivity extends AppCompatActivity{
         if (tglFilterType[0].isChecked()) typeFilters.add(EnumsHS.CardType.MINION.getValue());
         if (tglFilterType[1].isChecked()) typeFilters.add(EnumsHS.CardType.SPELL.getValue());
         if (tglFilterType[2].isChecked()) typeFilters.add(EnumsHS.CardType.WEAPON.getValue());
+        if (tglFilterType[3].isChecked()) typeFilters.add(EnumsHS.CardType.HERO.getValue());
 
         return typeFilters;
     }

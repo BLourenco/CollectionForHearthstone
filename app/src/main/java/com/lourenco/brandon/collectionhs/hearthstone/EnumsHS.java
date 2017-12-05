@@ -91,9 +91,9 @@ public class EnumsHS {
         KARA(22, R.string.set_name_onk, R.string.set_acronym_onk, true, true, false, CardSetType.ADVENTURE, 2016, R.drawable.icon_set_onik, R.color.setKARA, R.drawable.icon_set_onik_grey, R.drawable.icon_set_onik_color),
         GANGS(23, R.string.set_name_msg, R.string.set_acronym_msg, true, true, false, CardSetType.EXPANSION, 2016, R.drawable.icon_set_msg, R.color.setMSG, R.drawable.icon_set_msg_grey, R.drawable.icon_set_msg_color),
         UNGORO(24, R.string.set_name_jtu, R.string.set_acronym_jtu, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_jtu, R.color.setJTU, R.drawable.icon_set_jtu_grey, R.drawable.icon_set_jtu_color),
-        ICECROWN(25, R.string.set_name_kft, R.string.set_acronym_kft, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_kft, R.color.setKFT, R.drawable.icon_set_kft_grey, R.drawable.icon_set_kft_color);
+        ICECROWN(25, R.string.set_name_kft, R.string.set_acronym_kft, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_kft, R.color.setKFT, R.drawable.icon_set_kft_grey, R.drawable.icon_set_kft_color),
 
-        //HERO_SKINS(17, false, CardSetType.HERO_SKINS, 2015),
+        HERO_SKINS(17, R.string.set_name_hero_skins, R.string.set_acronym_hero_skins, false, true, false, CardSetType.HERO_SKINS, 2015, R.drawable.icon_set_hero_skins, R.color.setHeroSkins, R.drawable.icon_set_hero_skins, R.drawable.icon_set_hero_skins);
 
         /*TB(18, false, CardSetType.GAME, 2015),
 

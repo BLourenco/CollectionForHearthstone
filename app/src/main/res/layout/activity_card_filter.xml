@@ -272,8 +272,8 @@
                     <ToggleButton
                         android:id="@+id/tglFilterHealth9"
                         style="@style/CustomToggleButton.Stat.Health"
-                        android:textOff="8"
-                        android:textOn="8" />
+                        android:textOff="9"
+                        android:textOn="9" />
 
                     <ToggleButton
                         android:id="@+id/tglFilterHealth10plus"
@@ -363,6 +363,26 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Weapon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ToggleButton
+                    android:id="@+id/tglTypeHero"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    style="@style/CustomToggleButton.Type.Hero"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Hero" />
             </LinearLayout>
 
         </LinearLayout>

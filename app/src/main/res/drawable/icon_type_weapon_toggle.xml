@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_checked="false"
-        android:drawable="@drawable/mask_weapon_off"/>
+        android:drawable="@drawable/frame_weapon"/>
     <item
         android:state_checked="true"
-        android:drawable="@drawable/mask_weapon_on"/>
+        android:drawable="@drawable/frame_weapon_selected"/>
 </selector>

@@ -22,18 +22,56 @@
             android:layout_margin="5dp" />
 
         <ImageView
-            android:id="@+id/imgCardViewFrameDragon"
+            android:id="@+id/imgCardViewFrameMinion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mask_minion_off"/>
+
+        <ImageView
+            android:id="@+id/imgCardViewFrameSpell"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mask_spell_off"/>
+
+        <ImageView
+            android:id="@+id/imgCardViewFrameWeapon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/frame_weapon"/>
+
+        <ImageView
+            android:id="@+id/imgCardViewFrameHero"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/frame_hero"/>
+
+        <ImageView
+            android:id="@+id/imgCardViewFrameLegendaryMinion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/frame_minion_legendary"/>
 
         <ImageView
-            android:id="@+id/imgCardViewFrameDragonSpell"
+            android:id="@+id/imgCardViewFrameLegendarySpell"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/frame_spell_legendary"/>
+
+        <ImageView
+            android:id="@+id/imgCardViewFrameLegendaryHero"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/frame_hero_legendary"/>
 
         <FrameLayout
             android:layout_width="20dp"

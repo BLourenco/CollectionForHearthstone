@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="240"
+   height="240"
+   viewBox="0 0 240 240"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="icon_hero_armor.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="160.02292"
+     inkscape:cy="93.672731"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer3"
+     showgrid="false"
+     units="px"
+     fit-margin-bottom="30"
+     fit-margin-right="30"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     inkscape:window-width="1680"
+     inkscape:window-height="987"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4136"
+       originx="20"
+       originy="20" />
+    <sodipodi:guide
+       position="120,265"
+       orientation="1,0"
+       id="guide5829" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Gem Border"
+     style="display:inline"
+     transform="translate(20,20)" />
+  <g
+     inkscape:label="Yellow Gem"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(20,-832.36216)"
+     style="display:inline" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Blade"
+     style="display:inline"
+     transform="translate(20,20)" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Guard"
+     style="display:inline"
+     transform="translate(20,20)">
+    <path
+       style="fill:#a0a0a0;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 5.190679,22.275266 c 0,0 46.928601,0.482685 94.809321,-20.087766 44.34519,22.916616 95.00466,19.734213 95.00466,19.734213 C 195.00466,173.87068 100,197.19581 100,197.19581 c 0,0 -94.809321,-25.48437 -94.809321,-174.920544 z"
+       id="path4155"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="display:inline;fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 23.683709,37.361515 c 0,0 37.783929,0.388627 76.334441,-16.173394 35.70393,18.451004 76.49172,15.888735 76.49172,15.888735 0,122.339664 -76.49172,141.119574 -76.49172,141.119574 0,0 -76.334441,-20.5184 -76.334441,-140.834915 z"
+       id="path4155-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+  </g>
+</svg>

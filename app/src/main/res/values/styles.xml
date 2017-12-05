@@ -38,7 +38,7 @@
 
     <style name="StatText">
         <item name="android:textColor">#ffffffff</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:shadowColor">#000000</item>
         <item name="android:shadowDx">1</item>
@@ -87,8 +87,13 @@
     <style name="CustomToggleButton.Type.Spell">
         <item name="android:background">@drawable/icon_type_spell_toggle</item>
     </style>
+
     <style name="CustomToggleButton.Type.Weapon">
         <item name="android:background">@drawable/icon_type_weapon_toggle</item>
+    </style>
+
+    <style name="CustomToggleButton.Type.Hero">
+        <item name="android:background">@drawable/icon_type_hero_toggle</item>
     </style>
 
     <style name="CustomToggleButton.Rarity">
@@ -153,7 +158,7 @@
     </style>
 
     <style name="CustomToggleButton.Set.ONIK">
-        <item name="android:background">@drawable/icon_set_onik_toggle</item>
+        <item name="android:background">@drawable/icon_set_onk_toggle</item>
     </style>
 
     <style name="CustomToggleButton.Set.MSG">

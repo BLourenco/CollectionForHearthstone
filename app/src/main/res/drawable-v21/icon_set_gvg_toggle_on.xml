@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:drawable="@drawable/icon_set_gvg_on">
+
+    <target android:name="bg">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="@android:integer/config_shortAnimTime"
+                android:interpolator="@android:interpolator/accelerate_decelerate"
+                android:propertyName="fillAlpha"
+                android:valueFrom="0"
+                android:valueTo="1" />
+        </aapt:attr>
+    </target>
+
+    <target android:name="icon">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="@android:integer/config_shortAnimTime"
+                android:interpolator="@android:interpolator/accelerate_decelerate"
+                android:propertyName="fillAlpha"
+                android:valueFrom="1"
+                android:valueTo="0" />
+        </aapt:attr>
+    </target>
+</animated-vector>
