@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jp.wasabeef:picasso-transformations-2.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/picasso-transformations-2.0.0.aar/f0611e01aa2764244dba0fc39f339ad9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/picasso-transformations-2.0.0.aar/f0611e01aa2764244dba0fc39f339ad9/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jp.wasabeef/picasso-transformations/2.0.0/f0015bb32f66d4f3ba9ec42969eb600b43521af4/picasso-transformations-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
