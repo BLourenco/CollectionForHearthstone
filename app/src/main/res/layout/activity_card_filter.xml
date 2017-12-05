@@ -871,6 +871,22 @@
                         android:text="KFT" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ToggleButton
+                        android:id="@+id/tglFilterSetKNC"
+                        style="@style/CustomToggleButton.Set.KNC" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="K&amp;C" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>

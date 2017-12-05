@@ -173,6 +173,10 @@
         <item name="android:background">@drawable/icon_set_kft_toggle</item>
     </style>
 
+    <style name="CustomToggleButton.Set.KNC">
+        <item name="android:background">@drawable/icon_set_knc_toggle</item>
+    </style>
+
     <style name="CustomToggleButton.Set.Format">
     </style>
 

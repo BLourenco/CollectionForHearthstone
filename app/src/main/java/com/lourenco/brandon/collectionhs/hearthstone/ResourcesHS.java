@@ -212,6 +212,8 @@ public class ResourcesHS {
                 return ContextCompat.getColor(context, R.color.setJTU);
             case ICECROWN:
                 return ContextCompat.getColor(context, R.color.setKFT);
+            case CATACOMBS:
+                return ContextCompat.getColor(context, R.color.setKnC);
             default:
                 return Color.BLACK;
         }
@@ -245,6 +247,8 @@ public class ResourcesHS {
                 return R.drawable.icon_set_jtu;
             case ICECROWN:
                 return R.drawable.icon_set_kft;
+            case CATACOMBS:
+                return R.drawable.icon_set_knc_off;
             default:
                 return R.drawable.placeholder_missing;
         }

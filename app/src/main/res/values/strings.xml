@@ -121,6 +121,7 @@
     <string name="set_name_msg">Mean Streets of Gadgetzan</string>
     <string name="set_name_jtu">Journey to Un\'Goro</string>
     <string name="set_name_kft">Knights of the Frozen Throne</string>
+    <string name="set_name_knc">Kobolds &amp; Catacombs</string>
 
     <string name="set_acronym_core">Basic</string>
     <string name="set_acronym_expert">Classic</string>
@@ -136,6 +137,7 @@
     <string name="set_acronym_msg">MSG</string>
     <string name="set_acronym_jtu">JtU</string>
     <string name="set_acronym_kft">KFT</string>
+    <string name="set_acronym_knc">K&amp;C</string>
 
     <string-array name="card_set_acronyms">
         <item>Basic</item>
