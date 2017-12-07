@@ -327,7 +327,7 @@ public class CardFilterActivity extends AppCompatActivity{
                     else if (i == EnumsHS.CardSet.GANGS.getId()) tglFilterSet[10].setChecked(true);
                     else if (i == EnumsHS.CardSet.UNGORO.getId()) tglFilterSet[11].setChecked(true);
                     else if (i == EnumsHS.CardSet.ICECROWN.getId()) tglFilterSet[12].setChecked(true);
-                    else if (i == EnumsHS.CardSet.CATACOMBS.getId()) tglFilterSet[13].setChecked(true);
+                    else if (i == EnumsHS.CardSet.LOOTAPALOOZA.getId()) tglFilterSet[13].setChecked(true);
                 }
                 calculatePresetToggleState();
             }
@@ -565,7 +565,7 @@ public class CardFilterActivity extends AppCompatActivity{
         if (tglFilterSet[10].isChecked()) setFilters.add(EnumsHS.CardSet.GANGS.getId());
         if (tglFilterSet[11].isChecked()) setFilters.add(EnumsHS.CardSet.UNGORO.getId());
         if (tglFilterSet[12].isChecked()) setFilters.add(EnumsHS.CardSet.ICECROWN.getId());
-        if (tglFilterSet[13].isChecked()) setFilters.add(EnumsHS.CardSet.CATACOMBS.getId());
+        if (tglFilterSet[13].isChecked()) setFilters.add(EnumsHS.CardSet.LOOTAPALOOZA.getId());
 
         return setFilters;
     }
