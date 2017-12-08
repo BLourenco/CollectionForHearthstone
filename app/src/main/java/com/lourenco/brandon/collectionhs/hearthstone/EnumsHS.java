@@ -77,24 +77,24 @@ public class EnumsHS {
     public enum CardSet
     {
 
-        INVALID(0, -1, -1, false, false, false, CardSetType.INVALID, -1, -1, Color.BLACK, -1, -1),
+        INVALID(0, -1, -1, false, false, false, CardSetType.INVALID, -1, Color.BLACK, -1, -1),
 
-        CORE(2, R.string.set_name_core, R.string.set_acronym_core, false, true, true, CardSetType.CORE, 2014, R.drawable.icon_set_core, R.color.setCore, R.drawable.icon_set_core_grey, R.drawable.icon_set_core_color),
-        EXPERT1(3, R.string.set_name_expert, R.string.set_acronym_expert, true, true, true, CardSetType.CORE, 2014, R.drawable.icon_set_classic, R.color.setClassic, R.drawable.icon_set_classic_grey, R.drawable.icon_set_classic_color),
-        HOF(4, R.string.set_name_hof, R.string.set_acronym_hof, true, true, false, CardSetType.CORE, 2017, R.drawable.icon_set_hof, R.color.setHallOfFame, R.drawable.icon_set_hof_grey, R.drawable.icon_set_hof_color),
-        NAXX(12, R.string.set_name_naxx, R.string.set_acronym_naxx, true, true, false, CardSetType.ADVENTURE, 2014, R.drawable.icon_set_naxx, R.color.setNaxx, R.drawable.icon_set_naxx_grey, R.drawable.icon_set_naxx_color),
-        GVG(13, R.string.set_name_gvg, R.string.set_acronym_gvg, true, true, false, CardSetType.EXPANSION, 2014, R.drawable.icon_set_gvg, R.color.setGVG, R.drawable.icon_set_gvg_grey, R.drawable.icon_set_gvg_color),
-        BRM(14, R.string.set_name_brm, R.string.set_acronym_brm, true, true, false, CardSetType.ADVENTURE, 2015, R.drawable.icon_set_brm, R.color.setBRM, R.drawable.icon_set_brm_grey, R.drawable.icon_set_brm_color),
-        TGT(15, R.string.set_name_tgt, R.string.set_acronym_tgt, true, true, false, CardSetType.EXPANSION, 2015, R.drawable.icon_set_tgt, R.color.setTGT, R.drawable.icon_set_tgt_grey, R.drawable.icon_set_tgt_color),
-        LOE(20, R.string.set_name_loe, R.string.set_acronym_loe, true, true, false, CardSetType.ADVENTURE, 2015, R.drawable.icon_set_loe, R.color.setLOE, R.drawable.icon_set_loe_grey, R.drawable.icon_set_loe_color),
-        OG(21, R.string.set_name_wog, R.string.set_acronym_wog, true, true, false, CardSetType.EXPANSION, 2016, R.drawable.icon_set_wog, R.color.setWOG, R.drawable.icon_set_wog_grey, R.drawable.icon_set_wog_color),
-        KARA(22, R.string.set_name_onk, R.string.set_acronym_onk, true, true, false, CardSetType.ADVENTURE, 2016, R.drawable.icon_set_onik, R.color.setKARA, R.drawable.icon_set_onik_grey, R.drawable.icon_set_onik_color),
-        GANGS(23, R.string.set_name_msg, R.string.set_acronym_msg, true, true, false, CardSetType.EXPANSION, 2016, R.drawable.icon_set_msg, R.color.setMSG, R.drawable.icon_set_msg_grey, R.drawable.icon_set_msg_color),
-        UNGORO(24, R.string.set_name_jtu, R.string.set_acronym_jtu, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_jtu, R.color.setJTU, R.drawable.icon_set_jtu_grey, R.drawable.icon_set_jtu_color),
-        ICECROWN(25, R.string.set_name_kft, R.string.set_acronym_kft, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_kft, R.color.setKFT, R.drawable.icon_set_kft_grey, R.drawable.icon_set_kft_color),
-        LOOTAPALOOZA(26, R.string.set_name_knc, R.string.set_acronym_knc, true, true, false, CardSetType.EXPANSION, 2017, R.drawable.icon_set_knc_off, R.color.setKnC, R.drawable.icon_set_knc_off, R.drawable.icon_set_knc_on),
+        CORE(2, R.string.set_name_core, R.string.set_acronym_core, false, true, true, CardSetType.CORE, 2014, R.color.setCore, R.drawable.icon_set_core_off, R.drawable.icon_set_core_on),
+        EXPERT1(3, R.string.set_name_expert, R.string.set_acronym_expert, true, true, true, CardSetType.CORE, 2014, R.color.setClassic, R.drawable.icon_set_classic_off, R.drawable.icon_set_classic_on),
+        HOF(4, R.string.set_name_hof, R.string.set_acronym_hof, true, true, false, CardSetType.CORE, 2017, R.color.setHallOfFame, R.drawable.icon_set_hof_off, R.drawable.icon_set_hof_on),
+        NAXX(12, R.string.set_name_naxx, R.string.set_acronym_naxx, true, true, false, CardSetType.ADVENTURE, 2014, R.color.setNaxx, R.drawable.icon_set_naxx_off, R.drawable.icon_set_naxx_on),
+        GVG(13, R.string.set_name_gvg, R.string.set_acronym_gvg, true, true, false, CardSetType.EXPANSION, 2014, R.color.setGVG, R.drawable.icon_set_gvg_off, R.drawable.icon_set_gvg_on),
+        BRM(14, R.string.set_name_brm, R.string.set_acronym_brm, true, true, false, CardSetType.ADVENTURE, 2015, R.color.setBRM, R.drawable.icon_set_brm_off, R.drawable.icon_set_brm_on),
+        TGT(15, R.string.set_name_tgt, R.string.set_acronym_tgt, true, true, false, CardSetType.EXPANSION, 2015, R.color.setTGT, R.drawable.icon_set_tgt_off, R.drawable.icon_set_tgt_on),
+        LOE(20, R.string.set_name_loe, R.string.set_acronym_loe, true, true, false, CardSetType.ADVENTURE, 2015, R.color.setLOE, R.drawable.icon_set_loe_off, R.drawable.icon_set_loe_on),
+        OG(21, R.string.set_name_wog, R.string.set_acronym_wog, true, true, false, CardSetType.EXPANSION, 2016, R.color.setWOG, R.drawable.icon_set_wog_off, R.drawable.icon_set_wog_on),
+        KARA(22, R.string.set_name_onk, R.string.set_acronym_onk, true, true, false, CardSetType.ADVENTURE, 2016, R.color.setKARA, R.drawable.icon_set_onk_off, R.drawable.icon_set_onk_on),
+        GANGS(23, R.string.set_name_msg, R.string.set_acronym_msg, true, true, false, CardSetType.EXPANSION, 2016, R.color.setMSG, R.drawable.icon_set_msg_off, R.drawable.icon_set_msg_on),
+        UNGORO(24, R.string.set_name_jtu, R.string.set_acronym_jtu, true, true, false, CardSetType.EXPANSION, 2017, R.color.setJTU, R.drawable.icon_set_jtu_off, R.drawable.icon_set_jtu_on),
+        ICECROWN(25, R.string.set_name_kft, R.string.set_acronym_kft, true, true, false, CardSetType.EXPANSION, 2017, R.color.setKFT, R.drawable.icon_set_kft_off, R.drawable.icon_set_kft_on),
+        LOOTAPALOOZA(26, R.string.set_name_knc, R.string.set_acronym_knc, true, true, false, CardSetType.EXPANSION, 2017, R.color.setKnC, R.drawable.icon_set_knc_off, R.drawable.icon_set_knc_on),
 
-        HERO_SKINS(17, R.string.set_name_hero_skins, R.string.set_acronym_hero_skins, false, true, false, CardSetType.HERO_SKINS, 2015, R.drawable.icon_set_hero_skins, R.color.setHeroSkins, R.drawable.icon_set_hero_skins, R.drawable.icon_set_hero_skins);
+        HERO_SKINS(17, R.string.set_name_hero_skins, R.string.set_acronym_hero_skins, false, true, false, CardSetType.HERO_SKINS, 2015, R.color.setHeroSkins, R.drawable.icon_set_hero_skins, R.drawable.icon_set_hero_skins);
 
         /*TB(18, false, CardSetType.GAME, 2015),
 
@@ -135,7 +135,7 @@ public class EnumsHS {
 
         public static final int SET_ROTATION_LENGTH_YRS = 2;
 
-        CardSet(int id, int setNameResource, int setNameAcronymResource, boolean isCraftable, boolean isCollectible, boolean isAlwaysInStandardSet, CardSetType setType, int releaseYear, int icon, int iconColor, int iconToggleOff, int iconToggleOn) {
+        CardSet(int id, int setNameResource, int setNameAcronymResource, boolean isCraftable, boolean isCollectible, boolean isAlwaysInStandardSet, CardSetType setType, int releaseYear, int iconColor, int iconToggleOff, int iconToggleOn) {
             this.id = id;
             this.setName = setNameResource;
             this.setNameAcronym = setNameAcronymResource;
@@ -144,7 +144,6 @@ public class EnumsHS {
             this.setType = setType;
             this.releaseYear = releaseYear;
             this.isAlwaysInStandardSet = isAlwaysInStandardSet;
-            this.icon = icon;
             this.iconColor = iconColor;
             this.iconToggleOff = iconToggleOff;
             this.iconToggleOn = iconToggleOn;
@@ -181,7 +180,7 @@ public class EnumsHS {
         public int getReleaseYear() {return  releaseYear;}
 
         public int getIcon() {
-            return icon;
+            return iconToggleOff;
         }
 
         public int getIconColor() {

@@ -60,11 +60,18 @@
             android:src="@drawable/frame_minion_legendary"/>
 
         <ImageView
-            android:id="@+id/imgCardViewFrameLegendarySpell"
+        android:id="@+id/imgCardViewFrameLegendarySpell"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/frame_spell_legendary"/>
+
+        <ImageView
+            android:id="@+id/imgCardViewFrameLegendaryWeapon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/frame_spell_legendary"/>
+            android:src="@drawable/frame_weapon_legendary"/>
 
         <ImageView
             android:id="@+id/imgCardViewFrameLegendaryHero"
@@ -200,10 +207,10 @@
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
 
     <LinearLayout
         android:layout_width="30dp"

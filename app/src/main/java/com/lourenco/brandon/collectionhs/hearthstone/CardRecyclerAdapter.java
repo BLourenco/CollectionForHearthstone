@@ -35,6 +35,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         public ImageView imgCardFrameHero;
         public ImageView imgCardFrameLegendaryMinion;
         public ImageView imgCardFrameLegendarySpell;
+        public ImageView imgCardFrameLegendaryWeapon;
         public ImageView imgCardFrameLegendaryHero;
         public ImageView imgSetIcon;
         public TextView txtName;
@@ -57,6 +58,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             this.imgCardFrameHero = (ImageView) v.findViewById(R.id.imgCardViewFrameHero);
             this.imgCardFrameLegendaryMinion = (ImageView) v.findViewById(R.id.imgCardViewFrameLegendaryMinion);
             this.imgCardFrameLegendarySpell = (ImageView) v.findViewById(R.id.imgCardViewFrameLegendarySpell);
+            this.imgCardFrameLegendaryWeapon = (ImageView) v.findViewById(R.id.imgCardViewFrameLegendaryWeapon);
             this.imgCardFrameLegendaryHero = (ImageView) v.findViewById(R.id.imgCardViewFrameLegendaryHero);
             this.imgSetIcon = (ImageView) v.findViewById(R.id.imgCardViewSetIcon);
             this.txtName = (TextView)v.findViewById(R.id.txtCardViewName);
@@ -169,18 +171,28 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
             {
                 holder.imgCardFrameLegendaryMinion.setVisibility(View.VISIBLE);
                 holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
+                holder.imgCardFrameLegendaryWeapon.setVisibility(View.GONE);
                 holder.imgCardFrameLegendaryHero.setVisibility(View.GONE);
             }
             else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.SPELL)
             {
                 holder.imgCardFrameLegendaryMinion.setVisibility(View.GONE);
                 holder.imgCardFrameLegendarySpell.setVisibility(View.VISIBLE);
+                holder.imgCardFrameLegendaryWeapon.setVisibility(View.GONE);
+                holder.imgCardFrameLegendaryHero.setVisibility(View.GONE);
+            }
+            else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.WEAPON)
+            {
+                holder.imgCardFrameLegendaryMinion.setVisibility(View.GONE);
+                holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
+                holder.imgCardFrameLegendaryWeapon.setVisibility(View.VISIBLE);
                 holder.imgCardFrameLegendaryHero.setVisibility(View.GONE);
             }
             else if (EnumsHS.CardType.getEnumByValue(card.getCardTypeId()) == EnumsHS.CardType.HERO)
             {
                 holder.imgCardFrameLegendaryMinion.setVisibility(View.GONE);
                 holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
+                holder.imgCardFrameLegendaryWeapon.setVisibility(View.GONE);
                 holder.imgCardFrameLegendaryHero.setVisibility(View.VISIBLE);
             }
         }
@@ -188,6 +200,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         {
             holder.imgCardFrameLegendaryMinion.setVisibility(View.GONE);
             holder.imgCardFrameLegendarySpell.setVisibility(View.GONE);
+            holder.imgCardFrameLegendaryWeapon.setVisibility(View.GONE);
             holder.imgCardFrameLegendaryHero.setVisibility(View.GONE);
         }
 
