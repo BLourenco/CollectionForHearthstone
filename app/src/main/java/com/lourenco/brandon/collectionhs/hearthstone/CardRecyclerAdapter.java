@@ -217,7 +217,15 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         //Mana
         if (card.getCost() != null)
         {
-            holder.txtCost.setText(String.format("%d", card.getCost()));
+            if (card.isHideStats() != null && !card.isHideStats())
+            {
+                holder.txtCost.setText(String.format("%d", card.getCost()));
+            }
+            else
+            {
+                holder.txtCost.setText("");
+            }
+
             holder.imgCostIcon.setImageResource(R.drawable.icon_stat_mana);
         }
         else {

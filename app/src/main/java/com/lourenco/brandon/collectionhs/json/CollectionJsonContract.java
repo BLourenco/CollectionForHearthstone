@@ -31,6 +31,7 @@ public class CollectionJsonContract {
         public static final String KEY_ATTACK = "attack";
         public static final String KEY_HEALTH = "health";
         public static final String KEY_DURABILITY = "durability";
+        public static final String KEY_HIDE_STATS = "hideStats";
 
         public static final String KEY_MECHANICS = "mechanics";
         public static final String KEY_REFERENCED_TAGS = "referencedTags";

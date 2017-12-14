@@ -85,6 +85,7 @@ public final class CollectionDbContract {
         public static final String COLUMN_NAME_RACE_ID_FOREIGN = "race_id";
         public static final String COLUMN_NAME_ARTIST = "artist";
         public static final String COLUMN_NAME_FACTION_ID_FOREIGN = "faction_id";
+        public static final String COLUMN_NAME_HIDE_STATS = "hide_stats";
 
         // User-specific data
         public static final String COLUMN_NAME_COLLECTED = "collected";
@@ -109,6 +110,7 @@ public final class CollectionDbContract {
                         COLUMN_NAME_RACE_ID_FOREIGN +           TYPE_INTEGER +              COMMA_SEP +
                         COLUMN_NAME_ARTIST +                    TYPE_TEXT +                 COMMA_SEP +
                         COLUMN_NAME_FACTION_ID_FOREIGN +        TYPE_INTEGER +              COMMA_SEP +
+                        COLUMN_NAME_HIDE_STATS +                TYPE_INTEGER +              COMMA_SEP +
                         COLUMN_NAME_COLLECTED +                 TYPE_INTEGER +              COMMA_SEP +
                         COLUMN_NAME_COLLECTED_GOLDEN +          TYPE_INTEGER +              COMMA_SEP +
                         COLUMN_NAME_BOOKMARKED +                TYPE_INTEGER +              COMMA_SEP +

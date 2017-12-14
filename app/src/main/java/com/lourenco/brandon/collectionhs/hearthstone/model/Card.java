@@ -30,6 +30,7 @@ public class Card {
     private String text;
     private String artist;
     private Integer factionId;
+    private Boolean hideStats;
 
     private Integer collectedCount;
     private Integer collectedGoldenCount;
@@ -50,6 +51,7 @@ public class Card {
         raceId = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_RACE_ID_FOREIGN));
         playerClassId = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN));
         triClassId = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_TRI_CLASS_ID_FOREIGN));
+        hideStats = c.getInt(c.getColumnIndexOrThrow(CollectionDbContract.Card.COLUMN_NAME_HIDE_STATS)) == 1;
     }
 
     public String getCardId() {
@@ -184,6 +186,14 @@ public class Card {
 
     public void setCollectedGoldenCount(int collectedGoldenCount) {
         this.collectedGoldenCount = collectedGoldenCount;
+    }
+
+    public Boolean isHideStats() {
+        return hideStats;
+    }
+
+    public void setHideStats(Boolean hideStats) {
+        this.hideStats = hideStats;
     }
 
     public Boolean isBookmarked() {

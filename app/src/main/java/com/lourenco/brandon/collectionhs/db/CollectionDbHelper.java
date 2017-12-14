@@ -141,11 +141,13 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 JSONArray arrayEntourage = card.has(CollectionJsonContract.CardJson.KEY_ENTOURAGE) ? card.getJSONArray(CollectionJsonContract.CardJson.KEY_ENTOURAGE) : null;
                 String artist = card.has(CollectionJsonContract.CardJson.KEY_ARTIST) ? card.getString(CollectionJsonContract.CardJson.KEY_ARTIST) : null;
                 String faction = card.has(CollectionJsonContract.CardJson.KEY_FACTION) ? card.getString(CollectionJsonContract.CardJson.KEY_FACTION) : null;
+                Boolean hideStats = card.has(CollectionJsonContract.CardJson.KEY_HIDE_STATS) ? card.getBoolean(CollectionJsonContract.CardJson.KEY_HIDE_STATS) : false;
                 JSONObject jsonPlayReq = card.has(CollectionJsonContract.CardJson.KEY_PLAY_REQUIREMENTS) ? card.getJSONObject(CollectionJsonContract.CardJson.KEY_PLAY_REQUIREMENTS) : null;
 
                 // CONVERT
 
                 Integer convCollectible = collectible != null ? (collectible ? 1 : 0) : null;
+                Integer convHideStats = hideStats != null ? (hideStats ? 1 : 0) : 0;
 
                 //TODO look up the foreign keys from the db tables, not the enums
                 Integer convType = null;
@@ -217,6 +219,7 @@ public class CollectionDbHelper extends SQLiteOpenHelper {
                 values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_ID, id);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_TYPE_ID_FOREIGN, convType);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_COLLECTIBLE, convCollectible);
+                values.put(CollectionDbContract.Card.COLUMN_NAME_HIDE_STATS, convHideStats);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_CARD_SET_ID_FOREIGN, convSet);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_PLAYER_CLASS_ID_FOREIGN, convClass);
                 values.put(CollectionDbContract.Card.COLUMN_NAME_TRI_CLASS_ID_FOREIGN, convTriClass);
