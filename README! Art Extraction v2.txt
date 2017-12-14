@@ -1,0 +1,12 @@
+1. Update HearthstoneJSON repo.
+
+2. Open the Command Prompt as Administrator.
+
+3. Change to the HearthstoneJSON directory:
+
+	> d:
+	> cd D:\Repos\HearthSimRepos\HearthstoneJSON
+
+4.Run the following command (change the output directory if neccessary):
+
+python generate_card_textures.py "D:\Program Files (x86)\Hearthstone\Data\Win\rad_base.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cards0.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardxml0.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures0.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures1.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures2.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures3.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures4.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures5.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures6.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures7.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures8.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\cardtextures9.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials0.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials1.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials2.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials3.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials4.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials5.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials6.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials7.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials8.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\premiummaterials9.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared0.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared1.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared2.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared3.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared4.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared5.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared6.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared7.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared8.unity3d" "D:\Program Files (x86)\Hearthstone\Data\Win\shared9.unity3d" --outdir="D:\out"
