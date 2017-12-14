@@ -262,6 +262,7 @@ public class CardFilterActivity extends AppCompatActivity{
                 (CheckBox)findViewById(R.id.cbMechanicTaunt),
                 (CheckBox)findViewById(R.id.cbMechanicTopDeck),
                 (CheckBox)findViewById(R.id.cbMechanicWindfury),
+                (CheckBox)findViewById(R.id.cbMechanicRecruit),
         };
 
         // Load proper button states
@@ -372,6 +373,7 @@ public class CardFilterActivity extends AppCompatActivity{
                     else if (i == EnumsHS.Mechanic.TAUNT.getValue()) cbFilterMechanic[18].setChecked(true);
                     else if (i == EnumsHS.Mechanic.TOPDECK.getValue()) cbFilterMechanic[19].setChecked(true);
                     else if (i == EnumsHS.Mechanic.WINDFURY.getValue()) cbFilterMechanic[20].setChecked(true);
+                    else if (i == EnumsHS.Mechanic.RECRUIT.getValue()) cbFilterMechanic[21].setChecked(true);
                 }
             }
         }
@@ -609,6 +611,7 @@ public class CardFilterActivity extends AppCompatActivity{
         if (cbFilterMechanic[18].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.TAUNT.getValue());
         if (cbFilterMechanic[19].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.TOPDECK.getValue());
         if (cbFilterMechanic[20].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.WINDFURY.getValue());
+        if (cbFilterMechanic[21].isChecked()) mechanicFilters.add(EnumsHS.Mechanic.RECRUIT.getValue());
 
         return mechanicFilters;
     }

@@ -633,17 +633,21 @@ public class EnumsHS {
         TAUNT(21),
         TOPDECK(22), // Flame Leviathan, Burrowing Mine...
         WINDFURY(23),
-        ImmuneToSpellpower(24),
-        InvisibleDeathrattle(25),
+        RECRUIT(24),
+
+
 
         // Not really used
         MORPH(100),
         TAG_ONE_TURN_EFFECT(101), // Only on enchantments
 
+        // Hidden
+        ImmuneToSpellpower(102),
+        InvisibleDeathrattle(103),
 
         // Retired
-        SPELLPOWER(102), // Now a card field
-        OVERLOAD(103); // Now a card field
+        SPELLPOWER(104), // Now a card field
+        OVERLOAD(105); // Now a card field
 
 
         private int value;

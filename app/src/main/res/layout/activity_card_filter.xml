@@ -1112,6 +1112,12 @@
                     android:text="Poisonous"/>
 
                 <CheckBox
+                    android:id="@+id/cbMechanicRecruit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recruit"/>
+
+                <CheckBox
                     android:id="@+id/cbMechanicSecret"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
