@@ -148,15 +148,13 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
 
 
         //If no cards exist, display a single Fragment displaying "No Results Found."
-        if (!cards.isEmpty())
-        {
+        if (!cards.isEmpty()) {
             // Create the adapter that will return a fragment for each of the classes
             mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
             // Set up the ViewPager with the sections adapter.
             mViewPager = (ViewPager) findViewById(R.id.container);
             mViewPager.setAdapter(mSectionsPagerAdapter);
-
 
 
             tabLayout = (TabLayout) findViewById(R.id.tabsClass);
@@ -180,7 +178,15 @@ public class CardsActivity extends AppCompatActivity implements NavigationView.O
             });
         }
 
-        changeTheme(0); //TODO change to first tab's theme
+        // Changing the theme at this point crashes the app since the drawing phase has not been complete and
+        // the width and height have not been measured, causing a zero divided by zero calculation. The below
+        // is a solution found on StackOverflow: https://stackoverflow.com/a/24035591
+        revealColorView.post(new Runnable() {
+            @Override
+            public void run() {
+                changeTheme(0); //height is ready
+            }
+        });
     }
 
     public void initCardLists()

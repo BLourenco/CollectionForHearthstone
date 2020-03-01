@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="220"
+   height="220"
+   viewBox="0 0 220 220"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="attack-minion.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="84.221895"
+     inkscape:cy="34.711075"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="110,209.82143"
+       orientation="1,0"
+       id="guide4146" />
+    <sodipodi:guide
+       position="150.75,110"
+       orientation="0,1"
+       id="guide4706" />
+    <sodipodi:guide
+       position="110,200.00073"
+       orientation="0,1"
+       id="guide4708" />
+    <sodipodi:guide
+       position="110,19.997864"
+       orientation="0,1"
+       id="guide4710" />
+    <sodipodi:guide
+       position="20.003906,110"
+       orientation="1,0"
+       id="guide4712" />
+    <sodipodi:guide
+       position="200.00391,110"
+       orientation="1,0"
+       id="guide4714" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-832.36216)">
+    <circle
+       style="opacity:1;fill:#ffc107;fill-opacity:1;stroke:#ffc107;stroke-width:19.043;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4144"
+       cx="109.82858"
+       cy="942.53357"
+       r="80.593529" />
+  </g>
+</svg>
